@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* @keyframes borderGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+/* .animate-border-glow {
+  background-size: 200% 200%;
+  animation: borderGlow 4s linear infinite;
+}
+
+@keyframes shineBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+/* .bg-border-glow {
+  background-size: 200% 200%;
+  animation: shineBorder 4s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 2px;
+} */
+.bg-gradient-custom {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 1, 36, 1) 0%,
+    rgba(15, 15, 38, 1) 34%
+  );
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.border-animation {
+  pointer-events: none;
+}
+.border-animation::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(to right, #6366f1, #8b5cf6, #3b82f6);
+  border-radius: 2px;
+  transform-origin: center;
+  animation: rotateBorder 4s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
