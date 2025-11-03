@@ -62,11 +62,36 @@ export function SkillsCard() {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gradient-custom text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 grid grid-cols-rows">
+    <div className="bg-gradient-custom relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 grid grid-cols-rows">
+      <div className="absolute inset-0 ">
+        <div className="absolute inset-0 opacity-10">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern
+                id="hexagons"
+                width="50"
+                height="43.4"
+                patternUnits="userSpaceOnUse"
+                patternTransform="scale(0.8)"
+              >
+                <path
+                  d="M25,0 L50,14.43 L50,43.3 L25,57.73 L0,43.3 L0,14.43 Z"
+                  fill="none"
+                  stroke="#8B5CF6"
+                  stroke-width="1"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hexagons)" />
+          </svg>
+        </div>
+      </div>
       {/* Skills Section */}
       <div>
-        <h2 className="text-xl  font-semibold mb-2">{skillSet?.title}</h2>
-        <ul className="list-disc ml-2 text-sm space-y-1 rounded-2xl border shadow-2xl p-2 bg-cyan-700/20">
+        <h2 className="text-2xl font-bold text-[#38bdf8] mb-2">
+          {skillSet?.title}
+        </h2>
+        <ul className="list-disc ml-2 text-sm space-y-1 rounded-2xl bg-linear-to-br from-black via-purple-950 p-2">
           {skillSet?.brief}
         </ul>
       </div>
@@ -84,7 +109,7 @@ export function SkillsCard() {
               <TechIcons />
             </div>
           </div>
-          <div className="bg-purple-700/20 text-white flex flex-col gap-4 items-center justify-center p-5 rounded-2xl h-63">
+          <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-5 rounded-2xl h-63">
             <div className="text-sm font-bold">
               {skillSet?.titleforsubcard_2}
             </div>
@@ -292,7 +317,7 @@ export function ExperienceCard() {
   }, []);
   if (error) return <p className="text-red-500">{error}</p>;
   return (
-    <div className="bg-gray-800 text-white p-5 border border-[#334155] rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3">
+    <div className="bg-linear-to-br from-black via-purple-950 text-white p-5 border border-[#334155] rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3">
       <div>
         <h2 className="text-xl font-semibold mb-2"> {Experience?.title} </h2>
         <p className="text-sm">{Experience?.text}</p>

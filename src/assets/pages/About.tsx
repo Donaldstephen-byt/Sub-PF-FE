@@ -3,7 +3,10 @@ import {
   AboutCard,
   ExperienceCard,
 } from "../../components/mainSkillsCards";
-import { MainprojectCard } from "../../components/projectCard";
+import {
+  MainprojectCard,
+  IlustrationAbout,
+} from "../../components/projectCard";
 
 function About() {
   return (
@@ -13,8 +16,7 @@ function About() {
         <AboutCard />
         <ExperienceCard />
         <SkillsCard />
-
-        <div></div>
+        <IlustrationAbout />
         <MainprojectCard />
       </div>
     </>
