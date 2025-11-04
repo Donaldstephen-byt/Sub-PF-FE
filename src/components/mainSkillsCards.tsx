@@ -63,7 +63,7 @@ export function SkillsCard() {
 
   return (
     <div className="bg-gradient-custom relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 grid grid-cols-rows">
-      <div className="absolute inset-0 ">
+      {/* <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%">
             <defs>
@@ -85,7 +85,7 @@ export function SkillsCard() {
             <rect width="100%" height="100%" fill="url(#hexagons)" />
           </svg>
         </div>
-      </div>
+      </div> */}
       {/* Skills Section */}
       <div>
         <h2 className="text-2xl font-bold text-[#38bdf8] mb-2">
