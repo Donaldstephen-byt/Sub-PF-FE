@@ -114,7 +114,7 @@ export default function LefIndexCard() {
                 <div className="p-px rounded-[12px] bg-linear-to-br from-indigo-400 via-purple-500 to-blue-500 animate-pulse duration-300">
                   <li
                     key={index}
-                    className="bg-black/80 text-white rounded-[12px] px-2 py-1 shadow-sm"
+                    className="bg-black/80 text-white rounded-xl px-2 py-1 shadow-sm"
                   >
                     {hobby}
                   </li>
