@@ -333,12 +333,12 @@ export function ExperienceCard() {
           </p>
         </div>
         <div className="rounded-2xl p-2 bg-gray-900">
-          <h3 className="font-semibold mb-4">Clean & Maintainable</h3>
+          <h3 className="font-semibold mb-4">Efficient & Performant</h3>
           <p>
             {" "}
-            Code Writing code that is easy to read, understand, and extend.
-            Prioritizing clarity over cleverness to ensure long-term
-            maintainability.
+            Writing code that runs optimally, making the best use of resources
+            while avoiding premature optimization. Balancing speed and
+            readability to deliver quality software that scales well.
           </p>
         </div>
         <div className="rounded-2xl p-2 bg-gray-900">
