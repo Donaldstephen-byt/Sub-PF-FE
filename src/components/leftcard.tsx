@@ -111,7 +111,7 @@ export default function LefIndexCard() {
             <h4 className="font-semibold mb-2">Hobbies</h4>
             <ul className="flex flex-wrap gap-2">
               {skills.hobies.map((hobby, index) => (
-                <div className="p-px rounded-[12px] bg-linear-to-br from-indigo-400 via-purple-500 to-blue-500 animate-pulse duration-300">
+                <div className="p-px rounded-xl bg-linear-to-br from-indigo-400 via-purple-500 to-blue-500 animate-pulse duration-300">
                   <li
                     key={index}
                     className="bg-black/80 text-white rounded-xl px-2 py-1 shadow-sm"
