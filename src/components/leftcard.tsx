@@ -132,7 +132,7 @@ export default function LefIndexCard() {
               {skills.Dislikes.map((Dislikes, index) => (
                 <li
                   key={index}
-                  className="bg-slate-700 border border-cyan-300 text-slate-200 rounded-[12px] px-2 py-1 shadow-sm"
+                  className="bg-slate-700 border border-cyan-300 text-slate-200 rounded-xl px-2 py-1 shadow-sm"
                 >
                   {Dislikes}
                 </li>
