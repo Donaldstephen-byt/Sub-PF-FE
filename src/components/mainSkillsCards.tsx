@@ -334,7 +334,7 @@ export function ExperienceCard() {
         </div>
         <div className="rounded-2xl p-2 bg-gray-900">
           <h3 className="font-semibold mb-4">Efficient & Performant</h3>
-          <p>
+          <p className="tex-xs">
             {" "}
             Writing code that runs optimally, making the best use of resources
             while avoiding premature optimization. Balancing speed and
@@ -343,7 +343,7 @@ export function ExperienceCard() {
         </div>
         <div className="rounded-2xl p-2 bg-gray-900">
           <h3 className="font-semibold mb-4">Testable & Reliable </h3>
-          <p className="tex-sm">
+          <p className="tex-xs">
             {" "}
             Crafting code that can be easily tested to catch issues early,
             ensuring consistent behavior and reducing bugs. Emphasizing
