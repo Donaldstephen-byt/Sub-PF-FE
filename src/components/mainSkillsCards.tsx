@@ -342,12 +342,12 @@ export function ExperienceCard() {
           </p>
         </div>
         <div className="rounded-2xl p-2 bg-gray-900">
-          <h3 className="font-semibold mb-4">Clean & Maintainable</h3>
-          <p>
+          <h3 className="font-semibold mb-4">Testable & Reliable </h3>
+          <p className="tex-sm">
             {" "}
-            Code Writing code that is easy to read, understand, and extend.
-            Prioritizing clarity over cleverness to ensure long-term
-            maintainability.
+            Crafting code that can be easily tested to catch issues early,
+            ensuring consistent behavior and reducing bugs. Emphasizing
+            automated tests and thorough validation for dependable software.
           </p>
         </div>
       </div>
