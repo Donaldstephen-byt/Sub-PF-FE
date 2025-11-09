@@ -62,7 +62,7 @@ export function SkillsCard() {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gradient-custom relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 grid grid-cols-rows">
+    <div className="bg-gradient-custom relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4">
       {/* <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%">
@@ -96,7 +96,7 @@ export function SkillsCard() {
         </ul>
       </div>
 
-      <div className="flex flex-wrap gap-2 mt-4 pt-2 w-full">
+      <div className="flex flex-wrap gap-8 mt-6  pt-2 w-full">
         <div className="sm:flex gap-4">
           <div className=" bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-4 h-63 rounded-2xl">
             <div className="text-sm font-bold">

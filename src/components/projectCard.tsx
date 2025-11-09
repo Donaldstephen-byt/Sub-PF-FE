@@ -31,8 +31,8 @@ export function MainprojectCard() {
 
 export function IlustrationAbout() {
   return (
-    <div className="bg-gray-900/90 shadow-2xl rounded-lg  lg:col-start-5 lg:row-span-4">
-      <div className="bg-black rounded-t-2xl w-full  relative overflow-hidden h-72">
+    <div className="bg-gray-900/90 shadow-2xl rounded-lg lg:col-start-5 lg:row-span-4 flex flex-col">
+      <div className="bg-black rounded-t-2xl  w-full  relative overflow-hidden h-72">
         <div className="relative text-center items-center px-10 sm:pt-[30%] z-1000 font-bold text-lg">
           Dedicated to optimizing page load times for enhanced user experience.
         </div>
@@ -86,7 +86,7 @@ export function IlustrationAbout() {
       </div>
 
       <div
-        className="bg-linear-to-br from-black via-purple-950 to-blue-950 border-t-0 border-b-0  p-12 relative overflow-hidden border border-purple-500/30"
+        className="bg-linear-to-br flex-1 from-black via-purple-950 to-blue-950 border-t-0 border-b-0  p-12 relative overflow-hidden border border-purple-500/30"
         style={{ height: 280 }}
       >
         <div className="relative text-center items-center sm:pt-6  z-1000 font-bold text-md">
@@ -340,7 +340,7 @@ export function IlustrationAbout() {
       </div>
 
       <div
-        className="bg-linear-to-br from-slate-950 via-blue-950  border-t-0 to-slate-950 rounded-b-2xl p-12 relative overflow-hidden border border-blue-500/30"
+        className="bg-linear-to-br flex-1 from-slate-950 via-blue-950  border-t-0 to-slate-950 rounded-b-2xl p-12 relative overflow-hidden border border-blue-500/30"
         style={{ height: "280px" }}
       >
         <div className="text-center right-6 left-6 absolute items-center sm:pt-6  z-1000 font-bold text-md">
