@@ -26,6 +26,18 @@ export default function Projects() {
       tech: ["MongoDB", "React", "Tailwind"],
       link: "#",
     },
+    {
+      title: "Trackademic",
+      desc: "A comprehensive platform for managing student records, attendance, grades, and staff operations.",
+      tech: ["Django", "PostgreSQL", "Bootstrap"],
+      link: "#",
+    },
+    {
+      title: "Quiz Master",
+      desc: "An interactive web app for creating, taking, and sharing quizzes in real-time.",
+      tech: ["Node.js", "React", "Firebase"],
+      link: "#",
+    },
   ];
 
   return (
