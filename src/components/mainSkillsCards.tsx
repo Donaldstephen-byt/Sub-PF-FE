@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "./config";
+import { IdCard } from "lucide-react";
+import { PersonStanding } from "lucide-react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -265,13 +267,19 @@ export function AboutCard() {
       });
   }, []);
   if (error) return <p className="text-red-500">{error}</p>;
+
   return (
     <div className="bg-gray-900/90 border border-[#334155]  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2">
       <div>
-        <h2 className="text-2xl font-bold text-[#38bdf8] mb-2">
+        <div className="text-2xl flex items-center gap-4 font-bold text-[#38bdf8] mb-2">
           {" "}
-          {About?.title}{" "}
-        </h2>
+          <h2>{About?.title}.</h2>
+          <div className="flex">
+            <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+            <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+            <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+          </div>
+        </div>
         <p className="text-sm text-[#cbd5e1] leading-relaxed">
           {About?.content}
         </p>
