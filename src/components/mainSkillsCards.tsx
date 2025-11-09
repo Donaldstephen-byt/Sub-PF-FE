@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "./config";
-import { IdCard } from "lucide-react";
-import { PersonStanding } from "lucide-react";
+import { PersonStanding, IdCard } from "lucide-react";
 import {
   FaHtml5,
   FaCss3Alt,

@@ -1,14 +1,9 @@
 import "./App.css";
-
-// import Sidebar from "./components/sidebar";
-// import Navbar from "./components/navbar";
-// import LefIndexCard from "./components/leftcard";
-// import SkillsCard from "./components/mainSkillsCards";
-
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar.tsx";
-import Home from "./assets/pages/home.tsx";
-import About from "./assets/pages/about.tsx";
+import Home from "./assets/pages/Home.tsx";
+import About from "./assets/pages/About.tsx";
+import Projects from "./assets/pages/Projects.tsx";
 // import About from "./pages/About";
 // import Skills from "./pages/Skills";
 
@@ -22,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
         {/* <Route path="/skills" element={<Skills />} /> */}
       </Routes>
     </>
