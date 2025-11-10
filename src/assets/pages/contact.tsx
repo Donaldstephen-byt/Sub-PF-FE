@@ -149,9 +149,9 @@ export default function SpiderClockContactCard() {
                       key={it.label}
                       href={it.href}
                       title={it.label}
-                      className="absolute left-1/2 top-1/2"
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                       style={{
-                        transform: `rotate(${angle}deg) translate(0, -110px) rotate(${-angle}deg)`,
+                        transform: `rotate(${angle}deg) translate(0, -130px) rotate(${-angle}deg)`,
                       }}
                     >
                       <div className="w-11 h-11 rounded-full bg-slate-800/60 border border-slate-700 flex items-center justify-center shadow-sm transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(99,102,241,0.14)]">

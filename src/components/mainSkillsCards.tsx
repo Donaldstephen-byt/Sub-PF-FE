@@ -66,7 +66,7 @@ export function SkillsCard() {
   }, []);
 
   return (
-    <div className="relative bg-gradient-custom text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden">
+    <div className="relative bg-slate-800/70 text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {/* Overlay spinner */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -280,7 +280,7 @@ export function AboutCard() {
   }, []);
 
   return (
-    <div className="bg-gray-900/90  relative  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2">
+    <div className="bg-slate-800/60  relative  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2 border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -309,12 +309,12 @@ export function AboutCard() {
         }`}
       >
         <div>
-          <div className="text-2xl flex items-center gap-4 font-bold text-[#38bdf8] mb-2">
+          <div className="text-2xl flex items-center gap-4 font-bold text-indigo-300 group-hover:text-indigo-400 transition mb-2">
             <h2>{about?.title || "Loading..."}</h2>
             <div className="flex">
-              <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
-              <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
-              <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+              <PersonStanding className="w-8 h-6 text-indigo-300" />
+              <PersonStanding className="w-8 h-6 text-indigo-300" />
+              <PersonStanding className="w-8 h-6 text-indigo-300" />
             </div>
           </div>
 
@@ -410,7 +410,7 @@ export function ExperienceCard() {
       .finally(() => setLoading(false));
   }, []);
   return (
-    <div className="bg-linear-to-br relative from-black via-purple-950 text-white p-5 border border-[#334155] rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3">
+    <div className="bg-linear-to-br relative from-black via-purple-950 text-white p-5 rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3 border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
           <div className="relative flex items-center justify-center">
