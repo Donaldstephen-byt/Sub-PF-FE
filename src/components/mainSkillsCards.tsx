@@ -304,7 +304,7 @@ export function AboutCard() {
 
       {/* 🌙 Card Content */}
       <div
-        className={`transition-all duration-500 ${
+        className={`transition-all duration-500 flex flex-col gap-8 ${
           loading ? "opacity-40 blur-sm" : "opacity-100"
         }`}
       >
