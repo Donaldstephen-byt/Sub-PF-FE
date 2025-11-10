@@ -4,6 +4,8 @@ import Navbar from "./components/navbar.tsx";
 import Home from "./assets/pages/Home.tsx";
 import About from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
+import ContactPage from "./assets/pages/contact.tsx";
+
 // import About from "./pages/About";
 // import Skills from "./pages/Skills";
 
@@ -18,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
-        {/* <Route path="/skills" element={<Skills />} /> */}
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </>
   );

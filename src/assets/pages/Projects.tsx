@@ -29,7 +29,7 @@ export default function Projects() {
     {
       title: "Trackademic",
       desc: "A comprehensive platform for managing student records, attendance, grades, and staff operations.",
-      tech: ["Django", "PostgreSQL", "Bootstrap"],
+      tech: ["Tailwind", "Javascript", "Node.js"],
       link: "#",
     },
     {
