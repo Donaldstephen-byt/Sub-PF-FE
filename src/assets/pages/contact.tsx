@@ -407,7 +407,7 @@ export default function SpiderClockContactCard() {
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-medium py-2 px-4 rounded-xl hover:opacity-95 transition"
+                className="inline-flex items-center gap-2 bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-medium py-2 px-4 rounded-xl hover:opacity-95 transition"
               >
                 <Send className="w-4 h-4" />
                 Send Message

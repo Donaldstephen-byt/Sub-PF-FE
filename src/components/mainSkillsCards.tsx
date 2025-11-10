@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "./config";
-import { PersonStanding, IdCard } from "lucide-react";
+import { PersonStanding } from "lucide-react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -46,119 +46,128 @@ type SkillsResponse = {
 
 export function SkillsCard() {
   const [skillSet, setSkillSet] = useState<SkillsResponse | null>(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${BASE_URL}/about/skills`)
       .then((res) => res.json())
       .then((data: SkillsResponse) => {
         console.log("✅ Skills data from API:", data);
         setSkillSet(data);
+        setError(null);
       })
       .catch((error) => {
         console.log("❌ Error loading skills:", error);
         setError("❌ Failed to load skills");
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
-  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gradient-custom relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4">
-      {/* <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-10">
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern
-                id="hexagons"
-                width="50"
-                height="43.4"
-                patternUnits="userSpaceOnUse"
-                patternTransform="scale(0.8)"
-              >
-                <path
-                  d="M25,0 L50,14.43 L50,43.3 L25,57.73 L0,43.3 L0,14.43 Z"
-                  fill="none"
-                  stroke="#8B5CF6"
-                  stroke-width="1"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hexagons)" />
-          </svg>
-        </div>
-      </div> */}
-      {/* Skills Section */}
-      <div>
-        <h2 className="text-2xl font-bold text-[#38bdf8] mb-2">
-          {skillSet?.title}
-        </h2>
-        <ul className="list-disc ml-2 text-sm space-y-1 rounded-2xl bg-linear-to-br from-black via-purple-950 p-2">
-          {skillSet?.brief}
-        </ul>
-      </div>
+    <div className="relative bg-gradient-custom text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden">
+      {/* Overlay spinner */}
+      {(loading || error) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
+          <div className="relative flex items-center justify-center">
+            {/* Outer rotating ring */}
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
 
-      <div className="flex flex-wrap gap-8 mt-6  pt-2 w-full">
-        <div className="sm:flex gap-4">
-          <div className=" bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-4 h-63 rounded-2xl">
-            <div className="text-sm font-bold">
-              {skillSet?.titleforsubcard_1}
-            </div>
-            <div className="text-center text-sm font-['poppins']">
-              {skillSet?.contenforsubcard_1}
-            </div>
-            <div className="flex justify-center items-center w-full pl-3">
-              <TechIcons />
+            {/* Inner ring */}
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+            {/* Text pulse */}
+            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
+              LOADING
             </div>
           </div>
-          <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-5 rounded-2xl h-63">
-            <div className="text-sm font-bold">
-              {skillSet?.titleforsubcard_2}
+        </div>
+      )}
+
+      {/* Content */}
+      <div
+        className={`${
+          loading ? "opacity-40 blur-sm" : "opacity-100"
+        } transition-all duration-500`}
+      >
+        <h2 className="text-2xl font-bold text-[#38bdf8] mb-2">
+          {skillSet?.title || "Loading..."}
+        </h2>
+
+        <ul className="list-disc ml-2 text-sm space-y-1 rounded-2xl bg-linear-to-br from-black via-purple-950 p-2">
+          {skillSet?.brief || "Fetching skill description..."}
+        </ul>
+
+        <div className="flex flex-wrap gap-8 mt-6 pt-2 w-full">
+          <div className="sm:flex gap-4">
+            <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-4 h-63 rounded-2xl">
+              <div className="text-sm font-bold">
+                {skillSet?.titleforsubcard_1}
+              </div>
+              <div className="text-center text-sm font-['poppins']">
+                {skillSet?.contenforsubcard_1}
+              </div>
+              <div className="flex justify-center items-center w-full pl-3">
+                <TechIcons />
+              </div>
             </div>
-            <div className="text-center text-sm font-['poppins']">
-              {skillSet?.contenforsubcard_2}
-            </div>
-            <div>
+
+            <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-5 rounded-2xl h-63">
+              <div className="text-sm font-bold">
+                {skillSet?.titleforsubcard_2}
+              </div>
+              <div className="text-center text-sm font-['poppins']">
+                {skillSet?.contenforsubcard_2}
+              </div>
               <BackendTechIcons />
             </div>
           </div>
-        </div>
-        <div className="sm:flex gap-4">
-          <div className="bg-[#42210b] border border-[#7c3aed] shadow-lg text-white flex flex-col gap-4 items-center justify-center p-4 rounded-2xl lg:row-start-2 lg:col-span-3 lg:row-span-1">
-            <div className="text-sm text-[#fcd34d] font-bold">
-              {skillSet?.titleforsubcard_3}
+
+          <div className="sm:flex gap-4">
+            <div className="bg-[#42210b] border border-[#7c3aed] shadow-lg text-white flex flex-col gap-4 items-center justify-center p-4 rounded-2xl">
+              <div className="text-sm text-[#fcd34d] font-bold">
+                {skillSet?.titleforsubcard_3}
+              </div>
+              <div className="text-center text-[#f3e8ff] text-sm font-['poppins']">
+                {skillSet?.contenforsubcard_3}
+              </div>
             </div>
-            <div className="text-center text-[#f3e8ff] text-sm font-['poppins']">
-              {skillSet?.contenforsubcard_3}
+
+            <div className="bg-[#42210b] border border-[#7c3aed] shadow-lg flex flex-col gap-4 items-center justify-center p-4 rounded-2xl">
+              <div className="text-sm text-[#fcd34d] font-bold">
+                {skillSet?.titleforsubcard_4}
+              </div>
+              <div className="text-center text-sm font-['poppins']">
+                {skillSet?.contenforsubcard_4}
+              </div>
             </div>
           </div>
-          <div className="bg-[#42210b] border border-[#7c3aed] shadow-lg flex flex-col gap-4  items-center justify-center p-4 rounded-2xl lg:row-start-2 lg:col-span-3 lg:row-span-1">
-            <div className="text-sm text-[#fcd34d] font-bold">
-              {skillSet?.titleforsubcard_4}
+
+          <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg flex flex-col gap-3 justify-center p-4 rounded-2xl w-full">
+            <div className="flex flex-col items-center text-center">
+              <div className="text-sm text-[#818cf8] font-bold">
+                {skillSet?.titleforsubcard_5}
+              </div>
+              <div className="text-[#cbd5e1] text-sm font-['poppins']">
+                {skillSet?.contenforsubcard_5}
+              </div>
             </div>
-            <div className="text-center text-sm font-['poppins']">
-              {skillSet?.contenforsubcard_4}
+            <div className="w-full flex justify-center">
+              <ToolsIcons />
             </div>
           </div>
-        </div>
-        <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg text-whiteitems-center gap-3 flex flex-col justify-center p-4 rounded-2xl w-full">
-          <div className="flex w-full">
+
+          <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg flex items-center justify-center p-4 rounded-2xl w-full">
             <div className="text-sm text-[#818cf8] font-bold text-center">
-              {skillSet?.titleforsubcard_5}
+              {skillSet?.titleforsubcard_6}
             </div>
             <div className="text-center text-[#cbd5e1] text-sm font-['poppins']">
-              {skillSet?.contenforsubcard_5}
+              {skillSet?.contenforsubcard_6}
             </div>
-          </div>
-          <div className="w-full flex justify-center">
-            <ToolsIcons />
-          </div>
-        </div>
-        <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg  text-white flex items-center justify-center p-4 rounded-2xl w-full ">
-          <div className="text-sm text-[#818cf8] font-bold text-center">
-            {skillSet?.titleforsubcard_6}
-          </div>
-          <div className="text-center text-[#cbd5e1] text-sm font-['poppins']">
-            {skillSet?.contenforsubcard_6}
           </div>
         </div>
       </div>
@@ -250,51 +259,127 @@ type AboutResponse = {
 };
 
 export function AboutCard() {
-  const [About, setAbout] = useState<AboutResponse | null>(null);
+  const [about, setAbout] = useState<AboutResponse | null>(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${BASE_URL}/about/me`)
       .then((res) => res.json())
       .then((data: AboutResponse) => {
         console.log("✅ About data from API:", data);
         setAbout(data);
+        setError(null);
       })
-      .catch((error) => {
-        console.log("❌ Error loading skills:", error);
-        setError("❌ Failed to load skills");
-      });
+      .catch((err) => {
+        console.log("❌ Error loading about:", err);
+        setError("❌ Failed to load about info");
+      })
+      .finally(() => setLoading(false));
   }, []);
-  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="bg-gray-900/90 border border-[#334155]  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2">
-      <div>
-        <div className="text-2xl flex items-center gap-4 font-bold text-[#38bdf8] mb-2">
-          {" "}
-          <h2>{About?.title}.</h2>
-          <div className="flex">
-            <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
-            <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
-            <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+    <div className="bg-gray-900/90  relative  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2">
+      {/* 🌀 Unique Spinner Overlay */}
+      {(loading || error) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
+          <div className="relative flex items-center justify-center">
+            {/* Outer rotating ring */}
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
+
+            {/* Inner ring */}
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+            {/* Text pulse */}
+            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
+              LOADING
+            </div>
           </div>
         </div>
-        <p className="text-sm text-[#cbd5e1] leading-relaxed">
-          {About?.content}
-        </p>
+      )}
+
+      {/* 🌙 Card Content */}
+      <div
+        className={`transition-all duration-500 ${
+          loading ? "opacity-40 blur-sm" : "opacity-100"
+        }`}
+      >
+        <div>
+          <div className="text-2xl flex items-center gap-4 font-bold text-[#38bdf8] mb-2">
+            <h2>{about?.title || "Loading..."}</h2>
+            <div className="flex">
+              <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+              <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+              <PersonStanding className="w-8 h-6 text-[#38bdf8]" />
+            </div>
+          </div>
+
+          <p className="text-sm text-[#cbd5e1] leading-relaxed">
+            {about?.content || "Fetching about details..."}
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl text-[#38bdf8] font-bold mb-2">
+            {about?.manner || "Loading..."}
+          </h2>
+          <ul className="list-disc pl-5 text-sm text-[#cbd5e1] space-y-1">
+            <li>{about?.manner_1}</li>
+            <li>{about?.manner_2}</li>
+            <li>{about?.manner_3}</li>
+            <li>{about?.manner_4}</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h2 className="text-2xl text-[#38bdf8] font-bold mb-2">
-          {" "}
-          {About?.manner}{" "}
-        </h2>
-        <ul className="list list-disc pl-5">
-          <li> {About?.manner_1} </li>
-          <li> {About?.manner_2} </li>
-          <li> {About?.manner_3} </li>
-          <li> {About?.manner_4} </li>
-        </ul>
-      </div>
+
+      {/* 🎨 Scoped Styles (won’t affect other components) */}
+      <style jsx>{`
+        @keyframes about-spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes about-spin-slow {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+
+        @keyframes about-pulse {
+          0%,
+          100% {
+            opacity: 0.4;
+            transform: scale(0.95);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-about-spin {
+          animation: about-spin 1s linear infinite;
+        }
+
+        .animate-about-spin-slow {
+          animation: about-spin-slow 3s linear infinite;
+        }
+
+        .animate-about-pulse {
+          animation: about-pulse 2s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
@@ -308,6 +393,7 @@ type ExperienceResponse = {
 
 export function ExperienceCard() {
   const [Experience, setExperience] = useState<ExperienceResponse | null>(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -317,14 +403,33 @@ export function ExperienceCard() {
         console.log("✅ Experience data from API:", data);
         setExperience(data);
       })
-      .catch((error) => {
-        console.log("❌ Error loading skills:", error);
-        setError("❌ Failed to load skills");
-      });
+      .catch((err) => {
+        console.log("❌ Error loading", err);
+        setError("❌ Failed to load  info");
+      })
+      .finally(() => setLoading(false));
   }, []);
-  if (error) return <p className="text-red-500">{error}</p>;
   return (
-    <div className="bg-linear-to-br from-black via-purple-950 text-white p-5 border border-[#334155] rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3">
+    <div className="bg-linear-to-br relative from-black via-purple-950 text-white p-5 border border-[#334155] rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3">
+      {(loading || error) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
+          <div className="relative flex items-center justify-center">
+            {/* Outer rotating ring */}
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
+
+            {/* Inner ring */}
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+            {/* Text pulse */}
+            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
+              LOADING
+            </div>
+          </div>
+        </div>
+      )}
       <div>
         <h2 className="text-xl font-semibold mb-2"> {Experience?.title} </h2>
         <p className="text-sm">{Experience?.text}</p>
