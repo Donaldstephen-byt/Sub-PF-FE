@@ -300,3 +300,45 @@
     .skill-5 { animation: orbitReverse 11s linear infinite; }
     .center-icon { animation: glow 3s ease-in-out infinite; }
     .progress-bar { animation: pulse 2s ease-in-out infinite; }
+
+      @keyframes about-spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes about-spin-slow {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+
+        @keyframes about-pulse {
+          0%,
+          100% {
+            opacity: 0.4;
+            transform: scale(0.95);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-about-spin {
+          animation: about-spin 1s linear infinite;
+        }
+
+        .animate-about-spin-slow {
+          animation: about-spin-slow 3s linear infinite;
+        }
+
+        .animate-about-pulse {
+          animation: about-pulse 2s ease-in-out infinite;
+        }

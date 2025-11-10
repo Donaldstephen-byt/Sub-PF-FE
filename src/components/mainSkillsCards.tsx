@@ -66,7 +66,7 @@ export function SkillsCard() {
   }, []);
 
   return (
-    <div className="relative bg-slate-800/70 text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
+    <div className="relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {/* Overlay spinner */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -94,15 +94,25 @@ export function SkillsCard() {
           loading ? "opacity-40 blur-sm" : "opacity-100"
         } transition-all duration-500`}
       >
-        <h2 className="text-2xl font-bold text-[#38bdf8] mb-2">
-          {skillSet?.title || "Loading..."}
-        </h2>
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-4">
+          <PersonStanding className="w-8 h-8 text-indigo-400" />
+          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
+            {skillSet?.title || "Loading..."}
+          </h2>
+        </div>
 
-        <ul className="list-disc ml-2 text-sm space-y-1 rounded-2xl bg-linear-to-br from-black via-purple-950 p-2">
-          {skillSet?.brief || "Fetching skill description..."}
-        </ul>
+        {/* Brief */}
+        <div className="bg-slate-900/50 border border-indigo-500/20 rounded-2xl shadow-lg p-6 mb-6 backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-[0_0_20px_-5px_rgba(99,102,241,0.3)]">
+          <h3 className="text-indigo-400 font-semibold text-lg mb-2">
+            Overview
+          </h3>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            {skillSet?.brief || "Fetching skill description..."}
+          </p>
+        </div>
 
-        <div className="flex flex-wrap gap-8 mt-6 pt-2 w-full">
+        <div className="flex flex-wrap gap-4 mt-6 pt-2 w-full">
           <div className="sm:flex gap-4">
             <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-4 h-63 rounded-2xl">
               <div className="text-sm font-bold">
@@ -160,6 +170,7 @@ export function SkillsCard() {
               <ToolsIcons />
             </div>
           </div>
+          
 
           <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg flex items-center justify-center p-4 rounded-2xl w-full">
             <div className="text-sm text-[#818cf8] font-bold text-center">
@@ -337,7 +348,7 @@ export function AboutCard() {
       </div>
 
       {/* 🎨 Scoped Styles (won’t affect other components) */}
-      <style jsx>{`
+      <style>{`
         @keyframes about-spin {
           from {
             transform: rotate(0deg);
