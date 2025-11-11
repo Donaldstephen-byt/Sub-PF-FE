@@ -292,7 +292,7 @@ export function AboutCard() {
 
   return (
     <div className="bg-slate-800/60  relative  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2 border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
-      {/* 🌀 Unique Spinner Overlay */}
+      {/*  Unique Spinner Overlay */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
           <div className="relative flex items-center justify-center">

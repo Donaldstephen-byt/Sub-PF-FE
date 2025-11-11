@@ -368,8 +368,8 @@ export default function SpiderClockContactCard() {
               const form = e.currentTarget;
               const formData = new FormData(e.currentTarget);
               const name = (formData.get("name") as string) || "";
-              const email = (formData.get("email") as string) || "";
-              const message = (formData.get("message") as string) || "";
+              // const email = (formData.get("email") as string) || "";
+              // const message = (formData.get("message") as string) || "";
 
               // temporary feedback
               alert(`Thanks ${name || "friend"} — message received! (stub)`);

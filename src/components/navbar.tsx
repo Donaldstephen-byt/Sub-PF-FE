@@ -78,7 +78,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a href="#" className="flex items-center gap-3 no-underline">
               <span className="tracking-tight text-transparent bg-clip-text bg-linear-to-br from-indigo-400 via-purple-500 to-blue-500 text-2xl font-semibold">
-                Donald.dev
+                Donald U.
               </span>
             </a>
 
