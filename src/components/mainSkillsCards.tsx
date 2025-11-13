@@ -19,13 +19,13 @@ import {
   SiAuth0,
   SiPostman,
 } from "react-icons/si";
+import { Code2, Zap, ShieldCheck, Cpu, Hammer } from "lucide-react";
+import { motion } from "framer-motion";
 import { VscVscode } from "react-icons/vsc";
-import { MdApi } from "react-icons/md"; // For REST APIs
-// import { DiMysql } from "react-icons/di";
+import { MdApi } from "react-icons/md";
 import { GiProgression } from "react-icons/gi";
 // import { type } from "os";
 
-// ✅ Correct type for skills instead of profile
 type SkillsResponse = {
   title: string;
   items: string[];
@@ -66,7 +66,7 @@ export function SkillsCard() {
   }, []);
 
   return (
-    <div className="relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
+    <div className="relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {/* Overlay spinner */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -97,7 +97,7 @@ export function SkillsCard() {
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
           <PersonStanding className="w-8 h-8 text-indigo-400" />
-          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
+          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
             {skillSet?.title || "Loading..."}
           </h2>
         </div>
@@ -170,7 +170,6 @@ export function SkillsCard() {
               <ToolsIcons />
             </div>
           </div>
-          
 
           <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg flex items-center justify-center p-4 rounded-2xl w-full">
             <div className="text-sm text-[#818cf8] font-bold text-center">
@@ -292,7 +291,7 @@ export function AboutCard() {
 
   return (
     <div className="bg-slate-800/60  relative  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2 border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
-      {/*  Unique Spinner Overlay */}
+      {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
           <div className="relative flex items-center justify-center">
@@ -403,7 +402,7 @@ type ExperienceResponse = {
 };
 
 export function ExperienceCard() {
-  const [Experience, setExperience] = useState<ExperienceResponse | null>(null);
+  const [Experience, setExperience] = useState<skills>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -411,69 +410,117 @@ export function ExperienceCard() {
     fetch(`${BASE_URL}/focus`)
       .then((res) => res.json())
       .then((data: ExperienceResponse) => {
-        console.log("✅ Experience data from API:", data);
         setExperience(data);
       })
-      .catch((err) => {
-        console.log("❌ Error loading", err);
-        setError("❌ Failed to load  info");
-      })
+      .catch(() => setError("❌ Failed to load info"))
       .finally(() => setLoading(false));
   }, []);
+
   return (
-    <div className="bg-linear-to-br relative from-black via-purple-950 text-white p-5 rounded-xl shadow lg:col-span-2 lg:row-start-3 lg:row-span-3 border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
-      {(loading || error) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
-          <div className="relative flex items-center justify-center">
-            {/* Outer rotating ring */}
-            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
-
-            {/* Inner ring */}
-            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
-
-            {/* Center glowing dot */}
-            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
-
-            {/* Text pulse */}
-            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
-              LOADING
+    <div className="relative lg:col-span-2 lg:row-start-3 lg:row-span-3">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative bg-gradient-to-br from-[#0a0b1e] h-full via-slate-950/90 to-[#0f172a] border border-slate-800 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
+      >
+        {/* Loader */}
+        {(loading || error) && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-20 rounded-2xl">
+            <div className="relative flex flex-col items-center">
+              <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-indigo-500 border-l-cyan-400 animate-spin"></div>
+              <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-violet-500 border-r-cyan-500 animate-[spin_4s_linear_infinite_reverse]"></div>
+              <div className="absolute w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_#6366f1,0_0_25px_#06b6d4]"></div>
+              <p className="mt-16 text-xs tracking-widest text-cyan-300 animate-pulse">
+                LOADING
+              </p>
             </div>
           </div>
-        </div>
-      )}
-      <div>
-        <h2 className="text-xl font-semibold mb-2"> {Experience?.title} </h2>
-        <p className="text-sm">{Experience?.text}</p>
-      </div>
-      <div className="w-full flex gap-4 flex-wrap mt-4 p-3">
-        <div className="rounded-2xl p-2 bg-gray-900">
-          <h3 className="font-semibold mb-4">Clean & Maintainable</h3>
-          <p>
-            {" "}
-            Code Writing code that is easy to read, understand, and extend.
-            Prioritizing clarity over cleverness to ensure long-term
-            maintainability.
+        )}
+
+        {/* Header */}
+        <header className="mb-6">
+          <div className="flex items-center gap-3 mb-3">
+            <Cpu className="w-6 h-6 text-indigo-400" />
+            <h2 className="text-lg sm:text-xl font-semibold text-white tracking-wide">
+              {Experience?.title || "Philosophy & Focus"}
+            </h2>
+          </div>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            {Experience?.text ||
+              "I am committed to creating software that is efficient, maintainable, and adaptable. I prioritize learning best practices, exploring modern technologies, and ensuring thoughtfully designed solutions for both users and developers."}
           </p>
-        </div>
-        <div className="rounded-2xl p-2 bg-gray-900">
-          <h3 className="font-semibold mb-4">Efficient & Performant</h3>
-          <p className="tex-xs">
-            {" "}
-            Writing code that runs optimally, making the best use of resources
-            while avoiding premature optimization. Balancing speed and
-            readability to deliver quality software that scales well.
-          </p>
-        </div>
-        <div className="rounded-2xl p-2 bg-gray-900">
-          <h3 className="font-semibold mb-4">Testable & Reliable </h3>
-          <p className="tex-xs">
-            {" "}
-            Crafting code that can be easily tested to catch issues early,
-            ensuring consistent behavior and reducing bugs. Emphasizing
-            automated tests and thorough validation for dependable software.
-          </p>
-        </div>
-      </div>
+        </header>
+
+        {/* Sub Cards */}
+        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner transition-all"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <Code2 className="w-4 h-4 text-cyan-400 group-hover:text-indigo-400 transition" />
+              <h3 className="text-[13px] font-semibold text-white">
+                Clean & Maintainable
+              </h3>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Writing code that’s easy to read, scalable, and built with clarity
+              in mind.
+            </p>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-yellow-400/40 shadow-inner transition-all"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <Zap className="w-5 h-5 text-yellow-400 group-hover:text-indigo-400 transition" />
+              <h3 className="font-semibold text-white text-[13px]">
+                Efficient & Performant
+              </h3>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Balancing speed and readability while scaling efficiently.
+            </p>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-emerald-400/40 shadow-inner transition-all"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <ShieldCheck className="w-5 h-5 text-emerald-400 group-hover:text-indigo-400 transition" />
+              <h3 className="font-semibold text-white text-[13px]">
+                Testable & Reliable
+              </h3>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Ensuring code reliability through solid test coverage and
+              consistency.
+            </p>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-orange-400/40 shadow-inner transition-all sm:col-span-2"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <Hammer className="w-5 h-5 text-orange-400 group-hover:text-indigo-400 transition" />
+              <h3 className="font-semibold text-white text-[13px]">
+                Hands-On Builder
+              </h3>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              From concept to deployment — I take ownership of features,
+              ensuring innovation and quality in every line of code.
+            </p>
+          </motion.div>
+        </section>
+
+        {/* Subtle bottom glow */}
+        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
+      </motion.div>
     </div>
   );
 }

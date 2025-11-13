@@ -35,21 +35,18 @@ type Profile = {
 export function Sidebar() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${BASE_URL}/profile`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch profile");
+        return res.json();
+      })
       .then((data: Profile) => setProfile(data))
-      .catch(() => setError("Failed to load profile"));
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
-
-  if (error) return <p className="text-red-500">{error}</p>;
-  if (!profile)
-    return (
-      <div className="flex justify-center items-center text-slate-400 animate-pulse py-10">
-        Loading sidebar...
-      </div>
-    );
 
   return (
     <motion.aside
@@ -58,9 +55,21 @@ export function Sidebar() {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden"
     >
+      {/* Loader */}
+      {(loading || error) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-20 rounded-2xl">
+          <div className="relative flex flex-col items-center">
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-indigo-500 border-l-cyan-400 animate-spin"></div>
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-violet-500 border-r-cyan-500 animate-[spin_4s_linear_infinite_reverse]"></div>
+            <div className="absolute w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_#6366f1,0_0_25px_#06b6d4]"></div>
+            <p className="mt-16 text-xs tracking-widest text-cyan-300 animate-pulse">
+              LOADING
+            </p>
+          </div>
+        </div>
+      )}
       {/* Background glow layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-transparent blur-3xl opacity-70 -z-10"></div>
-
       {/* Avatar Section */}
       <motion.div
         whileHover={{ scale: 1.05 }}
@@ -68,8 +77,8 @@ export function Sidebar() {
       >
         <div className="relative">
           <img
-            src={profile.avatar}
-            alt={profile.fullName}
+            src={profile?.avatar}
+            alt={profile?.fullName}
             className="w-28 h-28 rounded-2xl object-cover border border-indigo-400/40 shadow-[0_0_20px_-5px_rgba(99,102,241,0.6)]"
           />
           <motion.span
@@ -79,36 +88,50 @@ export function Sidebar() {
           />
         </div>
         <h2 className="mt-3 text-lg font-semibold text-indigo-300">
-          {profile.fullName}
+          {profile?.fullName}
         </h2>
-        <p className="text-sm text-slate-400">{profile.role}</p>
+        <p className="text-sm text-slate-400">{profile?.role}</p>
       </motion.div>
-
       {/* Contact Info */}
       <div className="flex flex-col gap-3 w-full">
-        <SidebarInfo icon={<Mail size={16} />} label={profile.email} />
-        <SidebarInfo icon={<Phone size={16} />} label={profile.phone} />
-        <SidebarInfo icon={<MapPin size={16} />} label={profile.location} />
+        <SidebarInfo icon={<Mail size={16} />} label={profile?.email || ""} />
+        <SidebarInfo icon={<Phone size={16} />} label={profile?.phone || ""} />
+        <SidebarInfo
+          icon={<MapPin size={16} />}
+          label={profile?.location || ""}
+        />
       </div>
-
-      {/* Divider Line */}
+      {/* ---------Divider Line ---------*/}
+      {/* ------------------------------ */}
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent my-4"></div>
-
-      {/* Social Links */}
+      {/* ------Social Links -----------*/}
+      {/* ----------------------------- */}
       <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
         className="grid grid-cols-3 gap-3 w-full"
       >
-        <SocialIcon href={profile.github} icon={<Github size={18} />} />
-        <SocialIcon href={profile.linkedin} icon={<Linkedin size={18} />} />
-        <SocialIcon href={profile.twitter} icon={<Twitter size={18} />} />
-        <SocialIcon href={profile.instagram} icon={<Instagram size={18} />} />
-        <SocialIcon href={profile.facebook} icon={<Facebook size={18} />} />
+        <SocialIcon href={profile?.github || ""} icon={<Github size={18} />} />
+        <SocialIcon
+          href={profile?.linkedin || ""}
+          icon={<Linkedin size={18} />}
+        />
+        <SocialIcon
+          href={profile?.twitter || ""}
+          icon={<Twitter size={18} />}
+        />
+        <SocialIcon
+          href={profile?.instagram || ""}
+          icon={<Instagram size={18} />}
+        />
+        <SocialIcon
+          href={profile?.facebook || ""}
+          icon={<Facebook size={18} />}
+        />
       </motion.nav>
-
-      {/* Subtle rotating gear (depth element) */}
+      {/* ---Subtle rotating gear (depth element)--- */}
+      {/* ------------------------------------------ */}
       <motion.div
         className="absolute -left-8 bottom-10 opacity-[0.08]"
         animate={{ rotate: 360 }}
@@ -129,6 +152,8 @@ export function Sidebar() {
 }
 
 /* -------------------------------- Subcomponents ------------------------------- */
+/* -------------------------------- --------------------------------------------- */
+/* -------------------------------- --------------------------------------------- */
 function SidebarInfo({
   icon,
   label,
@@ -169,26 +194,33 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
   );
 }
 
+type SkillProfile = {
+  title: string;
+  discription: string;
+  fullName: string;
+  role: string;
+  email: string;
+  phone: string;
+  location: string;
+  hobies: string[];
+  Dislikes: string[]; // lowercase preferred
+};
+
 export function LefIndexCard() {
-  const [skills, setSkills] = useState<any>(null);
+  const [skills, setSkills] = useState<SkillProfile | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${BASE_URL}/skills`)
-      .then((res) => res.json())
-      .then((data) => setSkills(data))
-      .catch(() => setError("Failed to load profile"));
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch skills");
+        return res.json();
+      })
+      .then((data: SkillProfile) => setSkills(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
-
-  if (error)
-    return <p className="text-red-500 font-medium text-center">{error}</p>;
-  if (!skills)
-    return (
-      <div className="flex justify-center items-center py-10 text-slate-400 animate-pulse">
-        Loading profile...
-      </div>
-    );
-
   return (
     <motion.main
       initial={{ opacity: 0, y: 60 }}
@@ -196,45 +228,79 @@ export function LefIndexCard() {
       transition={{ duration: 0.9, ease: "easeOut" }}
       className="relative flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all"
     >
-      {/* Background Glow */}
+      {/* Loader */}
+      {(loading || error) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-20 rounded-2xl">
+          <div className="relative flex flex-col items-center">
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-indigo-500 border-l-cyan-400 animate-spin"></div>
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-violet-500 border-r-cyan-500 animate-[spin_4s_linear_infinite_reverse]"></div>
+            <div className="absolute w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_#6366f1,0_0_25px_#06b6d4]"></div>
+            <p className="mt-16 text-xs tracking-widest text-cyan-300 animate-pulse">
+              LOADING
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ------Background Glow------- */}
+      {/* ---------------------------- */}
+      {/* ---------------------------- */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
 
-      {/* Header Section */}
+      {/* -------Header Section------- */}
+      {/* ---------------------------- */}
+      {/* ---------------------------- */}
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
-          {skills.title}
+          {skills?.title}
         </h3>
         <Clock className="text-indigo-400 animate-pulse" size={22} />
       </div>
 
       <p className="text-slate-300 leading-relaxed mb-4">
-        {skills.discription}
+        {skills?.discription}
       </p>
 
       {/* ---------- Info Card ---------- */}
+      {/* ------------------------------- */}
+      {/* ------------------------------- */}
       <SectionCard title="👤 Personal Info">
         <div className="grid sm:grid-cols-2 gap-3">
-          <InfoRow icon={<User />} label="Full Name" value={skills.fullName} />
-          <InfoRow icon={<Briefcase />} label="Role" value={skills.role} />
+          <InfoRow
+            icon={<User />}
+            label="Full Name"
+            value={skills?.fullName || ""}
+          />
+          <InfoRow
+            icon={<Briefcase />}
+            label="Role"
+            value={skills?.role || ""}
+          />
           <InfoRow
             icon={<Mail />}
             label="Email"
-            value={skills.email}
-            href={`mailto:${skills.email}`}
+            value={skills?.email || ""}
+            href={`mailto:${skills?.email || ""}`}
             highlight
           />
           <InfoRow
             icon={<Phone />}
             label="Phone"
-            value={skills.phone}
-            href={`tel:${skills.phone}`}
+            value={skills?.phone || ""}
+            href={`tel:${skills?.phone || ""}`}
             highlight
           />
-          <InfoRow icon={<MapPin />} label="Location" value={skills.location} />
+          <InfoRow
+            icon={<MapPin />}
+            label="Location"
+            value={skills?.location || ""}
+          />
         </div>
       </SectionCard>
 
       {/* ---------- Tech Focus ---------- */}
+      {/* -------------------------------- */}
+      {/* -------------------------------- */}
       <SectionCard title="⚡ Core Focus">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <InfoTag icon={<Cpu />} label="Frontend Architecture" />
@@ -246,10 +312,12 @@ export function LefIndexCard() {
       </SectionCard>
 
       {/* ---------- Hobbies & Dislikes ---------- */}
+      {/* ---------------------------------------- */}
+      {/* ---------------------------------------- */}
       <div className="grid md:grid-cols-2 gap-4">
         <SectionCard title="🎯 Hobbies">
           <ul className="flex flex-wrap gap-2">
-            {skills.hobies.map((hobby: string, i: number) => (
+            {skills?.hobies.map((hobby: string, i: number) => (
               <li
                 key={i}
                 className="px-3 py-1 bg-gradient-to-br from-indigo-500/20 to-purple-500/10 border border-indigo-400/40 rounded-xl text-sm text-slate-200 hover:text-indigo-300 transition"
@@ -262,19 +330,23 @@ export function LefIndexCard() {
 
         <SectionCard title="🚫 Dislikes">
           <ul className="flex flex-wrap gap-2">
-            {skills.Dislikes.map((d: string, i: number) => (
-              <li
-                key={i}
-                className="px-3 py-1 bg-slate-800/70 border border-slate-600/60 rounded-xl text-sm text-slate-300 hover:text-red-300 hover:border-red-400/40 transition"
-              >
-                {d}
-              </li>
-            ))}
+            <ul className="flex flex-wrap gap-2">
+              {skills?.Dislikes?.map((d: string, i: number) => (
+                <li
+                  key={i}
+                  className="px-3 py-1 bg-slate-800/70 border border-slate-600/60 rounded-xl text-sm text-slate-300 hover:text-red-300 hover:border-red-400/40 transition"
+                >
+                  {d}
+                </li>
+              ))}
+            </ul>
           </ul>
         </SectionCard>
       </div>
 
       {/* ---------- Live Clock Card ---------- */}
+      {/* ------------------------------------- */}
+      {/* ------------------------------------- */}
       <SectionCard title="⏱ Live Time">
         <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
@@ -295,6 +367,12 @@ export function LefIndexCard() {
 
 /* -------------------------------------------------------------------------- */
 /*                           Reusable Sub Components                          */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*  ------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 function InfoRow({
