@@ -18,6 +18,7 @@ import {
 import { BASE_URL } from "./config";
 import { motion } from "framer-motion";
 
+
 type Profile = {
   fullName: string;
   email: string;
@@ -31,6 +32,152 @@ type Profile = {
   instagram: string;
   facebook: string;
 };
+
+type SkillProfile = {
+  title: string;
+  description: string;
+  full_name: string;
+  role: string;
+  email: string;
+  phone: string;
+  location: string;
+  hobbies: string[];
+  dislikes: string[];
+};
+
+/* -------------------------------------------------------------------------- */
+/*                           Reusable Sub Components                          */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*  ------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+function InfoRow({
+  icon,
+  label,
+  value,
+  href,
+  highlight = false,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+  highlight?: boolean;
+}) {
+  const content = href ? (
+    <a
+      href={href}
+      className={`font-semibold ${
+        highlight
+          ? "text-indigo-400 hover:underline"
+          : "text-slate-200 hover:text-indigo-300"
+      } transition`}
+    >
+      {value}
+    </a>
+  ) : (
+    <span className="font-semibold text-slate-200">{value}</span>
+  );
+
+  return (
+    <div className="flex justify-between items-center bg-slate-800/50 border border-slate-700/70 rounded-lg px-4 py-2 hover:border-indigo-400/50 transition">
+      <div className="flex items-center gap-2 text-slate-400 text-sm">
+        {icon}
+        {label}
+      </div>
+      {content}
+    </div>
+  );
+}
+
+/*--------reusable section cards---------- */
+/*---------------------------------------- */
+/*---------------------------------------- */
+
+function SectionCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.div
+      whileHover={{
+        scale: 1.02,
+        borderColor: "rgba(99,102,241,0.4)",
+        boxShadow: "0 0 25px -8px rgba(99,102,241,0.4)",
+      }}
+      className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/70 shadow-sm backdrop-blur-md transition-all overflow-hidden"
+    >
+      <h4 className="font-semibold text-indigo-300 mb-2">{title}</h4>
+      {children}
+    </motion.div>
+  );
+}
+
+function InfoTag({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05, y: -2 }}
+      className="flex items-center gap-2 text-slate-200 text-sm px-3 py-2 rounded-lg border border-slate-700/70 bg-slate-900/40 hover:border-indigo-400/40 transition-all"
+    >
+      <span className="text-indigo-400">{icon}</span> {label}
+    </motion.div>
+  );
+}
+
+/* ------------------------ Subcomponents for profile card----------------------------- */
+/* -------------------------------- --------------------------------------------------- */
+/* -------------------------------- --------------------------------------------------- */
+function SidebarInfo({
+  icon,
+  label,
+}: {
+  icon: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <motion.div
+      whileHover={{
+        scale: 1.03,
+        borderColor: "rgba(99,102,241,0.5)",
+        boxShadow: "0 0 12px -3px rgba(99,102,241,0.4)",
+      }}
+      className="flex items-center gap-2 bg-slate-800/50 border border-slate-700/70 rounded-xl px-3 py-2 text-sm text-slate-300 transition-all"
+    >
+      <span className="text-indigo-400">{icon}</span>
+      <span className="truncate">{label}</span>
+    </motion.div>
+  );
+}
+
+function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{
+        scale: 1.15,
+        y: -2,
+        color: "#a78bfa",
+      }}
+      className="flex justify-center items-center p-2 bg-slate-800/60 border border-slate-700/70 rounded-xl text-slate-400 hover:text-indigo-400 transition-all"
+    >
+      {icon}
+    </motion.a>
+  );
+}
+
+/* ---------------profile card----------------- */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
 
 export function Sidebar() {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -151,60 +298,9 @@ export function Sidebar() {
   );
 }
 
-/* -------------------------------- Subcomponents ------------------------------- */
-/* -------------------------------- --------------------------------------------- */
-/* -------------------------------- --------------------------------------------- */
-function SidebarInfo({
-  icon,
-  label,
-}: {
-  icon: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <motion.div
-      whileHover={{
-        scale: 1.03,
-        borderColor: "rgba(99,102,241,0.5)",
-        boxShadow: "0 0 12px -3px rgba(99,102,241,0.4)",
-      }}
-      className="flex items-center gap-2 bg-slate-800/50 border border-slate-700/70 rounded-xl px-3 py-2 text-sm text-slate-300 transition-all"
-    >
-      <span className="text-indigo-400">{icon}</span>
-      <span className="truncate">{label}</span>
-    </motion.div>
-  );
-}
-
-function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      whileHover={{
-        scale: 1.15,
-        y: -2,
-        color: "#a78bfa",
-      }}
-      className="flex justify-center items-center p-2 bg-slate-800/60 border border-slate-700/70 rounded-xl text-slate-400 hover:text-indigo-400 transition-all"
-    >
-      {icon}
-    </motion.a>
-  );
-}
-
-type SkillProfile = {
-  title: string;
-  description: string;
-  full_name: string;
-  role: string;
-  email: string;
-  phone: string;
-  location: string;
-  hobbies: string[];
-  dislikes: string[];
-};
+/* --------------- second home card --------------- */
+/* ------------------------------------------------ */
+/* ------------------------------------------------ */
 
 export function LefIndexCard() {
   const [skills, setSkills] = useState<SkillProfile | null>(null);
@@ -362,87 +458,5 @@ export function LefIndexCard() {
         </motion.div>
       </SectionCard>
     </motion.main>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                           Reusable Sub Components                          */
-/* -------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-/*  ------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-function InfoRow({
-  icon,
-  label,
-  value,
-  href,
-  highlight = false,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  href?: string;
-  highlight?: boolean;
-}) {
-  const content = href ? (
-    <a
-      href={href}
-      className={`font-semibold ${
-        highlight
-          ? "text-indigo-400 hover:underline"
-          : "text-slate-200 hover:text-indigo-300"
-      } transition`}
-    >
-      {value}
-    </a>
-  ) : (
-    <span className="font-semibold text-slate-200">{value}</span>
-  );
-
-  return (
-    <div className="flex justify-between items-center bg-slate-800/50 border border-slate-700/70 rounded-lg px-4 py-2 hover:border-indigo-400/50 transition">
-      <div className="flex items-center gap-2 text-slate-400 text-sm">
-        {icon}
-        {label}
-      </div>
-      {content}
-    </div>
-  );
-}
-
-function SectionCard({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <motion.div
-      whileHover={{
-        scale: 1.02,
-        borderColor: "rgba(99,102,241,0.4)",
-        boxShadow: "0 0 25px -8px rgba(99,102,241,0.4)",
-      }}
-      className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/70 shadow-sm backdrop-blur-md transition-all"
-    >
-      <h4 className="font-semibold text-indigo-300 mb-2">{title}</h4>
-      {children}
-    </motion.div>
-  );
-}
-
-function InfoTag({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.05, y: -2 }}
-      className="flex items-center gap-2 text-slate-200 text-sm px-3 py-2 rounded-lg border border-slate-700/70 bg-slate-900/40 hover:border-indigo-400/40 transition-all"
-    >
-      <span className="text-indigo-400">{icon}</span> {label}
-    </motion.div>
   );
 }
