@@ -196,14 +196,14 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
 
 type SkillProfile = {
   title: string;
-  discription: string;
-  fullName: string;
+  description: string;
+  full_name: string;
   role: string;
   email: string;
   phone: string;
   location: string;
-  hobies: string[];
-  Dislikes: string[]; // lowercase preferred
+  hobbies: string[];
+  dislikes: string[];
 };
 
 export function LefIndexCard() {
@@ -258,7 +258,7 @@ export function LefIndexCard() {
       </div>
 
       <p className="text-slate-300 leading-relaxed mb-4">
-        {skills?.discription}
+        {skills?.description}
       </p>
 
       {/* ---------- Info Card ---------- */}
@@ -269,7 +269,7 @@ export function LefIndexCard() {
           <InfoRow
             icon={<User />}
             label="Full Name"
-            value={skills?.fullName || ""}
+            value={skills?.full_name || ""}
           />
           <InfoRow
             icon={<Briefcase />}
@@ -317,7 +317,7 @@ export function LefIndexCard() {
       <div className="grid md:grid-cols-2 gap-4">
         <SectionCard title="🎯 Hobbies">
           <ul className="flex flex-wrap gap-2">
-            {skills?.hobies.map((hobby: string, i: number) => (
+            {skills?.hobbies.map((hobby: string, i: number) => (
               <li
                 key={i}
                 className="px-3 py-1 bg-gradient-to-br from-indigo-500/20 to-purple-500/10 border border-indigo-400/40 rounded-xl text-sm text-slate-200 hover:text-indigo-300 transition"
@@ -331,7 +331,7 @@ export function LefIndexCard() {
         <SectionCard title="🚫 Dislikes">
           <ul className="flex flex-wrap gap-2">
             <ul className="flex flex-wrap gap-2">
-              {skills?.Dislikes?.map((d: string, i: number) => (
+              {skills?.dislikes?.map((d: string, i: number) => (
                 <li
                   key={i}
                   className="px-3 py-1 bg-slate-800/70 border border-slate-600/60 rounded-xl text-sm text-slate-300 hover:text-red-300 hover:border-red-400/40 transition"
