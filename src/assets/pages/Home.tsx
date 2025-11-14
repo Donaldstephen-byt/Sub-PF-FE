@@ -29,7 +29,7 @@ const techStacks = [
 
 function Home() {
   return (
-    <div className="flex flex-wrap w-full justify-center gap-4 items-center mt-4 min-h-screen text-slate-100">
+    <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-4 min-h-screen text-slate-100">
       <div className="py-4  relative flex justify-between flex-row  gap-2 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all">
         {/* Sidebar */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>

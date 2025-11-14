@@ -66,7 +66,7 @@ export function SkillsCard() {
   }, []);
 
   return (
-    <div className="relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
+    <div className="relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {/* Overlay spinner */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -97,7 +97,7 @@ export function SkillsCard() {
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
           <PersonStanding className="w-8 h-8 text-indigo-400" />
-          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
             {skillSet?.title || "Loading..."}
           </h2>
         </div>
@@ -402,7 +402,7 @@ type ExperienceResponse = {
 };
 
 export function ExperienceCard() {
-  const [Experience, setExperience] = useState<skills>(null);
+  const [Experience, setExperience] = useState<ExperienceResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -422,7 +422,7 @@ export function ExperienceCard() {
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative bg-gradient-to-br from-[#0a0b1e] h-full via-slate-950/90 to-[#0f172a] border border-slate-800 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
+        className="relative bg-linear-to-br from-[#0a0b1e] h-full via-slate-950/90 to-[#0f172a] border border-slate-800 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
       >
         {/* Loader */}
         {(loading || error) && (
