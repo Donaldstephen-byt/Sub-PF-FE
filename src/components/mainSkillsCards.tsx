@@ -456,7 +456,7 @@ export function ExperienceCard() {
         <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner transition-all"
+            className="group bg-linear-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner transition-all"
           >
             <div className="flex items-center gap-3 mb-2">
               <Code2 className="w-4 h-4 text-cyan-400 group-hover:text-indigo-400 transition" />
