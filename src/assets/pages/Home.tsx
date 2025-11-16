@@ -30,7 +30,13 @@ const techStacks = [
 function Home() {
   return (
     <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-4 min-h-screen text-slate-100">
-      <div className="py-4  relative flex justify-between flex-row  gap-2 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all">
+      <div
+        className="py-4 relative flex justify-between gap-2 
+  bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
+  p-6 backdrop-blur-xl overflow-hidden group 
+  hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
+  transition-all w-full max-w-[75.5rem]"
+      >
         {/* Sidebar */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
         <Sidebar />
@@ -47,7 +53,7 @@ function Home() {
               borderColor: "rgba(99,102,241,0.6)",
               boxShadow: "0 0 30px -5px rgba(99,102,241,0.5)",
             }}
-            className="relative rounded-e-3xl h-full w-220  mt-1 border border-slate-500/70 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]"
+            className="relative rounded-e-3xl h-full w-full  mt-1 border border-slate-500/70 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]"
           >
             {/* Text Content */}
             <div className="relative z-10 text-center px-8 py-10 font-semibold text-lg">
@@ -127,7 +133,7 @@ function Home() {
               borderColor: "rgba(99,102,241,0.6)",
               boxShadow: "0 0 30px -5px rgba(99,102,241,0.5)",
             }}
-            className="relative rounded-e-3xl h-full w-220 mr-3 mt-1 border border-slate-500/70 bg-slate-800/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] flex flex-col overflow-hidden"
+            className="relative rounded-e-3xl h-full w-full mr-3 mt-1 border border-slate-500/70 bg-slate-800/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] flex flex-col overflow-hidden"
           >
             <h3 className="text-xl font-bold text-indigo-400 mb-3 z-10 pl-4 pt-4">
               ⚡ Tech Stack
