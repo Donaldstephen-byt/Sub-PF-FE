@@ -487,7 +487,7 @@ export function ExperienceCard() {
 
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-emerald-400/40 shadow-inner transition-all"
+            className="group bg-linear-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-emerald-400/40 shadow-inner transition-all"
           >
             <div className="flex items-center gap-3 mb-2">
               <ShieldCheck className="w-5 h-5 text-emerald-400 group-hover:text-indigo-400 transition" />
@@ -519,7 +519,7 @@ export function ExperienceCard() {
         </section>
 
         {/* Subtle bottom glow */}
-        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
+        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-linear-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
       </motion.div>
     </div>
   );
