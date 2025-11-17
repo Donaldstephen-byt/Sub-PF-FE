@@ -18,7 +18,6 @@ import {
 import { BASE_URL } from "./config";
 import { motion } from "framer-motion";
 
-
 type Profile = {
   fullName: string;
   email: string;
@@ -203,18 +202,27 @@ export function Sidebar() {
       className="relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden"
     >
       {/* Loader */}
+      {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-20 rounded-2xl">
-          <div className="relative flex flex-col items-center">
-            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-indigo-500 border-l-cyan-400 animate-spin"></div>
-            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-violet-500 border-r-cyan-500 animate-[spin_4s_linear_infinite_reverse]"></div>
-            <div className="absolute w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_#6366f1,0_0_25px_#06b6d4]"></div>
-            <p className="mt-16 text-xs tracking-widest text-cyan-300 animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
+          <div className="relative flex items-center justify-center">
+            {/* Outer rotating ring */}
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
+
+            {/* Inner ring */}
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+            {/* Text pulse */}
+            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
               LOADING
-            </p>
+            </div>
           </div>
         </div>
       )}
+
       {/* Background glow layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-transparent blur-3xl opacity-70 -z-10"></div>
       {/* Avatar Section */}
@@ -322,18 +330,25 @@ export function LefIndexCard() {
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all"
+      className="relative min-w-[75.5rem] flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all"
     >
-      {/* Loader */}
+      {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-20 rounded-2xl">
-          <div className="relative flex flex-col items-center">
-            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-indigo-500 border-l-cyan-400 animate-spin"></div>
-            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-violet-500 border-r-cyan-500 animate-[spin_4s_linear_infinite_reverse]"></div>
-            <div className="absolute w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_#6366f1,0_0_25px_#06b6d4]"></div>
-            <p className="mt-16 text-xs tracking-widest text-cyan-300 animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
+          <div className="relative flex items-center justify-center">
+            {/* Outer rotating ring */}
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
+
+            {/* Inner ring */}
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+            {/* Text pulse */}
+            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
               LOADING
-            </p>
+            </div>
           </div>
         </div>
       )}
