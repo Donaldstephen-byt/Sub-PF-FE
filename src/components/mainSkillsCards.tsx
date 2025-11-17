@@ -424,16 +424,23 @@ export function ExperienceCard() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative bg-linear-to-br from-[#0a0b1e] h-full via-slate-950/90 to-[#0f172a] border border-slate-800 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
       >
-        {/* Loader */}
+        {/* 🌀 Unique Spinner Overlay */}
         {(loading || error) && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-20 rounded-2xl">
-            <div className="relative flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-indigo-500 border-l-cyan-400 animate-spin"></div>
-              <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-violet-500 border-r-cyan-500 animate-[spin_4s_linear_infinite_reverse]"></div>
-              <div className="absolute w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_#6366f1,0_0_25px_#06b6d4]"></div>
-              <p className="mt-16 text-xs tracking-widest text-cyan-300 animate-pulse">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
+            <div className="relative flex items-center justify-center">
+              {/* Outer rotating ring */}
+              <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
+
+              {/* Inner ring */}
+              <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+              {/* Center glowing dot */}
+              <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+              {/* Text pulse */}
+              <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
                 LOADING
-              </p>
+              </div>
             </div>
           </div>
         )}
@@ -453,68 +460,193 @@ export function ExperienceCard() {
         </header>
 
         {/* Sub Cards */}
-        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
           <motion.div
-            whileHover={{ scale: 1.04 }}
-            className="group bg-linear-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner transition-all"
+            whileHover={{ scale: 1.05 }}
+            className="group sm:w-[8.5rem] sm:h-[14rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60
+  p-3 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner 
+  transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
           >
-            <div className="flex items-center gap-3 mb-2">
+            {/* Icon Box */}
+            <div
+              className="p-2 w-fit rounded-lg bg-cyan-500/10 border border-cyan-400/20 
+    group-hover:bg-indigo-500/10 transition mx-auto mt-1"
+            >
               <Code2 className="w-4 h-4 text-cyan-400 group-hover:text-indigo-400 transition" />
-              <h3 className="text-[13px] font-semibold text-white">
-                Clean & Maintainable
-              </h3>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Writing code that’s easy to read, scalable, and built with clarity
-              in mind.
+
+            {/* Title */}
+            <h3 className="text-center mt-2 text-[11px] font-semibold text-white tracking-wide">
+              Clean Code
+            </h3>
+
+            {/* Divider */}
+            <div className="mx-auto mt-1 w-6 h-[2px] bg-cyan-400/30 rounded-full"></div>
+
+            {/* Main Text */}
+            <p className="mt-3 text-[10px] text-slate-400 leading-snug line-clamp-6 text-center px-1">
+              Writing maintainable, readable and scalable code with clarity,
+              structure and best practices at the core of every component.
             </p>
+
+            {/* Bottom Tag */}
+            <div
+              className="mt-auto mb-1 mx-auto px-2 py-1 text-[9px] rounded-md 
+    bg-cyan-500/10 border border-cyan-400/20 text-cyan-300"
+            >
+              Quality First
+            </div>
+
+            {/* Glow */}
+            <div
+              className="absolute -right-3 -bottom-3 w-7 h-7 bg-cyan-500/10 rounded-full blur-xl opacity-70 
+    group-hover:opacity-100 transition"
+            ></div>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="group w-[8.5rem] h-[14rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60
+  p-3 rounded-xl border border-slate-700 hover:border-yellow-400/40 shadow-inner 
+  transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
+          >
+            {/* Icon */}
+            <div
+              className="p-2 w-fit rounded-lg bg-yellow-500/10 border border-yellow-400/20
+    group-hover:bg-indigo-500/10 transition mx-auto mt-1"
+            >
+              <Zap className="w-4 h-4 text-yellow-400 group-hover:text-indigo-400 transition" />
+            </div>
+
+            {/* Title */}
+            <h3 className="text-center mt-2 text-[11px] font-semibold text-white tracking-wide">
+              Efficient & Fast
+            </h3>
+
+            {/* Divider */}
+            <div className="mx-auto mt-1 w-6 h-[2px] bg-yellow-400/30 rounded-full"></div>
+
+            {/* Text */}
+            <p className="mt-3 text-[10px] text-slate-400 leading-snug line-clamp-6 text-center px-1">
+              Building performant features that balance speed, optimization, and
+              clean architectural structure.
+            </p>
+
+            {/* Footer Tag */}
+            <div
+              className="mt-auto mb-1 mx-auto px-2 py-1 text-[9px] rounded-md 
+    bg-yellow-500/10 border border-yellow-400/20 text-yellow-300"
+            >
+              Speed First
+            </div>
+
+            {/* Glow */}
+            <div
+              className="absolute -right-3 -bottom-3 w-7 h-7 bg-yellow-500/10 rounded-full blur-xl opacity-70 
+    group-hover:opacity-100 transition"
+            ></div>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="group w-[8.5rem] h-[14rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60
+  p-3 rounded-xl border border-slate-700 hover:border-emerald-400/40 shadow-inner 
+  transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
+          >
+            {/* Icon */}
+            <div
+              className="p-2 w-fit rounded-lg bg-emerald-500/10 border border-emerald-400/20
+    group-hover:bg-indigo-500/10 transition mx-auto mt-1"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400 group-hover:text-indigo-400 transition" />
+            </div>
+
+            {/* Title */}
+            <h3 className="text-center mt-2 text-[11px] font-semibold text-white tracking-wide">
+              Testable & Reliable
+            </h3>
+
+            {/* Divider */}
+            <div className="mx-auto mt-1 w-6 h-[2px] bg-emerald-400/30 rounded-full"></div>
+
+            {/* Text */}
+            <p className="mt-3 text-[10px] text-slate-400 leading-snug line-clamp-6 text-center px-1">
+              Crafting stable components with solid testing, predictable
+              behavior, and long-term maintainability.
+            </p>
+
+            {/* Footer Tag */}
+            <div
+              className="mt-auto mb-1 mx-auto px-2 py-1 text-[9px] rounded-md 
+    bg-emerald-500/10 border border-emerald-400/20 text-emerald-300"
+            >
+              Stable Build
+            </div>
+
+            {/* Glow */}
+            <div
+              className="absolute -right-3 -bottom-3 w-7 h-7 bg-emerald-500/10 rounded-full blur-xl opacity-70 
+    group-hover:opacity-100 transition"
+            ></div>
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="group bg-gradient-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-yellow-400/40 shadow-inner transition-all"
+            className="group sm:mt-4 sm:w-[27rem] sm:h-[11.5rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60 
+    p-5 rounded-xl border border-slate-700 hover:border-orange-400/40 shadow-inner 
+    backdrop-blur-md transition-all sm:col-span-2 relative overflow-hidden"
           >
-            <div className="flex items-center gap-3 mb-2">
-              <Zap className="w-5 h-5 text-yellow-400 group-hover:text-indigo-400 transition" />
-              <h3 className="font-semibold text-white text-[13px]">
-                Efficient & Performant
-              </h3>
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Balancing speed and readability while scaling efficiently.
-            </p>
-          </motion.div>
+            {/* Small glowing accent */}
+            <div
+              className="absolute right-2 top-2 w-3 h-3 rounded-full 
+      bg-orange-400/40 blur-[3px] group-hover:bg-indigo-400/60 transition"
+            ></div>
 
-          <motion.div
-            whileHover={{ scale: 1.04 }}
-            className="group bg-linear-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-emerald-400/40 shadow-inner transition-all"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 group-hover:text-indigo-400 transition" />
-              <h3 className="font-semibold text-white text-[13px]">
-                Testable & Reliable
-              </h3>
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Ensuring code reliability through solid test coverage and
-              consistency.
-            </p>
-          </motion.div>
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-400/20 group-hover:bg-indigo-500/10 transition">
+                <Hammer className="w-5 h-5 text-orange-400 group-hover:text-indigo-400 transition" />
+              </div>
 
-          <motion.div
-            whileHover={{ scale: 1.04 }}
-            className="group bg-linear-to-br from-slate-900/80 to-slate-950/60 p-4 rounded-xl border border-slate-700 hover:border-orange-400/40 shadow-inner transition-all sm:col-span-2"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <Hammer className="w-5 h-5 text-orange-400 group-hover:text-indigo-400 transition" />
-              <h3 className="font-semibold text-white text-[13px]">
-                Hands-On Builder
-              </h3>
+              <div>
+                <h3 className="font-semibold text-white text-[14px] tracking-wide">
+                  Hands-On Builder
+                </h3>
+                <p className="text-[11px] text-slate-500 group-hover:text-slate-400 transition">
+                  Practical. Efficient. Detail–driven.
+                </p>
+              </div>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              From concept to deployment — I take ownership of features,
-              ensuring innovation and quality in every line of code.
+
+            {/* Body */}
+            <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition mb-3">
+              From concept to deployment — I take ownership of features, turning
+              ideas into smooth, functional, and polished experiences.
             </p>
+
+            {/* Extra highlights */}
+            <div className="flex gap-3 text-[11px]">
+              <span
+                className="px-2 py-1 rounded-md bg-orange-500/10 border border-orange-400/20 
+      text-orange-300 group-hover:bg-orange-500/20 transition"
+              >
+                Ownership
+              </span>
+
+              <span
+                className="px-2 py-1 rounded-md bg-indigo-500/10 border border-indigo-400/20 
+      text-indigo-300 group-hover:bg-indigo-500/20 transition"
+              >
+                Innovation
+              </span>
+
+              <span
+                className="px-2 py-1 rounded-md bg-slate-700/30 border border-slate-600/50 
+      text-slate-300 group-hover:text-white transition"
+              >
+                Quality
+              </span>
+            </div>
           </motion.div>
         </section>
 
