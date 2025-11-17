@@ -38,7 +38,7 @@ function Home() {
   transition-all w-full max-w-[75.5rem]"
       >
         {/* Sidebar */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
         <Sidebar />
 
         {/* Personal Info Section */}
