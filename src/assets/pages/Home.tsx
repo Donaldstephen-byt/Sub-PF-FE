@@ -159,7 +159,7 @@ function Home() {
                       rotateY: 360,
                       transition: { duration: 0.9, ease: "easeInOut" },
                     }}
-                    className="text-3xl text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 via-blue-400 to-purple-400 drop-shadow-[0_0_6px_rgba(99,102,241,0.5)]"
+                    className="text-3xl text-transparent bg-clip-text bg-linear-to-br from-indigo-400 via-blue-400 to-purple-400 drop-shadow-[0_0_6px_rgba(99,102,241,0.5)]"
                   >
                     {stack.icon}
                   </motion.div>
