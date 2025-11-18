@@ -268,6 +268,8 @@ type AboutResponse = {
   manner_4: string;
 };
 
+import { UserRound, Quote, HeartHandshake, Sparkles } from "lucide-react";
+
 export function AboutCard() {
   const [about, setAbout] = useState<AboutResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -278,20 +280,16 @@ export function AboutCard() {
     fetch(`${BASE_URL}/about/me`)
       .then((res) => res.json())
       .then((data: AboutResponse) => {
-        console.log("✅ About data from API:", data);
         setAbout(data);
         setError(null);
       })
-      .catch((err) => {
-        console.log("❌ Error loading about:", err);
-        setError("❌ Failed to load about info");
-      })
+      .catch(() => setError("Failed to load about info"))
       .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div className="bg-slate-800/60  relative  flex flex-col gap-5 p-5 rounded-lg shadow lg:col-span-2 lg:row-span-2 border border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
-      {/* 🌀 Unique Spinner Overlay */}
+    <div className="relative bg-slate-800/60 min-w-[20rem] min-h-[32rem] flex flex-col gap-7 p-7 rounded-3xl shadow-xl border border-slate-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] lg:col-span-2 lg:row-span-2">
+      {/* ───────────────── Loading Spinner Overlay ───────────────── */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
           <div className="relative flex items-center justify-center">
@@ -304,7 +302,7 @@ export function AboutCard() {
             {/* Center glowing dot */}
             <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
 
-            {/* Text pulse */}
+            {/* Loading text */}
             <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
               LOADING
             </div>
@@ -312,83 +310,92 @@ export function AboutCard() {
         </div>
       )}
 
-      {/* 🌙 Card Content */}
+      {/* ───────────────── Card Content ───────────────── */}
       <div
-        className={`transition-all duration-500 flex flex-col gap-8 ${
-          loading ? "opacity-40 blur-sm" : "opacity-100"
-        }`}
+        className={`${
+          loading ? "opacity-30 blur-sm" : "opacity-100"
+        } transition-all duration-500 flex flex-col gap-8`}
       >
+        {/* ░░ Primary Header ░░ */}
         <div>
-          <div className="text-2xl flex items-center gap-4 font-bold text-indigo-300 group-hover:text-indigo-400 transition mb-2">
-            <h2>{about?.title || "Loading..."}</h2>
-            <div className="flex">
-              <PersonStanding className="w-8 h-6 text-indigo-300" />
-              <PersonStanding className="w-8 h-6 text-indigo-300" />
-              <PersonStanding className="w-8 h-6 text-indigo-300" />
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center shadow-inner">
+              <UserRound className="w-6 h-6 text-indigo-300" />
             </div>
+
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
+              {about?.title || "Loading..."}
+            </h2>
           </div>
 
-          <p className="text-sm text-[#cbd5e1] leading-relaxed">
+          {/* Subheading */}
+          <p className="text-sm text-slate-300 leading-relaxed mt-2 flex gap-2">
+            <Quote className="w-4 h-4 text-indigo-300" />
             {about?.content || "Fetching about details..."}
           </p>
         </div>
 
+        {/* Divider */}
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+        {/* ░░ Values / Manner Section ░░ */}
         <div>
-          <h2 className="text-2xl text-[#38bdf8] font-bold mb-2">
-            {about?.manner || "Loading..."}
-          </h2>
-          <ul className="list-disc pl-5 text-sm text-[#cbd5e1] space-y-1">
-            <li>{about?.manner_1}</li>
-            <li>{about?.manner_2}</li>
-            <li>{about?.manner_3}</li>
-            <li>{about?.manner_4}</li>
+          <div className="flex items-center gap-2 mb-3">
+            <HeartHandshake className="w-6 h-6 text-cyan-300" />
+            <h3 className="text-xl font-semibold text-cyan-300">
+              {about?.manner || "Core Values"}
+            </h3>
+          </div>
+
+          <ul className="space-y-2 text-sm text-slate-300 pl-1">
+            <li className="flex items-start gap-2">
+              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
+              {about?.manner_1}
+            </li>
+            <li className="flex items-start gap-2">
+              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
+              {about?.manner_2}
+            </li>
+            {/* <li className="flex items-start gap-2">
+              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
+              {about?.manner_3}
+            </li> */}
+            <li className="flex items-start gap-2">
+              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
+              {about?.manner_4}
+            </li>
           </ul>
+        </div>
+
+        {/* Divider */}
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+
+        {/* ░░ Highlights Section ░░ */}
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-5 h-5 text-indigo-300" />
+          <p className="text-sm text-slate-300 italic">
+            Dedicated to growth, clarity, and excellence in every project.
+          </p>
         </div>
       </div>
 
-      {/* 🎨 Scoped Styles (won’t affect other components) */}
+      {/* ───────────────── Custom Animations ───────────────── */}
       <style>{`
         @keyframes about-spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
-
         @keyframes about-spin-slow {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0deg);
-          }
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
         }
-
         @keyframes about-pulse {
-          0%,
-          100% {
-            opacity: 0.4;
-            transform: scale(0.95);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1);
-          }
+          0%, 100% { opacity: .4; transform: scale(.95); }
+          50% { opacity: 1; transform: scale(1); }
         }
-
-        .animate-about-spin {
-          animation: about-spin 1s linear infinite;
-        }
-
-        .animate-about-spin-slow {
-          animation: about-spin-slow 3s linear infinite;
-        }
-
-        .animate-about-pulse {
-          animation: about-pulse 2s ease-in-out infinite;
-        }
+        .animate-about-spin { animation: about-spin 1s linear infinite; }
+        .animate-about-spin-slow { animation: about-spin-slow 3s linear infinite; }
+        .animate-about-pulse { animation: about-pulse 2s ease-in-out infinite; }
       `}</style>
     </div>
   );
@@ -422,7 +429,7 @@ export function ExperienceCard() {
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative bg-linear-to-br from-[#0a0b1e] h-full via-slate-950/90 to-[#0f172a] border border-slate-800 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
+        className="relative bg-linear-to-br from-[#0a0b1e]/70 h-full via-slate-950/90 to-[#0f172a]/50 border border-slate-800/70 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
       >
         {/* 🌀 Unique Spinner Overlay */}
         {(loading || error) && (
