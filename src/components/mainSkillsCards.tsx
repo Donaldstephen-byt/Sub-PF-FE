@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "./config";
-import { PersonStanding } from "lucide-react";
+import {
+  PersonStanding,
+  UserRound,
+  Quote,
+  HeartHandshake,
+  Sparkles,
+} from "lucide-react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -268,7 +274,6 @@ type AboutResponse = {
   manner_4: string;
 };
 
-import { UserRound, Quote, HeartHandshake, Sparkles } from "lucide-react";
 
 export function AboutCard() {
   const [about, setAbout] = useState<AboutResponse | null>(null);
@@ -323,7 +328,7 @@ export function AboutCard() {
               <UserRound className="w-6 h-6 text-indigo-300" />
             </div>
 
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
               {about?.title || "Loading..."}
             </h2>
           </div>
@@ -336,7 +341,7 @@ export function AboutCard() {
         </div>
 
         {/* Divider */}
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+        <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
 
         {/* ░░ Values / Manner Section ░░ */}
         <div>
@@ -368,7 +373,7 @@ export function AboutCard() {
         </div>
 
         {/* Divider */}
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+        <div className="h-[1px] w-full bg-linear-to-r from-transparent via-cyan-400/30 to-transparent"></div>
 
         {/* ░░ Highlights Section ░░ */}
         <div className="flex items-center gap-2">
@@ -470,7 +475,7 @@ export function ExperienceCard() {
         <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="group sm:w-[8.5rem] sm:h-[14rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60
+            className="group sm:w-[8.5rem] sm:h-[14rem] bg-linear-to-br from-slate-900/80 to-slate-950/60
   p-3 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner 
   transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
           >
@@ -513,7 +518,7 @@ export function ExperienceCard() {
 
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="group w-[8.5rem] h-[14rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60
+            className="group w-[8.5rem] h-[14rem] bg-linear-to-br from-slate-900/80 to-slate-950/60
   p-3 rounded-xl border border-slate-700 hover:border-yellow-400/40 shadow-inner 
   transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
           >
