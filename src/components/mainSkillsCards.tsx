@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "./config";
-import { PersonStanding } from "lucide-react";
+import {
+  PersonStanding,
+  UserRound,
+  Quote,
+  HeartHandshake,
+  Sparkles,
+} from "lucide-react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -268,7 +274,6 @@ type AboutResponse = {
   manner_4: string;
 };
 
-import { UserRound, Quote, HeartHandshake, Sparkles } from "lucide-react";
 
 export function AboutCard() {
   const [about, setAbout] = useState<AboutResponse | null>(null);
