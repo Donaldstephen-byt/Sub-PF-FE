@@ -6,7 +6,26 @@ import {
   Quote,
   HeartHandshake,
   Sparkles,
+  Layers,
+  BadgeCheck,
+  Wrench,
+  Target,
+  BrainCircuit,
+  CheckCircle2,
+  Flame,
+  Compass,
+  BookOpen,
+  Rocket,
+  Book,
+  Puzzle,
+  Award,
+  // PenNib,
+  Globe2,
+  Lightbulb,
+  Crosshair,
+  Icon,
 } from "lucide-react";
+import { PenNib } from "@phosphor-icons/react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -15,7 +34,17 @@ import {
   FaGitAlt,
   FaGithub,
   FaNpm,
-} from "react-icons/fa";
+  FaBootstrap,
+  FaGem,
+} from "react-icons/fa"; // Font Awesome (works well with Bulma)
+// import {
+//   BsBootstrap,
+//   BsFillAlarmFill,
+//   BsFillCheckCircleFill,
+//   BsUmbrella,
+// } from "react-icons/bs"; // Bootstrap icons
+import { Bootstrap } from "react-bootstrap-icons";
+
 import {
   SiJavascript,
   SiTypescript,
@@ -50,6 +79,281 @@ type SkillsResponse = {
   contenforsubcard_6: string;
 };
 
+type AboutResponse = {
+  title: string;
+  content: string;
+  manner: string;
+  core_principles: {
+    manner_1: string;
+    manner_2: string;
+    manner_3: string;
+    manner_4: string;
+  };
+};
+
+export function AboutCard() {
+  const [About, setAbout] = useState<AboutResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${BASE_URL}/about/me`)
+      .then((res) => res.json())
+      .then((data: AboutResponse) => {
+        setAbout(data);
+        setError(null);
+      })
+      .catch(() => setError("Failed to load about info"))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className="relative bg-slate-800/60  flex flex-col gap-7 p-7 rounded-3xl shadow-xl border border-slate-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]">
+      {/* ───────────────── Loading Spinner Overlay ───────────────── */}
+      {(loading || error) && (
+        <div className="absolute inset-0 flex items-center rounded-3xl justify-center bg-black/40 backdrop-blur-sm z-20">
+          <div className="relative flex items-center justify-center">
+            {/* Outer rotating ring */}
+            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
+
+            {/* Inner ring */}
+            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
+
+            {/* Loading text */}
+            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
+              LOADING
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ───────────────── Card Content ───────────────── */}
+      <div
+        className={`${
+          loading ? "opacity-30 blur-sm" : "opacity-100"
+        } transition-all duration-500 flex flex-col gap-8`}
+      >
+        {/* ░░ Primary Header ░░ */}
+        <div className="space-y-6">
+          {/* ───────── ABOUT ME ───────── */}
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center shadow-inner">
+                <UserRound className="w-6 h-6 text-indigo-300" />
+              </div>
+
+              <h2 className="text-2xl font-bold bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
+                {About?.title || "About Me"}
+              </h2>
+            </div>
+
+            <p className="text-sm text-slate-300 leading-relaxed mt-2 flex gap-2">
+              <Quote className="w-4 h-4 text-indigo-300" />
+              {About?.content || "Fetching about me content..."}
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+          {/* ───────── MY APPROACH ───────── */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <BrainCircuit className="w-6 h-6 text-cyan-300" />
+              <h3 className="text-xl font-semibold text-cyan-300">
+                {About?.manner || "My Approach"}
+              </h3>
+            </div>
+
+            <ul className="space-y-2 text-sm text-slate-300 pl-1">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-indigo-300 mt-[3px]" />
+                {About?.core_principles.manner_1 ||
+                  "Clean, readable, and maintainable code."}
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-indigo-300 mt-[3px]" />
+                {About?.core_principles.manner_2 ||
+                  "Scalable architecture with thoughtful system design."}
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-indigo-300 mt-[3px]" />
+                {About?.core_principles.manner_3 ||
+                  "Modern, innovative problem–solving with precision."}
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-indigo-300 mt-[3px]" />
+                {About?.core_principles.manner_4 ||
+                  "Detail-oriented and structured engineering mindset."}
+              </li>
+            </ul>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px w-full bg-linear-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+
+          {/* ───────── WHAT DRIVES ME ───────── */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Flame className="w-6 h-6 text-orange-300" />
+              <h3 className="text-xl font-semibold text-orange-300">
+                What Drives Me
+              </h3>
+            </div>
+
+            <ul className="space-y-2 text-sm text-slate-300 pl-1">
+              <li className="flex items-start gap-2">
+                <Sparkles className="w-4 h-4 text-purple-300 mt-[3px]" />
+                Growth — always learning, improving, and refining my craft.
+              </li>
+              <li className="flex items-start gap-2">
+                <Sparkles className="w-4 h-4 text-purple-300 mt-[3px]" />
+                Clarity — building simple, elegant solutions.
+              </li>
+              <li className="flex items-start gap-2">
+                <Sparkles className="w-4 h-4 text-purple-300 mt-[3px]" />
+                Excellence — consistent quality in UI, logic, and performance.
+              </li>
+              <li className="flex items-start gap-2">
+                <Sparkles className="w-4 h-4 text-purple-300 mt-[3px]" />
+                Impact — creating products people actually use and rely on.
+              </li>
+            </ul>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+          {/* ───────── TECH INTERESTS ───────── */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Cpu className="w-6 h-6 text-blue-300" />
+              <h3 className="text-xl font-semibold text-blue-300">
+                Technical Interests
+              </h3>
+            </div>
+
+            <ul className="space-y-2 text-sm text-slate-300 pl-1">
+              <li className="flex items-start gap-2">
+                <Code2 className="w-4 h-4 text-cyan-300 mt-[3px]" />
+                Frontend engineering (JavaScript, React, TailwindCSS).
+              </li>
+              <li className="flex items-start gap-2">
+                <Code2 className="w-4 h-4 text-cyan-300 mt-[3px]" />
+                UI/UX design with modern animations and clean layouts.
+              </li>
+              <li className="flex items-start gap-2">
+                <Code2 className="w-4 h-4 text-cyan-300 mt-[3px]" />
+                API integration and component architecture.
+              </li>
+              <li className="flex items-start gap-2">
+                <Code2 className="w-4 h-4 text-cyan-300 mt-[3px]" />
+                Performance optimization, clean workflows & Git/GitHub.
+              </li>
+            </ul>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px w-full bg-linear-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+
+          {/* ───────── BEYOND CODE ───────── */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Compass className="w-6 h-6 text-teal-300" />
+              <h3 className="text-xl font-semibold text-teal-300">
+                Beyond Code
+              </h3>
+            </div>
+
+            <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
+              <BookOpen className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
+              Outside of engineering, I spend time exploring system design
+              concepts, reading case studies, and experimenting with UI layouts
+              that challenge traditional interface patterns. I enjoy breaking
+              down complex problems into simple, understandable parts.
+            </p>
+
+            <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
+              <PenNib className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
+              I also love sketching concepts for interactive components,
+              refining color systems, and creating micro-interactions that make
+              interfaces feel alive, responsive, and intentional.
+            </p>
+
+            <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
+              <Globe2 className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
+              When I’m not designing or coding, I explore tech communities,
+              observe emerging trends, and study how different engineering teams
+              build, scale, and maintain software in the real world.
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/30 to-transparent my-4"></div>
+
+          {/* ───────── PERSONAL PHILOSOPHY ───────── */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Lightbulb className="w-6 h-6 text-yellow-300" />
+              <h3 className="text-xl font-semibold text-yellow-300">
+                Personal Philosophy
+              </h3>
+            </div>
+
+            <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
+              <Quote className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
+              I believe great engineering comes from curiosity, discipline, and
+              consistency. Every small improvement compounds over time. I strive
+              to make each project cleaner, faster, and more intentional than
+              the one before.
+            </p>
+
+            <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
+              <Crosshair className="w-4 h-4 text-cyan-300 flex-shrink-0 mt-[3px]" />
+              My end goal is simple: build meaningful digital experiences that
+              combine logic, design, and long-term thinking. I want everything I
+              create to feel thoughtful, stable, and purpose-driven.
+            </p>
+          </div>
+
+          {/* ───────── FINAL NOTE ───────── */}
+          <div className="flex items-start gap-2 pt-2">
+            <Target className="w-5 h-5 text-indigo-300" />
+            <p className="text-sm text-slate-300 italic leading-relaxed">
+              I’m dedicated to growth, clarity, and excellence. Every project is
+              an opportunity to build something meaningful and refine my
+              engineering mindset.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ───────────────── Custom Animations ───────────────── */}
+      <style>{`
+        @keyframes about-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes about-spin-slow {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        @keyframes about-pulse {
+          0%, 100% { opacity: .4; transform: scale(.95); }
+          50% { opacity: 1; transform: scale(1); }
+        }
+        .animate-about-spin { animation: about-spin 1s linear infinite; }
+        .animate-about-spin-slow { animation: about-spin-slow 3s linear infinite; }
+        .animate-about-pulse { animation: about-pulse 2s ease-in-out infinite; }
+      `}</style>
+    </div>
+  );
+}
+
 export function SkillsCard() {
   const [skillSet, setSkillSet] = useState<SkillsResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -72,7 +376,7 @@ export function SkillsCard() {
   }, []);
 
   return (
-    <div className="relative text-white p-5 rounded-lg shadow lg:col-start-3 lg:col-span-2 lg:row-span-4 overflow-hidden border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
+    <div className="relative  text-white   p-5 rounded-3xl shadow  overflow-hidden border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
       {/* Overlay spinner */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -100,11 +404,11 @@ export function SkillsCard() {
           loading ? "opacity-40 blur-sm" : "opacity-100"
         } transition-all duration-500`}
       >
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-4">
-          <PersonStanding className="w-8 h-8 text-indigo-400" />
-          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
-            {skillSet?.title || "Loading..."}
+        {/* HEADER */}
+        <div className="flex items-center gap-3 mb-6">
+          <Code2 className="w-8 h-8 text-indigo-400" />
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+            {skillSet?.title || "Skills"}
           </h2>
         </div>
 
@@ -118,72 +422,120 @@ export function SkillsCard() {
           </p>
         </div>
 
+        {/* DIVIDER */}
+        <div className="h-[1px] w-full my-6 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
         <div className="flex flex-wrap gap-4 mt-6 pt-2 w-full">
           <div className="sm:flex gap-4">
-            <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-4 h-63 rounded-2xl">
-              <div className="text-sm font-bold">
+            {/* FRONTEND */}
+            <div className="bg-slate-900/40 border border-cyan-400/20 rounded-2xl p-5 flex flex-col items-center gap-4 shadow-lg hover:shadow-[0_0_20px_-5px_rgba(34,211,238,0.3)] transition">
+              <Layers className="w-6 h-6 text-cyan-300" />
+              <h4 className="font-bold text-sm text-cyan-300">
                 {skillSet?.titleforsubcard_1}
-              </div>
-              <div className="text-center text-sm font-['poppins']">
+              </h4>
+              <p className="text-center text-sm text-slate-300 font-['Poppins']">
                 {skillSet?.contenforsubcard_1}
-              </div>
-              <div className="flex justify-center items-center w-full pl-3">
+              </p>
+              <div className="pt-2">
                 <TechIcons />
               </div>
             </div>
 
-            <div className="bg-cyan-700/20 text-white flex flex-col gap-4 items-center justify-center p-5 rounded-2xl h-63">
-              <div className="text-sm font-bold">
+            {/* BACKEND */}
+            <div className="bg-slate-900/40 border border-cyan-400/20 rounded-2xl p-5 flex flex-col items-center gap-4 shadow-lg hover:shadow-[0_0_20px_-5px_rgba(34,211,238,0.3)] transition">
+              <Cpu className="w-6 h-6 text-cyan-300" />
+              <h4 className="font-bold text-sm text-cyan-300">
                 {skillSet?.titleforsubcard_2}
-              </div>
-              <div className="text-center text-sm font-['poppins']">
+              </h4>
+              <p className="text-center text-sm text-slate-300 font-['Poppins']">
                 {skillSet?.contenforsubcard_2}
-              </div>
+              </p>
               <BackendTechIcons />
             </div>
           </div>
 
           <div className="sm:flex gap-4">
-            <div className="bg-[#42210b] border border-[#7c3aed] shadow-lg text-white flex flex-col gap-4 items-center justify-center p-4 rounded-2xl">
-              <div className="text-sm text-[#fcd34d] font-bold">
+            {/* SPECIALTY 1 */}
+            <div className="bg-[#2a1a10] border border-[#7c3aed] rounded-2xl p-5 flex flex-col items-center gap-3 shadow-lg">
+              <BadgeCheck className="w-5 h-5 text-[#fcd34d]" />
+              <h4 className="text-sm font-bold text-[#fcd34d]">
                 {skillSet?.titleforsubcard_3}
-              </div>
-              <div className="text-center text-[#f3e8ff] text-sm font-['poppins']">
+              </h4>
+              <p className="text-center text-sm text-[#f3e8ff] font-['Poppins']">
                 {skillSet?.contenforsubcard_3}
-              </div>
+              </p>
             </div>
 
-            <div className="bg-[#42210b] border border-[#7c3aed] shadow-lg flex flex-col gap-4 items-center justify-center p-4 rounded-2xl">
-              <div className="text-sm text-[#fcd34d] font-bold">
+            {/* SPECIALTY 2 */}
+            <div className="bg-[#2a1a10] border border-[#7c3aed] rounded-2xl p-5 flex flex-col items-center gap-3 shadow-lg">
+              <BadgeCheck className="w-5 h-5 text-[#fcd34d]" />
+              <h4 className="text-sm font-bold text-[#fcd34d]">
                 {skillSet?.titleforsubcard_4}
-              </div>
-              <div className="text-center text-sm font-['poppins']">
+              </h4>
+              <p className="text-center text-sm text-[#f3e8ff] font-['Poppins']">
                 {skillSet?.contenforsubcard_4}
-              </div>
+              </p>
             </div>
           </div>
 
-          <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg flex flex-col gap-3 justify-center p-4 rounded-2xl w-full">
-            <div className="flex flex-col items-center text-center">
-              <div className="text-sm text-[#818cf8] font-bold">
-                {skillSet?.titleforsubcard_5}
-              </div>
-              <div className="text-[#cbd5e1] text-sm font-['poppins']">
-                {skillSet?.contenforsubcard_5}
-              </div>
-            </div>
-            <div className="w-full flex justify-center">
-              <ToolsIcons />
-            </div>
+          {/* TOOLS */}
+          <div className="bg-slate-900/50 border border-[#6366f1] rounded-2xl p-6 flex flex-col items-center gap-4 shadow-lg w-full">
+            <Wrench className="w-5 h-5 text-indigo-300" />
+            <h4 className="text-sm font-bold text-indigo-300">
+              {skillSet?.titleforsubcard_5}
+            </h4>
+            <p className="text-center text-sm text-[#cbd5e1] font-['Poppins']">
+              {skillSet?.contenforsubcard_5}
+            </p>
+
+            <ToolsIcons />
           </div>
 
-          <div className="bg-[#1e293b] border border-[#6366f1] shadow-lg flex items-center justify-center p-4 rounded-2xl w-full">
-            <div className="text-sm text-[#818cf8] font-bold text-center">
+          {/* GOALS */}
+          <div className="bg-slate-900/50 border border-[#6366f1] rounded-2xl p-6 flex flex-col items-center gap-4 shadow-lg w-full">
+            <Target className="w-5 h-5 text-indigo-300" />
+            <h4 className="text-sm font-bold text-indigo-300">
               {skillSet?.titleforsubcard_6}
-            </div>
-            <div className="text-center text-[#cbd5e1] text-sm font-['poppins']">
+            </h4>
+            <p className="text-center text-sm text-[#cbd5e1] font-['Poppins']">
               {skillSet?.contenforsubcard_6}
+            </p>
+          </div>
+
+          {/* EMERGING TECHNOLOGY */}
+
+          <div className="relative bg-slate-800/60   flex flex-col gap-4 p-4 rounded-2xl shadow-lg border border-slate-700 backdrop-blur-sm">
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-2">
+              <Rocket className="w-6 h-6 text-indigo-300" />
+              <h2 className="text-lg font-bold bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
+                Emerging Skills
+              </h2>
             </div>
+
+            {/* Content */}
+            <ul className="text-sm text-slate-300 space-y-2">
+              <li className="flex items-start gap-2">
+                <Book className="w-4 h-4 text-cyan-300 mt-[2px]" />
+                Exploring TypeScript advanced patterns and architecture best
+                practices.
+              </li>
+              <li className="flex items-start gap-2">
+                <Puzzle className="w-4 h-4 text-indigo-300 mt-[2px]" />
+                Experimenting with React 18 features: concurrent rendering and
+                suspense.
+              </li>
+              <li className="flex items-start gap-2">
+                <Award className="w-4 h-4 text-yellow-300 mt-[2px]" />
+                Participating in hackathons and coding challenges to improve
+                problem-solving speed.
+              </li>
+              <li className="flex items-start gap-2">
+                <Rocket className="w-4 h-4 text-purple-300 mt-[2px]" />
+                Learning modern deployment workflows with Vercel, Netlify, and
+                Docker.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -199,6 +551,9 @@ export function TechIcons() {
     { icon: <SiTypescript color="#3178C6" />, name: "TypeScript" },
     { icon: <FaReact color="#61DAFB" />, name: "React" },
     { icon: <SiTailwindcss color="#38BDF8" />, name: "Tailwind" },
+    { icon: <FaBootstrap color="#563D7C" />, name: "Bootstrap" },
+    // { icon: <BsUmbrella color="#563D7C" />, name: "Bulma" },
+    { icon: <FaGem color="#7F52FF" />, name: "Bulma" },
   ];
 
   return (
@@ -264,148 +619,6 @@ export function ToolsIcons() {
   );
 }
 
-type AboutResponse = {
-  title: string;
-  content: string;
-  manner: string;
-  manner_1: string;
-  manner_2: string;
-  manner_3: string;
-  manner_4: string;
-};
-
-
-export function AboutCard() {
-  const [about, setAbout] = useState<AboutResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(`${BASE_URL}/about/me`)
-      .then((res) => res.json())
-      .then((data: AboutResponse) => {
-        setAbout(data);
-        setError(null);
-      })
-      .catch(() => setError("Failed to load about info"))
-      .finally(() => setLoading(false));
-  }, []);
-
-  return (
-    <div className="relative bg-slate-800/60 min-w-[20rem] min-h-[32rem] flex flex-col gap-7 p-7 rounded-3xl shadow-xl border border-slate-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] lg:col-span-2 lg:row-span-2">
-      {/* ───────────────── Loading Spinner Overlay ───────────────── */}
-      {(loading || error) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
-          <div className="relative flex items-center justify-center">
-            {/* Outer rotating ring */}
-            <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
-
-            {/* Inner ring */}
-            <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
-
-            {/* Center glowing dot */}
-            <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
-
-            {/* Loading text */}
-            <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
-              LOADING
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ───────────────── Card Content ───────────────── */}
-      <div
-        className={`${
-          loading ? "opacity-30 blur-sm" : "opacity-100"
-        } transition-all duration-500 flex flex-col gap-8`}
-      >
-        {/* ░░ Primary Header ░░ */}
-        <div>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center shadow-inner">
-              <UserRound className="w-6 h-6 text-indigo-300" />
-            </div>
-
-            <h2 className="text-2xl font-bold bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
-              {about?.title || "Loading..."}
-            </h2>
-          </div>
-
-          {/* Subheading */}
-          <p className="text-sm text-slate-300 leading-relaxed mt-2 flex gap-2">
-            <Quote className="w-4 h-4 text-indigo-300" />
-            {about?.content || "Fetching about details..."}
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
-
-        {/* ░░ Values / Manner Section ░░ */}
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <HeartHandshake className="w-6 h-6 text-cyan-300" />
-            <h3 className="text-xl font-semibold text-cyan-300">
-              {about?.manner || "Core Values"}
-            </h3>
-          </div>
-
-          <ul className="space-y-2 text-sm text-slate-300 pl-1">
-            <li className="flex items-start gap-2">
-              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
-              {about?.manner_1}
-            </li>
-            <li className="flex items-start gap-2">
-              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
-              {about?.manner_2}
-            </li>
-            {/* <li className="flex items-start gap-2">
-              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
-              {about?.manner_3}
-            </li> */}
-            <li className="flex items-start gap-2">
-              <ShieldCheck className="w-4 h-4 text-indigo-300 mt-[3px]" />
-              {about?.manner_4}
-            </li>
-          </ul>
-        </div>
-
-        {/* Divider */}
-        <div className="h-[1px] w-full bg-linear-to-r from-transparent via-cyan-400/30 to-transparent"></div>
-
-        {/* ░░ Highlights Section ░░ */}
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-indigo-300" />
-          <p className="text-sm text-slate-300 italic">
-            Dedicated to growth, clarity, and excellence in every project.
-          </p>
-        </div>
-      </div>
-
-      {/* ───────────────── Custom Animations ───────────────── */}
-      <style>{`
-        @keyframes about-spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes about-spin-slow {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        @keyframes about-pulse {
-          0%, 100% { opacity: .4; transform: scale(.95); }
-          50% { opacity: 1; transform: scale(1); }
-        }
-        .animate-about-spin { animation: about-spin 1s linear infinite; }
-        .animate-about-spin-slow { animation: about-spin-slow 3s linear infinite; }
-        .animate-about-pulse { animation: about-pulse 2s ease-in-out infinite; }
-      `}</style>
-    </div>
-  );
-}
-
 type ExperienceResponse = {
   title: string;
   description: string;
@@ -421,35 +634,28 @@ export function ExperienceCard() {
   useEffect(() => {
     fetch(`${BASE_URL}/focus`)
       .then((res) => res.json())
-      .then((data: ExperienceResponse) => {
-        setExperience(data);
-      })
+      .then((data: ExperienceResponse) => setExperience(data))
       .catch(() => setError("❌ Failed to load info"))
       .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div className="relative lg:col-span-2 lg:row-start-3 lg:row-span-3">
+    <div className="relative">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative bg-linear-to-br from-[#0a0b1e]/70 h-full via-slate-950/90 to-[#0f172a]/50 border border-slate-800/70 rounded-2xl shadow-[0_0_25px_-5px_rgba(99,102,241,0.35)] p-6 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
+        className="relative h-full bg-gradient-to-br from-[#0b0e20]/70 via-[#0a0f1f]/60 to-[#0f172a]/60
+        border border-slate-800/60 rounded-2xl shadow-[0_0_20px_-6px_rgba(99,102,241,0.35)]
+        p-7 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
       >
-        {/* 🌀 Unique Spinner Overlay */}
+        {/* Loader */}
         {(loading || error) && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
             <div className="relative flex items-center justify-center">
-              {/* Outer rotating ring */}
               <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
-
-              {/* Inner ring */}
               <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
-
-              {/* Center glowing dot */}
               <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
-
-              {/* Text pulse */}
               <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
                 LOADING
               </div>
@@ -458,212 +664,182 @@ export function ExperienceCard() {
         )}
 
         {/* Header */}
-        <header className="mb-6">
-          <div className="flex items-center gap-3 mb-3">
+        <header className="mb-7">
+          <div className="flex items-center gap-3 mb-2">
             <Cpu className="w-6 h-6 text-indigo-400" />
-            <h2 className="text-lg sm:text-xl font-semibold text-white tracking-wide">
-              {Experience?.title || "Philosophy & Focus"}
+            <h2 className="text-xl font-semibold text-white tracking-wide">
+              {Experience?.title || "Engineering Philosophy"}
             </h2>
           </div>
+
           <p className="text-slate-300 text-sm leading-relaxed">
             {Experience?.text ||
-              "I am committed to creating software that is efficient, maintainable, and adaptable. I prioritize learning best practices, exploring modern technologies, and ensuring thoughtfully designed solutions for both users and developers."}
+              "I believe great engineering comes from clarity, discipline, and purposeful execution. I focus on writing scalable systems, crafting reliable components, and building user-centered experiences that create long-lasting impact."}
           </p>
         </header>
 
-        {/* Sub Cards */}
-        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+        {/* SUB CARDS */}
+        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+          {/* Clean Code */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="group sm:w-[8.5rem] sm:h-[14rem] bg-linear-to-br from-slate-900/80 to-slate-950/60
-  p-3 rounded-xl border border-slate-700 hover:border-cyan-400/40 shadow-inner 
-  transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
+            className="group bg-[#0b0f19]/80 p-4 rounded-xl border border-slate-700 
+            hover:border-cyan-400/40 transition-all backdrop-blur-sm shadow-inner relative flex flex-col"
           >
-            {/* Icon Box */}
-            <div
-              className="p-2 w-fit rounded-lg bg-cyan-500/10 border border-cyan-400/20 
-    group-hover:bg-indigo-500/10 transition mx-auto mt-1"
-            >
-              <Code2 className="w-4 h-4 text-cyan-400 group-hover:text-indigo-400 transition" />
+            <div className="p-2 w-fit mx-auto rounded-lg bg-cyan-500/10 border border-cyan-400/20 group-hover:bg-cyan-500/20 transition">
+              <Code2 className="w-4 h-4 text-cyan-400" />
             </div>
 
-            {/* Title */}
-            <h3 className="text-center mt-2 text-[11px] font-semibold text-white tracking-wide">
+            <h3 className="text-center mt-2 text-sm font-semibold text-white tracking-wide">
               Clean Code
             </h3>
 
-            {/* Divider */}
-            <div className="mx-auto mt-1 w-6 h-[2px] bg-cyan-400/30 rounded-full"></div>
-
-            {/* Main Text */}
-            <p className="mt-3 text-[10px] text-slate-400 leading-snug line-clamp-6 text-center px-1">
-              Writing maintainable, readable and scalable code with clarity,
-              structure and best practices at the core of every component.
+            <p className="mt-2 text-[12px] text-slate-400 leading-snug text-center px-1">
+              Readable, modular, and scalable code built with long-term quality
+              in mind.
             </p>
 
-            {/* Bottom Tag */}
-            <div
-              className="mt-auto mb-1 mx-auto px-2 py-1 text-[9px] rounded-md 
-    bg-cyan-500/10 border border-cyan-400/20 text-cyan-300"
-            >
+            <span className="mt-auto mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-cyan-500/10 border border-cyan-400/20 text-cyan-300">
               Quality First
-            </div>
-
-            {/* Glow */}
-            <div
-              className="absolute -right-3 -bottom-3 w-7 h-7 bg-cyan-500/10 rounded-full blur-xl opacity-70 
-    group-hover:opacity-100 transition"
-            ></div>
+            </span>
           </motion.div>
 
+          {/* Performance */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="group w-[8.5rem] h-[14rem] bg-linear-to-br from-slate-900/80 to-slate-950/60
-  p-3 rounded-xl border border-slate-700 hover:border-yellow-400/40 shadow-inner 
-  transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
+            className="group bg-[#0b0f19]/80 p-4 rounded-xl border border-slate-700 
+            hover:border-yellow-400/40 transition-all backdrop-blur-sm shadow-inner relative flex flex-col"
           >
-            {/* Icon */}
-            <div
-              className="p-2 w-fit rounded-lg bg-yellow-500/10 border border-yellow-400/20
-    group-hover:bg-indigo-500/10 transition mx-auto mt-1"
-            >
-              <Zap className="w-4 h-4 text-yellow-400 group-hover:text-indigo-400 transition" />
+            <div className="p-2 w-fit mx-auto rounded-lg bg-yellow-500/10 border border-yellow-400/20 group-hover:bg-yellow-500/20 transition">
+              <Zap className="w-4 h-4 text-yellow-400" />
             </div>
 
-            {/* Title */}
-            <h3 className="text-center mt-2 text-[11px] font-semibold text-white tracking-wide">
-              Efficient & Fast
+            <h3 className="text-center mt-2 text-sm font-semibold text-white tracking-wide">
+              High Performance
             </h3>
 
-            {/* Divider */}
-            <div className="mx-auto mt-1 w-6 h-[2px] bg-yellow-400/30 rounded-full"></div>
-
-            {/* Text */}
-            <p className="mt-3 text-[10px] text-slate-400 leading-snug line-clamp-6 text-center px-1">
-              Building performant features that balance speed, optimization, and
-              clean architectural structure.
+            <p className="mt-2 text-[12px] text-slate-400 leading-snug text-center px-1">
+              Systems optimized for speed, responsiveness, and smooth execution.
             </p>
 
-            {/* Footer Tag */}
-            <div
-              className="mt-auto mb-1 mx-auto px-2 py-1 text-[9px] rounded-md 
-    bg-yellow-500/10 border border-yellow-400/20 text-yellow-300"
-            >
-              Speed First
-            </div>
-
-            {/* Glow */}
-            <div
-              className="absolute -right-3 -bottom-3 w-7 h-7 bg-yellow-500/10 rounded-full blur-xl opacity-70 
-    group-hover:opacity-100 transition"
-            ></div>
+            <span className="mt-auto mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-yellow-500/10 border border-yellow-400/20 text-yellow-300">
+              Fast & Efficient
+            </span>
           </motion.div>
 
+          {/* Reliability */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="group w-[8.5rem] h-[14rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60
-  p-3 rounded-xl border border-slate-700 hover:border-emerald-400/40 shadow-inner 
-  transition-all backdrop-blur-sm relative overflow-hidden flex flex-col"
+            className="group bg-[#0b0f19]/80 p-4 rounded-xl border border-slate-700 
+            hover:border-emerald-400/40 transition-all backdrop-blur-sm shadow-inner relative flex flex-col"
           >
-            {/* Icon */}
-            <div
-              className="p-2 w-fit rounded-lg bg-emerald-500/10 border border-emerald-400/20
-    group-hover:bg-indigo-500/10 transition mx-auto mt-1"
-            >
-              <ShieldCheck className="w-4 h-4 text-emerald-400 group-hover:text-indigo-400 transition" />
+            <div className="p-2 w-fit mx-auto rounded-lg bg-emerald-500/10 border border-emerald-400/20 group-hover:bg-emerald-500/20 transition">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
             </div>
 
-            {/* Title */}
-            <h3 className="text-center mt-2 text-[11px] font-semibold text-white tracking-wide">
-              Testable & Reliable
+            <h3 className="text-center mt-2 text-sm font-semibold text-white tracking-wide">
+              Reliable Systems
             </h3>
 
-            {/* Divider */}
-            <div className="mx-auto mt-1 w-6 h-[2px] bg-emerald-400/30 rounded-full"></div>
-
-            {/* Text */}
-            <p className="mt-3 text-[10px] text-slate-400 leading-snug line-clamp-6 text-center px-1">
-              Crafting stable components with solid testing, predictable
-              behavior, and long-term maintainability.
+            <p className="mt-2 text-[12px] text-slate-400 leading-snug text-center px-1">
+              Stable, predictable components engineered for long-term
+              maintainability.
             </p>
 
-            {/* Footer Tag */}
-            <div
-              className="mt-auto mb-1 mx-auto px-2 py-1 text-[9px] rounded-md 
-    bg-emerald-500/10 border border-emerald-400/20 text-emerald-300"
+            <span className="mt-auto mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-emerald-500/10 border border-emerald-400/20 text-emerald-300">
+              Consistency
+            </span>
+          </motion.div>
+          <div className="sm:col-span-2 lg:col-span-3 h-px w-full my-2 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+          {/* second row cards */}
+
+          <div className="sm:flex sm:min-w-[75rem] gap-5 ">
+            {/* Builder */}
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              className="group sm:w-[50%] sm:col-span-2 bg-[#0b0f19]/80 p-5 rounded-xl border border-slate-700 
+            hover:border-orange-400/40 backdrop-blur-md shadow-inner relative flex flex-col"
             >
-              Stable Build
-            </div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-400/20 group-hover:bg-orange-500/20 transition">
+                  <Hammer className="w-5 h-5 text-orange-400" />
+                </div>
 
-            {/* Glow */}
-            <div
-              className="absolute -right-3 -bottom-3 w-7 h-7 bg-emerald-500/10 rounded-full blur-xl opacity-70 
-    group-hover:opacity-100 transition"
-            ></div>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.04 }}
-            className="group sm:mt-4 sm:w-[27rem] sm:h-[11.5rem] bg-gradient-to-br from-slate-900/80 to-slate-950/60 
-    p-5 rounded-xl border border-slate-700 hover:border-orange-400/40 shadow-inner 
-    backdrop-blur-md transition-all sm:col-span-2 relative overflow-hidden"
-          >
-            {/* Small glowing accent */}
-            <div
-              className="absolute right-2 top-2 w-3 h-3 rounded-full 
-      bg-orange-400/40 blur-[3px] group-hover:bg-indigo-400/60 transition"
-            ></div>
-
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-400/20 group-hover:bg-indigo-500/10 transition">
-                <Hammer className="w-5 h-5 text-orange-400 group-hover:text-indigo-400 transition" />
+                <div>
+                  <h3 className="font-semibold text-white text-[15px]">
+                    Hands-On Builder
+                  </h3>
+                  <p className="text-[12px] text-slate-500 group-hover:text-slate-400 transition">
+                    Practical. Efficient. Detail-driven.
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-white text-[14px] tracking-wide">
-                  Hands-On Builder
-                </h3>
-                <p className="text-[11px] text-slate-500 group-hover:text-slate-400 transition">
-                  Practical. Efficient. Detail–driven.
-                </p>
+              <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition mb-3">
+                From idea → design → implementation → refinement. I deliver
+                solutions with precision, ownership, and a builder’s mindset.
+              </p>
+
+              <div className="flex gap-3 text-[11px]">
+                <span className="px-2 py-1 rounded-md bg-orange-500/10 border border-orange-400/20 text-orange-300">
+                  Ownership
+                </span>
+                <span className="px-2 py-1 rounded-md bg-indigo-500/10 border border-indigo-400/20 text-indigo-300">
+                  Innovation
+                </span>
+                <span className="px-2 py-1 rounded-md bg-slate-700/30 border border-slate-600/50 text-slate-300">
+                  Craftsmanship
+                </span>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Body */}
-            <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition mb-3">
-              From concept to deployment — I take ownership of features, turning
-              ideas into smooth, functional, and polished experiences.
-            </p>
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              className="group mt-6 sm:mt-0 sm:w-[50%] sm:col-span-2 bg-[#0b0f19]/80 p-5 rounded-xl border border-slate-700 
+  hover:border-blue-400/40 backdrop-blur-md shadow-inner relative flex flex-col"
+            >
+              {/* ICON + HEADER */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-400/20 group-hover:bg-blue-500/20 transition">
+                  <Compass className="w-5 h-5 text-blue-400" />
+                </div>
 
-            {/* Extra highlights */}
-            <div className="flex gap-3 text-[11px]">
-              <span
-                className="px-2 py-1 rounded-md bg-orange-500/10 border border-orange-400/20 
-      text-orange-300 group-hover:bg-orange-500/20 transition"
-              >
-                Ownership
-              </span>
+                <div>
+                  <h3 className="font-semibold text-white text-[15px]">
+                    Strategic Thinker
+                  </h3>
+                  <p className="text-[12px] text-slate-500 group-hover:text-slate-400 transition">
+                    Clarity. Direction. Smart execution.
+                  </p>
+                </div>
+              </div>
 
-              <span
-                className="px-2 py-1 rounded-md bg-indigo-500/10 border border-indigo-400/20 
-      text-indigo-300 group-hover:bg-indigo-500/20 transition"
-              >
-                Innovation
-              </span>
+              {/* DESCRIPTION */}
+              <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition mb-3">
+                I approach every project with intentionality — analyzing the
+                challenge, understanding constraints, and shaping solutions that
+                balance innovation, scalability, and practical outcomes.
+              </p>
 
-              <span
-                className="px-2 py-1 rounded-md bg-slate-700/30 border border-slate-600/50 
-      text-slate-300 group-hover:text-white transition"
-              >
-                Quality
-              </span>
-            </div>
-          </motion.div>
+              {/* TAGS */}
+              <div className="flex gap-3 text-[11px]">
+                <span className="px-2 py-1 rounded-md bg-blue-500/10 border border-blue-400/20 text-blue-300">
+                  Strategy
+                </span>
+                <span className="px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-400/20 text-emerald-300">
+                  Insight
+                </span>
+                <span className="px-2 py-1 rounded-md bg-slate-700/30 border border-slate-600/50 text-slate-300">
+                  Direction
+                </span>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
-        {/* Subtle bottom glow */}
-        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-linear-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
+        {/* Bottom Glow */}
+        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
       </motion.div>
     </div>
   );
