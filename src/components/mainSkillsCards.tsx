@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "./config";
 import {
-  PersonStanding,
+  // PersonStanding,
+  // HeartHandshake,
+  // PenNib,
+  // Icon,
   UserRound,
   Quote,
-  HeartHandshake,
   Sparkles,
   Layers,
   BadgeCheck,
@@ -19,11 +21,9 @@ import {
   Book,
   Puzzle,
   Award,
-  // PenNib,
   Globe2,
   Lightbulb,
   Crosshair,
-  Icon,
 } from "lucide-react";
 import { PenNib } from "@phosphor-icons/react";
 import {
@@ -43,7 +43,7 @@ import {
 //   BsFillCheckCircleFill,
 //   BsUmbrella,
 // } from "react-icons/bs"; // Bootstrap icons
-import { Bootstrap } from "react-bootstrap-icons";
+// import { Bootstrap } from "react-bootstrap-icons";
 
 import {
   SiJavascript,
