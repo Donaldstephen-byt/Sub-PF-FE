@@ -754,7 +754,7 @@ export function ExperienceCard() {
 
           {/* second row cards */}
 
-          <div className="sm:flex sm:min-w-[75rem] gap-5 ">
+          <div className="sm:flex sm:min-w-[72.5rem] gap-5 ">
             {/* Builder */}
             <motion.div
               whileHover={{ scale: 1.04 }}

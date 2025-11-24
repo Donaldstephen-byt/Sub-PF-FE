@@ -4,7 +4,7 @@ import Navbar from "./components/navbar.tsx";
 import Home from "./assets/pages/Home.tsx";
 import AboutPage from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
-import ContactPage from "./assets/pages/contact.tsx";
+import ContactPage from "./assets/pages/Contact.tsx";
 
 // import About from "./pages/About";
 // import Skills from "./pages/Skills";
