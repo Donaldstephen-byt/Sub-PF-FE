@@ -2,9 +2,9 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar.tsx";
 import Home from "./assets/pages/Home.tsx";
-import About from "./assets/pages/About.tsx";
+import AboutPage from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
-import ContactPage from "./assets/pages/contact.tsx";
+import ContactPage from "./assets/pages/Contact.tsx";
 
 // import About from "./pages/About";
 // import Skills from "./pages/Skills";
@@ -18,7 +18,7 @@ function App() {
       {/* Page content changes here */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>

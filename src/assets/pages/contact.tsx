@@ -278,7 +278,9 @@ export default function SpiderClockContactCard() {
                     {[0, 1].map((_, idx) => (
                       <div
                         key={`other-${idx}`}
-                        ref={(el) => (otherLegsRef.current[idx] = el)}
+                        ref={(el) => {
+                          otherLegsRef.current[idx] = el;
+                        }}
                         className="absolute"
                       >
                         <svg width="160" height="160" viewBox="0 0 160 160">

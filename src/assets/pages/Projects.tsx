@@ -45,10 +45,16 @@ export default function Projects() {
       tech: ["Node.js", "React", "Firebase"],
       link: "#",
     },
+    {
+      title: "Quiz Master",
+      desc: "Interactive web app for creating, taking, and sharing quizzes in real-time with dynamic feedback.",
+      tech: ["Node.js", "React", "Firebase"],
+      link: "#",
+    },
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 py-16 px-6">
+    <section className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 py-16 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-6">
