@@ -101,6 +101,10 @@ export default function Navbar() {
           </div>
 
           {/* Center: search (desktop) */}
+          
+          
+          {/* to be implemented when I get my laptop fixed*/}
+          
           <div className="hidden md:flex flex-1 justify-center px-3">
             <label htmlFor="nav-search" className="sr-only">
               Search
