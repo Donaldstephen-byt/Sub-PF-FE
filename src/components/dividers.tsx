@@ -1,3 +1,4 @@
+// to be use across the platform for clarity purposes 
 function Dividers() {
   return (
     <div>
