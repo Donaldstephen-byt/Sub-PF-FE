@@ -63,9 +63,9 @@ function Dividers() {
 
       {/* NINTH DIVIDER */}
       <div className="sm:col-span-2 lg:col-span-3 relative my-8 w-full flex items-center">
-        <div className="flex-grow h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+        <div className="flex-grow h-[1px] bg-lineaar-to-r from-transparent via-indigo-500/30 to-transparent"></div>
         <div className="mx-3 h-3 w-3 rotate-45 bg-indigo-500/50 shadow-md shadow-indigo-500/30"></div>
-        <div className="flex-grow h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+        <div className="flex-grow h-[1px] bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
       </div>
 
       {/* TENTH DIVIER */}

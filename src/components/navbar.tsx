@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { name: "Projects", href: "/projects" },
   { name: "Contact", href: "/contact" },
   { name: "Profile", href: "/profile" },
+  // { name: "Profile", href: "/profile" },
 ];
 
 export default function Navbar() {
@@ -103,7 +104,6 @@ export default function Navbar() {
           {/* Center: search (desktop) */}
           
           
-          {/* to be implemented when I get my laptop fixed*/}
           
           <div className="hidden md:flex flex-1 justify-center px-3">
             <label htmlFor="nav-search" className="sr-only">
