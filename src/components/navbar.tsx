@@ -102,7 +102,7 @@ export default function Navbar() {
           </div>
 
           {/* Center: search (desktop) */}
-          
+          {/* will fix <search></search> */}
           
           
           <div className="hidden md:flex flex-1 justify-center px-3">
