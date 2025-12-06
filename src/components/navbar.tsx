@@ -178,6 +178,7 @@ export default function Navbar() {
               </button>
 
               {/* Profile dropdown */}
+              {/* to oltip menu  */}
               {profileOpen && (
                 <div
                   role="menu"
