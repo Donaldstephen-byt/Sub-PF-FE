@@ -270,7 +270,7 @@ export function AboutCard() {
             </div>
 
             <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
-              <BookOpen className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
+              <BookOpen className="w-4 h-4 text-indigo-300 shrink-0 mt-0.5" />
               Outside of engineering, I spend time exploring system design
               concepts, reading case studies, and experimenting with UI layouts
               that challenge traditional interface patterns. I enjoy breaking
@@ -278,14 +278,14 @@ export function AboutCard() {
             </p>
 
             <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
-              <PenNib className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
-              I also love sketching concepts for interactive components,
-              refining color systems, and creating micro-interactions that make
+              <PenNib className="w-4 h-4 text-indigo-300 shrink-0 mt-0.5" />I
+              also love sketching concepts for interactive components, refining
+              color systems, and creating micro-interactions that make
               interfaces feel alive, responsive, and intentional.
             </p>
 
             <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
-              <Globe2 className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
+              <Globe2 className="w-4 h-4 text-indigo-300 shrink-0 mt-0.5" />
               When I’m not designing or coding, I explore tech communities,
               observe emerging trends, and study how different engineering teams
               build, scale, and maintain software in the real world.
@@ -305,15 +305,15 @@ export function AboutCard() {
             </div>
 
             <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
-              <Quote className="w-4 h-4 text-indigo-300 flex-shrink-0 mt-[2px]" />
-              I believe great engineering comes from curiosity, discipline, and
+              <Quote className="w-4 h-4 text-indigo-300 shrink-0 mt-0.5" />I
+              believe great engineering comes from curiosity, discipline, and
               consistency. Every small improvement compounds over time. I strive
               to make each project cleaner, faster, and more intentional than
               the one before.
             </p>
 
             <p className="text-sm text-slate-300 leading-relaxed flex gap-2">
-              <Crosshair className="w-4 h-4 text-cyan-300 flex-shrink-0 mt-[3px]" />
+              <Crosshair className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
               My end goal is simple: build meaningful digital experiences that
               combine logic, design, and long-term thinking. I want everything I
               create to feel thoughtful, stable, and purpose-driven.
@@ -407,7 +407,7 @@ export function SkillsCard() {
         {/* HEADER */}
         <div className="flex items-center gap-3 mb-6">
           <Code2 className="w-8 h-8 text-indigo-400" />
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold bg-linear-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             {skillSet?.title || "Skills"}
           </h2>
         </div>
@@ -423,7 +423,7 @@ export function SkillsCard() {
         </div>
 
         {/* DIVIDER */}
-        <div className="h-[1px] w-full my-6 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+        <div className="h-px w-full my-6 bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
 
         <div className="flex flex-wrap gap-4 mt-6 pt-2 w-full">
           <div className="sm:flex gap-4">
@@ -516,22 +516,22 @@ export function SkillsCard() {
             {/* Content */}
             <ul className="text-sm text-slate-300 space-y-2">
               <li className="flex items-start gap-2">
-                <Book className="w-4 h-4 text-cyan-300 mt-[2px]" />
+                <Book className="w-4 h-4 text-cyan-300 mt-0.5" />
                 Exploring TypeScript advanced patterns and architecture best
                 practices.
               </li>
               <li className="flex items-start gap-2">
-                <Puzzle className="w-4 h-4 text-indigo-300 mt-[2px]" />
+                <Puzzle className="w-4 h-4 text-indigo-300 mt-0.5" />
                 Experimenting with React 18 features: concurrent rendering and
                 suspense.
               </li>
               <li className="flex items-start gap-2">
-                <Award className="w-4 h-4 text-yellow-300 mt-[2px]" />
+                <Award className="w-4 h-4 text-yellow-300 mt-0.5" />
                 Participating in hackathons and coding challenges to improve
                 problem-solving speed.
               </li>
               <li className="flex items-start gap-2">
-                <Rocket className="w-4 h-4 text-purple-300 mt-[2px]" />
+                <Rocket className="w-4 h-4 text-purple-300 mt-0.5" />
                 Learning modern deployment workflows with Vercel, Netlify, and
                 Docker.
               </li>
@@ -645,7 +645,7 @@ export function ExperienceCard() {
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative h-full bg-gradient-to-br from-[#0b0e20]/70 via-[#0a0f1f]/60 to-[#0f172a]/60
+        className="relative h-full bg-linear-to-br from-[#0b0e20]/70 via-[#0a0f1f]/60 to-[#0f172a]/60
         border border-slate-800/60 rounded-2xl shadow-[0_0_20px_-6px_rgba(99,102,241,0.35)]
         p-7 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
       >
@@ -699,7 +699,7 @@ export function ExperienceCard() {
               in mind.
             </p>
 
-            <span className="mt-auto mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-cyan-500/10 border border-cyan-400/20 text-cyan-300">
+            <span className="mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-cyan-500/10 border border-cyan-400/20 text-cyan-300">
               Quality First
             </span>
           </motion.div>
@@ -722,7 +722,7 @@ export function ExperienceCard() {
               Systems optimized for speed, responsiveness, and smooth execution.
             </p>
 
-            <span className="mt-auto mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-yellow-500/10 border border-yellow-400/20 text-yellow-300">
+            <span className="mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-yellow-500/10 border border-yellow-400/20 text-yellow-300">
               Fast & Efficient
             </span>
           </motion.div>
@@ -746,15 +746,15 @@ export function ExperienceCard() {
               maintainability.
             </p>
 
-            <span className="mt-auto mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-emerald-500/10 border border-emerald-400/20 text-emerald-300">
+            <span className="mx-auto mt-3 px-2 py-1 text-[10px] rounded-md bg-emerald-500/10 border border-emerald-400/20 text-emerald-300">
               Consistency
             </span>
           </motion.div>
-          <div className="sm:col-span-2 lg:col-span-3 h-px w-full my-2 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+          <div className="sm:col-span-2 lg:col-span-3 h-px w-full my-2 bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"></div>
 
           {/* second row cards */}
 
-          <div className="sm:flex sm:min-w-[72.5rem] gap-5 ">
+          <div className="sm:flex sm:min-w-290 gap-5 ">
             {/* Builder */}
             <motion.div
               whileHover={{ scale: 1.04 }}
@@ -839,7 +839,7 @@ export function ExperienceCard() {
         </section>
 
         {/* Bottom Glow */}
-        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
+        <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-linear-to-r from-indigo-500 via-cyan-400 to-transparent opacity-40"></div>
       </motion.div>
     </div>
   );

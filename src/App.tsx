@@ -1,27 +1,29 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar.tsx";
 import Home from "./assets/pages/Home.tsx";
-import AboutPage from "./assets/pages/About.tsx";
+import About from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
-import ContactPage from "./assets/pages/Contact.tsx";
-
-// import About from "./pages/About";
-// import Skills from "./pages/Skills";
+import Contact from "./assets/pages/contact.tsx";
+import PageTransition from "./components/PageTransition.tsx";
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
       {/* Navbar always stays here */}
       <Navbar />
 
-      {/* Page content changes here */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
+      {/* Page content with smooth transitions */}
+      <PageTransition key={location.pathname}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </PageTransition>
     </>
   );
 }

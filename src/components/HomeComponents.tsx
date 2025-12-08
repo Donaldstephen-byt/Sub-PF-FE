@@ -224,7 +224,7 @@ export function Sidebar() {
       )}
 
       {/* Background glow layer */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-transparent blur-3xl opacity-70 -z-10"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-purple-500/10 to-transparent blur-3xl opacity-70 -z-10"></div>
       {/* Avatar Section */}
       <motion.div
         whileHover={{ scale: 1.05 }}
@@ -258,7 +258,7 @@ export function Sidebar() {
       </div>
       {/* ---------Divider Line ---------*/}
       {/* ------------------------------ */}
-      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent my-4"></div>
+      <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/40 to-transparent my-4"></div>
       {/* ------Social Links -----------*/}
       {/* ----------------------------- */}
       <motion.nav
@@ -330,7 +330,7 @@ export function LefIndexCard() {
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative sm:min-w-[75.5rem] flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all"
+      className="relative sm:min-w-302 flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all"
     >
       {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
@@ -356,13 +356,13 @@ export function LefIndexCard() {
       {/* ------Background Glow------- */}
       {/* ---------------------------- */}
       {/* ---------------------------- */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
 
       {/* -------Header Section------- */}
       {/* ---------------------------- */}
       {/* ---------------------------- */}
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+        <h3 className="text-2xl font-bold bg-linear-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
           {skills?.title}
         </h3>
         <Clock className="text-indigo-400 animate-pulse" size={22} />
@@ -431,7 +431,7 @@ export function LefIndexCard() {
             {skills?.hobbies.map((hobby: string, i: number) => (
               <li
                 key={i}
-                className="px-3 py-1 bg-gradient-to-br from-indigo-500/20 to-purple-500/10 border border-indigo-400/40 rounded-xl text-sm text-slate-200 hover:text-indigo-300 transition"
+                className="px-3 py-1 bg-linear-to-br from-indigo-500/20 to-purple-500/10 border border-indigo-400/40 rounded-xl text-sm text-slate-200 hover:text-indigo-300 transition"
               >
                 {hobby}
               </li>

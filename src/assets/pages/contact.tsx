@@ -83,7 +83,7 @@ export default function SpiderClockContactCard() {
     { Icon: Twitter, label: "Twitter", href: "#" },
   ];
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100">
+    <div className="min-h-screen flex items-center justify-center p-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100">
       <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-stretch">
         {/* Left: Spider Clock Card */}
         <div className="relative bg-slate-900/60 border border-slate-700 rounded-3xl p-6 shadow-2xl backdrop-blur-md overflow-hidden group">
@@ -121,11 +121,11 @@ export default function SpiderClockContactCard() {
           </div>
 
           {/* glowing halo */}
-          <div className="absolute left-1/2 -translate-x-1/2 -top-24 w-72 h-72 rounded-full blur-3xl opacity-20 bg-gradient-to-r from-indigo-500 via-cyan-400 to-blue-500 transform-gpu transition-opacity group-hover:opacity-40"></div>
+          <div className="absolute left-1/2 -translate-x-1/2 -top-24 w-72 h-72 rounded-full blur-3xl opacity-20 bg-linear-to-r from-indigo-500 via-cyan-400 to-blue-500 transform-gpu transition-opacity group-hover:opacity-40"></div>
 
           {/* Title & subtitle */}
           <div className="relative z-10 flex flex-col items-center gap-3 pb-4">
-            <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-cyan-300">
+            <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-linear-to-r from-indigo-300 to-cyan-300">
               Reach Out
             </h3>
             <p className="text-sm text-slate-400 text-center max-w-xs">
@@ -164,7 +164,7 @@ export default function SpiderClockContactCard() {
 
               {/* clock face */}
               <div
-                className="relative w-[160px] h-[160px] rounded-full bg-gradient-to-b from-slate-800/70 to-slate-900/60 border border-slate-700/40 flex items-center justify-center shadow-inner"
+                className="relative w-40 h-40 rounded-full bg-linear-to-b from-slate-800/70 to-slate-900/60 border border-slate-700/40 flex items-center justify-center shadow-inner"
                 aria-hidden={false}
               >
                 {/* hour ticks */}
@@ -304,7 +304,7 @@ export default function SpiderClockContactCard() {
 
                     {/* spider body */}
                     <div className="absolute w-12 h-12 rounded-full bg-black/85 border border-slate-600 flex items-center justify-center shadow-[0_8px_30px_rgba(2,6,23,0.6)]">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600 flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-full bg-linear-to-br from-slate-800 to-slate-900 border border-slate-600 flex items-center justify-center">
                         <div className="w-3.5 h-3.5 rounded-full bg-indigo-400/90 blur-sm" />
                       </div>
                     </div>

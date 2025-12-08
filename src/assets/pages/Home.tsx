@@ -35,7 +35,7 @@ function Home() {
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
   p-6 backdrop-blur-xl overflow-hidden group 
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
-  transition-all w-full max-w-[75.5rem]"
+  transition-all w-full max-w-302"
       >
         {/* Sidebar */}
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
