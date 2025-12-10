@@ -1,5 +1,7 @@
 // src/components/Navbar.jsx
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Search, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -55,6 +57,37 @@ export default function Navbar() {
     });
   }
 
+  type projectType = { title: string; tag: string };
+
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<projectType[]>([]);
+  const [open, setOpen] = useState(false);
+
+  // Debounce
+  useEffect(() => {
+    const projects = [
+      { title: "Portfolio Website", tag: "frontend" },
+      { title: "E-Commerce UI", tag: "design" },
+      { title: "Chat App", tag: "react" },
+      { title: "Dashboard Admin", tag: "tailwind" },
+    ];
+
+    const delay = setTimeout(() => {
+      if (query.trim() === "") {
+        setResults([]);
+        return;
+      }
+
+      const filtered = projects.filter((p) =>
+        p.title.toLowerCase().includes(query.toLowerCase())
+      );
+
+      setResults(filtered);
+    }, 300);
+
+    return () => clearTimeout(delay);
+  }, [query]);
+
   return (
     <>
       {/* Top fixed navbar centered */}
@@ -71,7 +104,7 @@ export default function Navbar() {
           className="group flex items-center justify-between gap-4 rounded-[36px]
                      bg-white/35 backdrop-blur-md border border-white/20
                      shadow-lg px-4 py-2 transition-transform duration-150
-                     hover:shadow-2xl dark:bg-slate-800/40 dark:border-slate-700/40"
+                     hover:shadow-2xl dark:bg-slate-800/40 dark:border-slate-700/40 overflow-hidden"
           role="navigation"
           aria-label="Top navigation"
         >
@@ -102,26 +135,39 @@ export default function Navbar() {
           </div>
 
           {/* Center: search (desktop) */}
-          
-          
+
+          {/* SEARCH INPUT */}
           <div className="hidden md:flex flex-1 justify-center px-3">
             <label htmlFor="nav-search" className="sr-only">
               Search
             </label>
+
             <div className="relative w-full max-w-md">
               <input
                 id="nav-search"
                 type="search"
                 placeholder="Search projects, posts..."
-                className="w-full rounded-xl bg-white/60 backdrop-blur-sm border border-white/30
-                           px-4 py-1 text-sm text-slate-800 placeholder:text-slate-500
-                           focus:outline-none focus:ring-2 focus:ring-cyan-300 transition"
-                aria-label="Search"
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setOpen(true);
+                }}
+                className="
+        w-full rounded-xl bg-[#0a0d14]/90 
+        border border-cyan-400/20
+        px-4 py-2 text-sm text-white placeholder:text-gray-400
+        focus:outline-none focus:ring-2 focus:ring-cyan-400/40
+        shadow-inner
+      "
               />
+
               <button
                 aria-label="Search"
-                className="absolute right-1 top-1/2 -translate-y-1/2 rounded-lg px-2 py-1 text-sm
-                           bg-cyan-400 text-white hover:brightness-95 transition"
+                className="
+        absolute right-2 top-1/2 -translate-y-1/2 
+        rounded-lg px-2 py-1 text-sm
+        bg-cyan-500 text-white hover:bg-cyan-400 transition
+      "
               >
                 🔍
               </button>
@@ -257,6 +303,97 @@ export default function Navbar() {
 
       {/* spacer so page content doesn't tuck behind fixed header */}
       <div className="h-20" aria-hidden />
+
+      {/* MODAL */}
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* BACKDROP */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-lg z-[100]"
+            />
+
+            {/* MODAL */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: -20 }}
+              transition={{ duration: 0.22 }}
+              className="
+          fixed top-32 left-1/2 -translate-x-1/2 
+          w-full max-w-2xl z-[101]
+          bg-[#0b0f19] border border-white/10
+          backdrop-blur-2xl rounded-2xl shadow-2xl overflow-hidden
+        "
+            >
+              {/* SEARCH INPUT */}
+              <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
+                <Search className="w-4 h-4 text-cyan-300" />
+
+                <input
+                  autoFocus
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search anything..."
+                  className="w-full bg-transparent text-sm text-gray-200 placeholder:text-gray-500 outline-none"
+                />
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-gray-500 hover:text-white transition"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* RESULTS */}
+              <div className="max-h-[320px] overflow-y-auto px-3 py-4 space-y-2">
+                {results.length > 0 ? (
+                  results.map((r, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="
+                  bg-white/5 hover:bg-white/10 
+                  border border-white/10 hover:border-cyan-400/30
+                  transition cursor-pointer p-4 rounded-xl
+                "
+                    >
+                      <div className="flex justify-between">
+                        <span className="text-gray-200 font-medium">
+                          {r.title}
+                        </span>
+                        <span className="text-[11px] text-cyan-300">
+                          {r.tag}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))
+                ) : (
+                  <div className="text-center text-gray-500 py-16">
+                    <Search className="w-8 h-8 mx-auto mb-3 text-gray-600" />
+                    <p>No results found</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Try using different keywords.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* FOOTER */}
+              <div className="px-5 py-3 border-t border-slate-700/40 text-[11px] text-gray-500 flex justify-end">
+                Press <span className="text-cyan-300 mx-1">⌘ + K</span> to open
+                search
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
