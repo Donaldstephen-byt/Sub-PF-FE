@@ -2,6 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
+import { projects } from "../assets/pages/projectArray";
+import { useNavigate } from "react-router-dom";
+
 
 const NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -57,7 +60,13 @@ export default function Navbar() {
     });
   }
 
-  type projectType = { title: string; tag: string };
+  type projectType = {
+    title: string;
+    desc: string;
+    tech: string[];
+    link: string;
+    id: string;
+  };
 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<projectType[]>([]);
@@ -65,13 +74,6 @@ export default function Navbar() {
 
   // Debounce
   useEffect(() => {
-    const projects = [
-      { title: "Portfolio Website", tag: "frontend" },
-      { title: "E-Commerce UI", tag: "design" },
-      { title: "Chat App", tag: "react" },
-      { title: "Dashboard Admin", tag: "tailwind" },
-    ];
-
     const delay = setTimeout(() => {
       if (query.trim() === "") {
         setResults([]);
@@ -87,6 +89,19 @@ export default function Navbar() {
 
     return () => clearTimeout(delay);
   }, [query]);
+
+  const navigate = useNavigate();
+
+  function handleSelect(projectId: string) {
+    navigate(`/projects?highlight=${projectId}`);
+    setOpen(false); // close search modal if needed
+  }
+// const navigate = useNavigate();
+
+// function handleSelect(projectId: string) {
+//   navigate(`/projects?highlight=${projectId}`);
+//   }
+  
 
   return (
     <>
@@ -358,6 +373,7 @@ export default function Navbar() {
                       key={i}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
+                      onClick={() => handleSelect(r.id)}
                       className="
                   bg-white/5 hover:bg-white/10 
                   border border-white/10 hover:border-cyan-400/30
@@ -369,7 +385,7 @@ export default function Navbar() {
                           {r.title}
                         </span>
                         <span className="text-[11px] text-cyan-300">
-                          {r.tag}
+                          {r.tech.join(", ")}
                         </span>
                       </div>
                     </motion.div>
