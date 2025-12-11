@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ExternalLink,
   Code2,
@@ -13,7 +13,10 @@ import { projects } from "./projectArray";
 export default function Projects() {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
-  const highlightId = params.get("highlight");
+  const [highlightId, setHighlightId] = useState<string | null>(
+    params.get("highlight")
+  );
+  
 
   useEffect(() => {
     if (highlightId) {
@@ -22,6 +25,15 @@ export default function Projects() {
     }
   }, [highlightId]);
   
+  useEffect(() => {
+    if (!highlightId) return;
+
+    const timer = setTimeout(() => {
+      setHighlightId(null); 
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [highlightId]);
 
   return (
     <section className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 py-16 px-6">
@@ -62,6 +74,7 @@ export default function Projects() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((p) => {
             const active = p.id === highlightId;
+            
             return (
               <div
                 key={p.id}
