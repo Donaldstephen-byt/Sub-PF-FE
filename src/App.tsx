@@ -6,6 +6,7 @@ import About from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
 import Contact from "./assets/pages/contact.tsx";
 import PageTransition from "./components/PageTransition.tsx";
+import BuyMeCoffeeApple from "./components/cofeeButton";
 
 function App() {
   const location = useLocation();
@@ -14,8 +15,12 @@ function App() {
     <>
       {/* Navbar always stays here */}
       <Navbar />
-
-      {/* Page content with smooth transitions */}
+      <div className=" top-99 right-4 fixed z-60">
+        {" "}
+        <BuyMeCoffeeApple />
+        {/* <HeartCoffeeCard /> */}
+      </div>
+      ;{/* Page content with smooth transitions */}
       <PageTransition key={location.pathname}>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -8,7 +8,7 @@ import {
   Award,
 } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { projects } from "./projectArray";
+import { projects } from "../../components/projectArray";
 
 export default function Projects() {
   const { search } = useLocation();
@@ -16,7 +16,6 @@ export default function Projects() {
   const [highlightId, setHighlightId] = useState<string | null>(
     params.get("highlight")
   );
-  
 
   useEffect(() => {
     if (highlightId) {
@@ -24,12 +23,12 @@ export default function Projects() {
       if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, [highlightId]);
-  
+
   useEffect(() => {
     if (!highlightId) return;
 
     const timer = setTimeout(() => {
-      setHighlightId(null); 
+      setHighlightId(null);
     }, 4000);
 
     return () => clearTimeout(timer);
@@ -74,7 +73,7 @@ export default function Projects() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((p) => {
             const active = p.id === highlightId;
-            
+
             return (
               <div
                 key={p.id}

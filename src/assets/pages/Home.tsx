@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { SiTailwindcss, SiTypescript } from "react-icons/si";
 
+
 const techStacks = [
   { icon: <FaHtml5 className="text-orange-500 text-4xl" />, name: "HTML5" },
   { icon: <FaCss3Alt className="text-blue-500 text-4xl" />, name: "CSS3" },
@@ -30,6 +31,7 @@ const techStacks = [
 function Home() {
   return (
     <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-4 min-h-screen text-slate-100">
+     
       <div
         className="py-4 relative flex justify-between gap-2 
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 

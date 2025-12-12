@@ -2,9 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
-import { projects } from "../assets/pages/projectArray";
+import { projects } from "./projectArray";
 import { useNavigate } from "react-router-dom";
-
 
 const NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -96,12 +95,11 @@ export default function Navbar() {
     navigate(`/projects?highlight=${projectId}`);
     setOpen(false); // close search modal if needed
   }
-// const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-// function handleSelect(projectId: string) {
-//   navigate(`/projects?highlight=${projectId}`);
-//   }
-  
+  // function handleSelect(projectId: string) {
+  //   navigate(`/projects?highlight=${projectId}`);
+  //   }
 
   return (
     <>
@@ -119,7 +117,7 @@ export default function Navbar() {
           className="group flex items-center justify-between gap-4 rounded-[36px]
                      bg-white/35 backdrop-blur-md border border-white/20
                      shadow-lg px-4 py-2 transition-transform duration-150
-                     hover:shadow-2xl dark:bg-slate-800/40 dark:border-slate-700/40 overflow-hidden"
+                     hover:shadow-2xl dark:bg-slate-800/40 dark:border-slate-700/40"
           role="navigation"
           aria-label="Top navigation"
         >
