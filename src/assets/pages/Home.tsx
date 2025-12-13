@@ -57,7 +57,7 @@ function Home() {
             }}
             className="relative rounded-e-3xl h-full w-full  mt-1 border border-slate-500/70 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]"
           >
-            {/* Text Content */}
+            {/* Content 1 */}
             <div className="relative z-10 text-center px-8 py-10 font-semibold text-lg">
               <h2 className="text-2xl font-bold mb-3 text-indigo-400">
                 👋 Hey, I'm Donald
