@@ -14,15 +14,12 @@ export default function BuyMeCoffeeApple() {
       setVisible(showing);
     };
 
-    const interval = setInterval(cycle, 10000); // every 10s toggle
+    const interval = setInterval(cycle, 10000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // When hovered → FORCE show
   const handleHoverStart = () => setVisible(true);
-
-  // When hover ends → do nothing (cycle continues normally)
   const handleHoverEnd = () => {};
 
   return (
