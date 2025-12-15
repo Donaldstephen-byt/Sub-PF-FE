@@ -7,31 +7,32 @@ import Projects from "./assets/pages/Projects.tsx";
 import Contact from "./assets/pages/contact.tsx";
 import PageTransition from "./components/PageTransition.tsx";
 import BuyMeCoffeeApple from "./components/cofeeButton";
-import { useEffect } from "react"; 
+import { useEffect } from "react";
 function App() {
   const location = useLocation();
 
-   useEffect(() => {
-     const startTime = Date.now();
+  // Analytics tracking for page views and duration
+  useEffect(() => {
+    const startTime = Date.now();
 
-     const sendAnalytics = () => {
-       navigator.sendBeacon(
-         "http://127.0.0.1:8000/track",
-         JSON.stringify({
-           page: window.location.pathname,
-           referrer: document.referrer,
-           duration: Math.floor((Date.now() - startTime) / 1000),
-         })
-       );
-     };
+    const sendAnalytics = () => {
+      navigator.sendBeacon(
+        "http://127.0.0.1:8000/track",
+        JSON.stringify({
+          page: window.location.pathname,
+          referrer: document.referrer,
+          duration: Math.floor((Date.now() - startTime) / 1000),
+        })
+      );
+    };
 
-     window.addEventListener("beforeunload", sendAnalytics);
+    window.addEventListener("beforeunload", sendAnalytics);
 
-     return () => {
-       window.removeEventListener("beforeunload", sendAnalytics);
-       sendAnalytics(); // send when React unmounts
-     };
-   }, []);
+    return () => {
+      window.removeEventListener("beforeunload", sendAnalytics);
+      sendAnalytics(); // send when React unmounts
+    };
+  }, []);
 
   return (
     <>
