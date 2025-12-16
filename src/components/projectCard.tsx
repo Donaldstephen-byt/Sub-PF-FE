@@ -46,7 +46,7 @@ import { Cpu, Zap, Database, Sparkles } from "lucide-react";
 
 export function IlustrationAbout() {
   return (
-    <div className="bg-[#0a0d14]/90  rounded-t-2xl grid grid-cols-3 border border-slate-800 overflow-hidden relative">
+    <div className="bg-[#0a0d14]/90  rounded-t-2xl grid grid-cols-1 md:grid-cols-3 border border-slate-800 overflow-hidden relative">
       {/* -------------------------------------------------------------
         LEFT COLUMN — PERFORMANCE ENGINEERING
       -------------------------------------------------------------- */}
