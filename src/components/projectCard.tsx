@@ -48,7 +48,7 @@ export function IlustrationAbout() {
   return (
     <div className="bg-[#0a0d14]/90  rounded-t-2xl grid grid-cols-1 md:grid-cols-3 border border-slate-800 overflow-hidden relative">
       {/* -------------------------------------------------------------
-        LEFT COLUMN — PERFORMANCE ENGINEERING
+        LEFT COLUMN — PERFORMANCE ENGINEERING 1
       -------------------------------------------------------------- */}
       <div className="relative bg-black p-6 flex flex-col justify-center border-r border-slate-800">
         {/* Section Label */}
