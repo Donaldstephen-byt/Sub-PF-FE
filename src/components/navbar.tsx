@@ -240,6 +240,7 @@ export default function Navbar() {
 
               {/* Profile dropdown */}
               {/* to oltip menu  */}
+              {/* this profile to be worked on (commwnting out the unecessary profile layout ) */}
               <div>
                 {profileOpen && (
                   <div
