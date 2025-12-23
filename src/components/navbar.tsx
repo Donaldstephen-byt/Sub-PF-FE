@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 import { projects } from "./projectArray";
 import { useNavigate } from "react-router-dom";
 import { Section, Divider, Dot, QuickLink } from "./navDropDownComponents";
+import { Briefcase } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -223,21 +224,39 @@ export default function Navbar() {
                 onClick={() => setProfileOpen((s) => !s)}
                 aria-haspopup="true"
                 aria-expanded={profileOpen}
-                className="flex items-center gap-2 rounded-xl px-2 py-1 hover:-translate-y-0.5 transition"
+                className="
+    group flex items-center gap-2
+    rounded-xl px-3 py-1.5
+    bg-white/60 dark:bg-slate-900/60
+    border border-slate-200/60 dark:border-slate-700/60
+    backdrop-blur-md
+    hover:-translate-y-0.5 hover:shadow-md
+    transition-all
+  "
               >
-                <span className="hidden sm:inline text-sm text-slate-700 dark:text-slate-200">
-                  Donald
-                </span>
-                {/* small avatar circle */}
-                <div
-                  className="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-700 flex items-center justify-center
-                             text-sm font-semibold text-slate-900 dark:text-slate-100 shadow"
-                  aria-hidden
-                >
-                  DS
-                </div>
-              </button>
+                {/* ICON */}
+                <Briefcase
+                  size={16}
+                  className="text-emerald-600 dark:text-emerald-400"
+                />
 
+                {/* LABEL */}
+                <span className="hidden sm:inline text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Availability
+                </span>
+
+                {/* STATUS INDICATOR */}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span
+                    className="absolute inline-flex h-full w-full
+      rounded-full bg-emerald-400 opacity-60 group-hover:animate-ping"
+                  />
+                  <span
+                    className="relative inline-flex h-2.5 w-2.5
+      rounded-full bg-emerald-500"
+                  />
+                </span>
+              </button>
               {/* Profile dropdown */}
               {/* to oltip menu  */}
               {/* this profile to be worked on (commwnting out the unecessary profile layout ) */}
@@ -334,7 +353,6 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-
               {profileOpen && (
                 <div
                   role="menu"
