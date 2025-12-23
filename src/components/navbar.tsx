@@ -6,6 +6,8 @@ import { projects } from "./projectArray";
 import { useNavigate } from "react-router-dom";
 import { Section, Divider, Dot, QuickLink } from "./navDropDownComponents";
 import { Briefcase } from "lucide-react";
+import { Signal } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -104,6 +106,27 @@ export default function Navbar() {
   //   }
 
   const [quickOpen, setQuickOpen] = useState(false);
+
+  const STATUS = {
+    available: {
+      label: "Available",
+      icon: Briefcase,
+      color: "emerald",
+    },
+    open: {
+      label: "Open to roles",
+      icon: Signal,
+      color: "indigo",
+    },
+    busy: {
+      label: "Currently busy",
+      icon: Clock,
+      color: "amber",
+    },
+  };
+
+  const current = STATUS.available;
+  const Icon = current.icon;
 
   return (
     <>
@@ -235,9 +258,9 @@ export default function Navbar() {
   "
               >
                 {/* ICON */}
-                <Briefcase
+                <Icon
                   size={16}
-                  className="text-emerald-600 dark:text-emerald-400"
+                  className={`text-${current.color}-600 dark:text-${current.color}-400`}
                 />
 
                 {/* LABEL */}
