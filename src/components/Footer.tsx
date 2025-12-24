@@ -3,7 +3,7 @@ import clsx from "clsx";
 export default function Footer({ className = "" }: { className?: string }) {
   return (
     <footer className={clsx("mt-24 px-6", className)}>
-      {/* DECORATIVE DIVIDER */}
+      {/* DECORATIVE DIVIDER PICKED FROM DEVIDERS COMPONENT MADE FROM LAST (PR)*/}
       <div className="mx-auto max-w-5xl">
         <div className="w-full h-px bg-linear-to-r from-transparent via-indigo-500/40 to-transparent" />
         <div className="mt-1 flex justify-center gap-1">
