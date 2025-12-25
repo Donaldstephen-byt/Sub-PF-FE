@@ -63,7 +63,7 @@ export default function BuyMeCoffeeApple() {
         >
           <Coffee className="w-4 h-4 text-yellow-700" />
         </motion.div>
-
+       {/* coffee to be updated later for mobile view */}
         {/* Text */}
         <div className="text-center">
           <h2 className="text-sm font-semibold text-white tracking-tight">
