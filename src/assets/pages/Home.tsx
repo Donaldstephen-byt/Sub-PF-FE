@@ -32,7 +32,9 @@ function Home() {
   return (
     <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-4 min-h-screen text-slate-100">
       <div
-        className="py-4 relative flex justify-between gap-2 
+        className="py-4 relative flex flex-col md:flex-row
+justify-start md:justify-between
+gap-4 md:gap-2 md:p-6 gap-2 
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
   p-6 backdrop-blur-xl overflow-hidden group 
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
@@ -193,7 +195,7 @@ function Home() {
         </div>
       </div>
       <LefIndexCard />
-      <Footer className="md:hidden"/>
+      <Footer className="md:hidden" />
     </div>
   );
 }

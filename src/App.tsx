@@ -38,7 +38,7 @@ function App() {
     <>
       {/* Navbar always stays here */}
       <Navbar />
-      <div className=" top-99 right-4 fixed z-60">
+      <div className=" md:top-99 bottom-10 right-4 fixed z-60">
         {" "}
         <BuyMeCoffeeApple />
         {/* <HeartCoffeeCard /> */}
