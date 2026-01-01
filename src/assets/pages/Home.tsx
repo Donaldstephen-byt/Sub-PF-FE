@@ -46,7 +46,7 @@ gap-4 md:gap-2 md:p-6 gap-2
 
         {/* Personal Info Section */}
         <div className="personal-info flex-1 grid grid-cols gap-6 p-4 sm:pl-4 sm:pr-0">
-          {/* Profile / About Card.*/}
+          {/* Profile / About Card...*/}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
