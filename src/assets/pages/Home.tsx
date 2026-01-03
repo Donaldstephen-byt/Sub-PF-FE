@@ -56,7 +56,7 @@ gap-4 md:gap-2 md:p-6 gap-2
               borderColor: "rgba(99,102,241,0.6)",
               boxShadow: "0 0 30px -5px rgba(99,102,241,0.5)",
             }}
-            className="relative rounded-e-3xl h-full w-full  mt-1 border border-slate-500/70 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]"
+            className="relative rounded-3xl sm:rounded-none sm:rounded-e-3xl h-full w-full  mt-1 border border-slate-500/70 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]"
           >
             {/* Content 1 */}
             <div className="relative z-10 text-center px-8 py-10 font-semibold text-lg">
@@ -136,7 +136,7 @@ gap-4 md:gap-2 md:p-6 gap-2
               borderColor: "rgba(99,102,241,0.6)",
               boxShadow: "0 0 30px -5px rgba(99,102,241,0.5)",
             }}
-            className="relative rounded-e-3xl h-full w-full mr-3 mt-1 border border-slate-500/70 bg-slate-800/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] flex flex-col overflow-hidden"
+            className="relative rounded-3xl sm:rounded-none sm:rounded-e-3xl h-full w-full mr-3 mt-1 border border-slate-500/70 bg-slate-800/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] flex flex-col overflow-hidden"
           >
             <h3 className="text-xl font-bold text-indigo-400 mb-3 z-10 pl-4 pt-4">
               ⚡ Tech Stack
