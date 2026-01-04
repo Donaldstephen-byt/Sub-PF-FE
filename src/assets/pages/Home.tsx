@@ -34,7 +34,7 @@ function Home() {
       <div
         className="py-4 relative flex flex-col md:flex-row
 justify-start md:justify-between
-gap-4 md:gap-2 md:p-6 gap-2 
+gap-4 md:gap-2 md:p-6 
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
   p-6 backdrop-blur-xl overflow-hidden group 
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
@@ -42,7 +42,7 @@ gap-4 md:gap-2 md:p-6 gap-2
       >
         {/* Sidebar */}
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
-        <Sidebar />
+        <Sidebar className={`ml-7.5 md:ml-0`} />
 
         {/* Personal Info Section */}
         <div className="personal-info flex-1 grid grid-cols gap-6 p-4 sm:pl-4 sm:pr-0">

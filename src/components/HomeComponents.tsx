@@ -178,7 +178,13 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
 /* -------------------------------------------- */
 /* -------------------------------------------- */
 
-export function Sidebar() {
+export function Sidebar({
+  className,
+  children,
+}: {
+  className?: string;
+  children?: React.ReactNode;
+}) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -195,12 +201,13 @@ export function Sidebar() {
   }, []);
 
   return (
-    <motion.aside
+    <motion.section
       initial={{ x: -40, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden"
+      className={`relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden ${className}`}
     >
+      {children}
       {/* Loader */}
       {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
@@ -302,7 +309,7 @@ export function Sidebar() {
           <circle cx="50" cy="50" r="20" fill="#1F2937" />
         </svg>
       </motion.div>
-    </motion.aside>
+    </motion.section>
   );
 }
 
