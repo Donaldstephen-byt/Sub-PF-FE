@@ -133,12 +133,13 @@ function InfoTag({ icon, label }: { icon: React.ReactNode; label: string }) {
 /* ------------------------ Subcomponents for profile card----------------------------- */
 /* -------------------------------- --------------------------------------------------- */
 /* -------------------------------- --------------------------------------------------- */
-function SidebarInfo({
+function SidebarInfo({className,
   icon,
   label,
 }: {
   icon: React.ReactNode;
-  label: string;
+    label: string;
+    className: React.ReactNode;
 }) {
   return (
     <motion.div
@@ -147,7 +148,7 @@ function SidebarInfo({
         borderColor: "rgba(99,102,241,0.5)",
         boxShadow: "0 0 12px -3px rgba(99,102,241,0.4)",
       }}
-      className="flex items-center gap-2 bg-slate-800/50 border border-slate-700/70 rounded-xl px-3 py-2 text-sm text-slate-300 transition-all"
+      className={`flex items-center gap-2 bg-slate-800/50 border border-slate-700/70 rounded-xl px-3 py-2 text-sm text-slate-300 transition-all ${className}`}
     >
       <span className="text-indigo-400">{icon}</span>
       <span className="truncate">{label}</span>
