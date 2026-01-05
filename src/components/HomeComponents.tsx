@@ -106,8 +106,7 @@ function SectionCard({
 }) {
   return (
     <motion.div
-      whileHover={{
-        scale: 1.02,
+      whileHover={{scale: 1.02,
         borderColor: "rgba(99,102,241,0.4)",
         boxShadow: "0 0 25px -8px rgba(99,102,241,0.4)",
       }}
@@ -133,13 +132,12 @@ function InfoTag({ icon, label }: { icon: React.ReactNode; label: string }) {
 /* ------------------------ Subcomponents for profile card----------------------------- */
 /* -------------------------------- --------------------------------------------------- */
 /* -------------------------------- --------------------------------------------------- */
-function SidebarInfo({className,
+function SidebarInfo({
   icon,
   label,
 }: {
   icon: React.ReactNode;
-    label: string;
-    className: React.ReactNode;
+  label: string;
 }) {
   return (
     <motion.div
@@ -148,7 +146,7 @@ function SidebarInfo({className,
         borderColor: "rgba(99,102,241,0.5)",
         boxShadow: "0 0 12px -3px rgba(99,102,241,0.4)",
       }}
-      className={`flex items-center gap-2 bg-slate-800/50 border border-slate-700/70 rounded-xl px-3 py-2 text-sm text-slate-300 transition-all ${className}`}
+      className="flex items-center gap-2 bg-slate-800/50 border border-slate-700/70 rounded-xl px-3 py-2 text-sm text-slate-300 transition-all"
     >
       <span className="text-indigo-400">{icon}</span>
       <span className="truncate">{label}</span>
