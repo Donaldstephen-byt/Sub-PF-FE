@@ -2,11 +2,11 @@ import {
   SkillsCard,
   AboutCard,
   ExperienceCard,
-} from "../../components/mainSkillsCards";
+} from "../../components/SkillsGrid";
 import {
   MainprojectCard,
   IlustrationAbout,
-} from "../../components/projectCard";
+} from "../../components/ProjectCard";
 
 // import Dividers from "../../components/dividers";
 

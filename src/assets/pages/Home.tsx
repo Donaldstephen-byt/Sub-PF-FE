@@ -1,4 +1,4 @@
-import { Sidebar, LefIndexCard } from "../../components/HomeComponents";
+import { Sidebar, LefIndexCard } from "../../components/HomeSections";
 import { motion } from "framer-motion";
 import {
   FaHtml5,

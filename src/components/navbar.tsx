@@ -2,9 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
-import { projects } from "./projectArray";
+import { projects } from "./projectsData";
 import { useNavigate } from "react-router-dom";
-import { Section, Divider, Dot, QuickLink } from "./navDropDownComponents";
+import { Section, Divider, Dot, QuickLink } from "./NavDropdown";
 import { Briefcase } from "lucide-react";
 import { Signal } from "lucide-react";
 import { Clock } from "lucide-react";

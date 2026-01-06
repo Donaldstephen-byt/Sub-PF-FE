@@ -1,13 +1,13 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Navbar from "./components/navbar.tsx";
 import Home from "./assets/pages/Home.tsx";
 import About from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
 import Contact from "./assets/pages/contact.tsx";
 import PageTransition from "./components/PageTransition.tsx";
-import BuyMeCoffeeApple from "./components/cofeeButton";
+import BuyMeCoffeeApple from "./components/CoffeeButton.tsx";
 import { useEffect } from "react";
+import Navbar from "./components/Navbar.tsx";
 function App() {
   const location = useLocation();
 

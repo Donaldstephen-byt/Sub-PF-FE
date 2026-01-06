@@ -8,7 +8,7 @@ import {
   Award,
 } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { projects } from "../../components/projectArray";
+import { projects } from "../../components/projectsData";
 
 export default function Projects() {
   const { search } = useLocation();
