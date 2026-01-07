@@ -185,18 +185,30 @@ export function Sidebar({
   children?: React.ReactNode;
 }) {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+
     fetch(`${BASE_URL}/profile`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch profile");
         return res.json();
       })
-      .then((data: Profile) => setProfile(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+      .then((data: Profile) => {
+        if (!cancelled) setProfile(data);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
@@ -318,18 +330,26 @@ export function Sidebar({
 
 export function LefIndexCard() {
   const [skills, setSkills] = useState<SkillProfile | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/skills`)
+    const controller = new AbortController();
+
+    fetch(`${BASE_URL}/skills`, { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch skills");
         return res.json();
       })
       .then((data: SkillProfile) => setSkills(data))
-      .catch((err) => setError(err.message))
+      .catch((err) => {
+        if (err.name !== "AbortError") {
+          setError(err.message);
+        }
+      })
       .finally(() => setLoading(false));
+
+    return () => controller.abort();
   }, []);
   return (
     <motion.main

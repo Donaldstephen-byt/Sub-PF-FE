@@ -50,10 +50,15 @@ export default function Navbar() {
     const cy = rect.height / 2;
     const px = (x - cx) / cx; // -1 .. 1
     const py = (y - cy) / cy; // -1 .. 1
-    const rotateY = px * 4; // degrees
+    const rotateY = px * 2; // degrees
     const rotateX = -py * 3; // degrees
+    const enableRotateY = true;
+    const rotateToY = enableRotateY ? `rotateY(${rotateY}deg)` : "";
+    const enableRotateX = false;
+    const totateToX = enableRotateX ? `rotateX(${rotateX}deg)` : "";
+
     setTiltStyle({
-      transform: `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`,
+      transform: `perspective(900px) ${totateToX} ${rotateToY} translateZ(0)`,
     });
   }
 
