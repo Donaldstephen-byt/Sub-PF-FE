@@ -4,11 +4,13 @@ import {
   FaHtml5,
   FaCss3Alt,
   FaReact,
+  FaVuejs,
   FaNodeJs,
   FaPython,
-  FaGitAlt,
+  // FaGitAlt,
 } from "react-icons/fa";
 import { SiTailwindcss, SiTypescript } from "react-icons/si";
+import { BsBootstrap } from "react-icons/bs";
 import Footer from "../../components/Footer";
 
 const techStacks = [
@@ -18,14 +20,19 @@ const techStacks = [
     icon: <SiTailwindcss className="text-cyan-400 text-4xl" />,
     name: "Tailwind",
   },
+  {
+    icon: <BsBootstrap className="text-purple-600 text-4xl" />,
+    name: "Bootstrap",
+  },
   { icon: <FaReact className="text-sky-400 text-4xl" />, name: "React" },
+  { icon: <FaVuejs className="text-green-500 text-4xl" />, name: "Vuejs" },
   {
     icon: <SiTypescript className="text-blue-400 text-4xl" />,
     name: "TypeScript",
   },
   { icon: <FaNodeJs className="text-green-500 text-4xl" />, name: "Node.js" },
   { icon: <FaPython className="text-yellow-400 text-4xl" />, name: "Python" },
-  { icon: <FaGitAlt className="text-red-500 text-4xl" />, name: "Git" },
+  // { icon: <FaGitAlt className="text-red-500 text-4xl" />, name: "Git" },
 ];
 
 function Home() {
@@ -70,7 +77,7 @@ gap-4 md:gap-2 md:p-6
               </p>
               <div className="mt-6">
                 <p className="text-sm text-slate-400">
-                  Specialized in React, TypeScript, and modern web design
+                  Specialized in React, Vuejs, TypeScript, and modern web design
                 </p>
               </div>
             </div>
