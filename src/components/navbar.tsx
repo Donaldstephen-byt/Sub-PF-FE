@@ -288,76 +288,93 @@ export default function Navbar() {
               {/* Profile dropdown */}
               {/* to oltip menu  */}
               {profileOpen && (
-                <div
-                  role="menu"
-                  className="absolute right-0 mt-2 w-72 rounded-xl
-               bg-white/80 dark:bg-slate-900/80 backdrop-blur-md
-               border border-slate-200/60 dark:border-slate-700/60
-               shadow-lg py-3 ring-1 ring-black/5"
-                >
-                  {/* STATUS */}
-                  <Section title="Status">
-                    <Dot
-                      color="bg-emerald-500"
-                      text="Available for freelance"
-                    />
-                    <Dot color="bg-indigo-500" text="Open to full-time roles" />
-                  </Section>
+                <div className="relative">
+                  {/* Tooltip arrow */}
+                  <div
+                    className="absolute top-0 right-4 w-3 h-3 bg-white/80 dark:bg-slate-900/90
+                 transform -translate-y-1/2 rotate-45
+                 border-t border-l border-slate-200/60 dark:border-slate-700/60"
+                  />
 
-                  <Divider />
+                  {/* Menu */}
+                  <div
+                    role="menu"
+                    className="absolute right-0 mt-1 w-72 rounded-xl
+                 bg-white/80 dark:bg-slate-900/90 backdrop-blur-md
+                 border border-slate-200/60 dark:border-slate-700/60
+                 shadow-lg py-3 ring-1 z-100 ring-black/5"
+                  >
+                    {/* STATUS */}
+                    <Section title="Status">
+                      <Dot
+                        color="bg-emerald-500"
+                        text="Available for freelance"
+                      />
+                      <Dot
+                        color="bg-indigo-500"
+                        text="Open to full-time roles"
+                      />
+                    </Section>
 
-                  {/* NOW */}
-                  <Section title="Now">
-                    <p className="text-sm">
-                      🛠 Building <b>Portfolio v2</b>
-                    </p>
-                  </Section>
+                    <Divider />
 
-                  <Divider />
+                    {/* NOW */}
+                    <Section title="Now">
+                      <p className="text-sm">
+                        🛠 Building <b>Portfolio v2</b>
+                      </p>
+                    </Section>
 
-                  {/* LOCATION */}
-                  <Section title="Location">
-                    <p className="text-sm">📍 Remote / Hybrid (EU-friendly)</p>
-                  </Section>
+                    <Divider />
 
-                  <Divider />
+                    {/* LOCATION */}
+                    <Section title="Location">
+                      <p className="text-sm">
+                        📍 Remote / Hybrid (EU-friendly)
+                      </p>
+                    </Section>
 
-                  {/* QUICK ACCESS */}
-                  <div className="px-4">
-                    <button
-                      onClick={() => setQuickOpen((s) => !s)}
-                      className="flex w-full items-center justify-between
-                   text-sm font-medium text-slate-700 dark:text-slate-200
-                   hover:text-indigo-600 transition"
-                    >
-                      Quick access
-                      <span
-                        className={`transition ${quickOpen ? "rotate-90" : ""}`}
+                    <Divider />
+
+                    {/* QUICK ACCESS */}
+                    <div className="px-4">
+                      <button
+                        onClick={() => setQuickOpen((s) => !s)}
+                        className="flex w-full items-center justify-between
+                     text-sm font-medium text-slate-700 dark:text-slate-200
+                     hover:text-indigo-600 transition"
                       >
-                        ›
-                      </span>
-                    </button>
+                        Quick access
+                        <span
+                          className={`transition ${
+                            quickOpen ? "rotate-90" : ""
+                          }`}
+                        >
+                          ›
+                        </span>
+                      </button>
 
-                    {quickOpen && (
-                      <div className="mt-2 ml-2 space-y-1">
-                        <QuickLink
-                          href="/case-studies"
-                          label="🧩 Case studies"
-                        />
-                        <QuickLink
-                          href="/ui-experiments"
-                          label="🎨 UI experiments"
-                        />
-                        <QuickLink
-                          href="/performance"
-                          label="⚡ Performance lab"
-                        />
-                        <QuickLink
-                          href="/design-system"
-                          label="📐 Design system"
-                        />
-                      </div>
-                    )}
+                      {quickOpen && (
+                        <div className="mt-2 ml-2 space-y-1">
+                          <QuickLink
+                            href="/case-studies"
+                            label="🧩 Case studies"
+                          />
+                          <QuickLink
+                            href="/ui-experiments"
+                            label="🎨 UI experiments"
+                          />
+                          <QuickLink
+                            href="/performance"
+                            label="⚡ Performance lab"
+                          />
+                          <QuickLink
+                            href="/design-system"
+                            label="📐 Design system"
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}

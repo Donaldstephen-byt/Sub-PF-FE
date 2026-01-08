@@ -10,8 +10,10 @@ import {
   // FaGitAlt,
 } from "react-icons/fa";
 import { SiTailwindcss, SiTypescript } from "react-icons/si";
-import { BsBootstrap } from "react-icons/bs";
 import Footer from "../../components/Footer";
+import FastApiLogo from "../fastapi.seeklogo.svg";
+import BoostrapLogo from "../Bootstrap_logo.svg"
+
 
 const techStacks = [
   { icon: <FaHtml5 className="text-orange-500 text-4xl" />, name: "HTML5" },
@@ -21,7 +23,7 @@ const techStacks = [
     name: "Tailwind",
   },
   {
-    icon: <BsBootstrap className="text-purple-600 text-4xl" />,
+    icon: <img src={BoostrapLogo} alt="FastAPI" className="w-10 h-10" />,
     name: "Bootstrap",
   },
   { icon: <FaReact className="text-sky-400 text-4xl" />, name: "React" },
@@ -32,6 +34,11 @@ const techStacks = [
   },
   { icon: <FaNodeJs className="text-green-500 text-4xl" />, name: "Node.js" },
   { icon: <FaPython className="text-yellow-400 text-4xl" />, name: "Python" },
+  {
+    icon: <img src={FastApiLogo} alt="FastAPI" className="w-10 h-10" />,
+    name: "FastAPI",
+  },
+
   // { icon: <FaGitAlt className="text-red-500 text-4xl" />, name: "Git" },
 ];
 
