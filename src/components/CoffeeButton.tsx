@@ -28,7 +28,7 @@ export default function BuyMeCoffeeApple() {
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
     >
-      {/* Hover detection wrapper */}
+      {/* Hover detection wrapper ..*/}
       <motion.div
         onHoverStart={handleHoverStart}
         onHoverEnd={handleHoverEnd}
