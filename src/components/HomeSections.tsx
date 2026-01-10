@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   Github,
   Linkedin,
-  Twitter,
+  // Twitter,
   Instagram,
   Facebook,
   Mail,
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { BASE_URL } from "./config";
 import { motion } from "framer-motion";
+import XLogo from "./TweeterSvg";
 
 type Profile = {
   fullName: string;
@@ -106,7 +107,8 @@ function SectionCard({
 }) {
   return (
     <motion.div
-      whileHover={{scale: 1.02,
+      whileHover={{
+        scale: 1.02,
         borderColor: "rgba(99,102,241,0.4)",
         boxShadow: "0 0 25px -8px rgba(99,102,241,0.4)",
       }}
@@ -290,10 +292,7 @@ export function Sidebar({
           href={profile?.linkedin || ""}
           icon={<Linkedin size={18} />}
         />
-        <SocialIcon
-          href={profile?.twitter || ""}
-          icon={<Twitter size={18} />}
-        />
+        <SocialIcon href={profile?.twitter || ""} icon={<XLogo size={18} />} />
         <SocialIcon
           href={profile?.instagram || ""}
           icon={<Instagram size={18} />}
@@ -306,7 +305,7 @@ export function Sidebar({
       {/* ---Subtle rotating gear (depth element)--- */}
       {/* ------------------------------------------ */}
       <motion.div
-        className="absolute -left-8 bottom-10 opacity-[0.08]"
+        className="absolute -left-8 bottom-10 -z-50 opacity-[0.08]"
         animate={{ rotate: 360 }}
         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
       >
