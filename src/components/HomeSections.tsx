@@ -103,7 +103,7 @@ function SectionCard({
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
   return (
     <motion.div
@@ -218,7 +218,7 @@ export function Sidebar({
       initial={{ x: -40, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden ${className}`}
+      className={`relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full md:max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden ${className}`}
     >
       {children}
       {/* Loader */}

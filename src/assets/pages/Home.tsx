@@ -12,8 +12,7 @@ import {
 import { SiTailwindcss, SiTypescript } from "react-icons/si";
 import Footer from "../../components/Footer";
 import FastApiLogo from "../fastapi.seeklogo.svg";
-import BoostrapLogo from "../Bootstrap_logo.svg"
-
+import BoostrapLogo from "../Bootstrap_logo.svg";
 
 const techStacks = [
   { icon: <FaHtml5 className="text-orange-500 text-4xl" />, name: "HTML5" },
@@ -44,22 +43,22 @@ const techStacks = [
 
 function Home() {
   return (
-    <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-4 min-h-screen text-slate-100">
+    <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-2 ">
       <div
         className="py-4 relative flex flex-col md:flex-row
 justify-start md:justify-between
 gap-4 md:gap-2 md:p-6 
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
-  p-6 backdrop-blur-xl overflow-hidden group 
+  p-2 backdrop-blur-xl overflow-hidden group 
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
   transition-all w-full max-w-302"
       >
         {/* Sidebar */}
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
-        <Sidebar className={`ml-7.5 md:ml-0`} />
+        <Sidebar className={` md:ml-0`} />
 
         {/* Personal Info Section */}
-        <div className="personal-info flex-1 grid grid-cols gap-6 p-4 sm:pl-4 sm:pr-0">
+        <div className="personal-info flex-1 grid grid-cols gap-6 p-0 md:p-4 sm:pl-4 sm:pr-0">
           {/* Profile / About Card...*/}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
