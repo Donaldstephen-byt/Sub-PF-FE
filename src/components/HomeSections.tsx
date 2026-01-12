@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 import { BASE_URL } from "./config";
 import { motion } from "framer-motion";
-import XLogo from "./TweeterSvg";
+import {XIcon} from "./TweeterSvg";
+import { FaWhatsapp } from "react-icons/fa";
 
 type Profile = {
   fullName: string;
@@ -103,7 +104,7 @@ function SectionCard({
   children,
 }: {
   title: string;
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <motion.div
@@ -292,7 +293,7 @@ export function Sidebar({
           href={profile?.linkedin || ""}
           icon={<Linkedin size={18} />}
         />
-        <SocialIcon href={profile?.twitter || ""} icon={<XLogo size={18} />} />
+        <SocialIcon href={profile?.twitter || ""} icon={<XIcon size={18} />} />
         <SocialIcon
           href={profile?.instagram || ""}
           icon={<Instagram size={18} />}
@@ -300,6 +301,10 @@ export function Sidebar({
         <SocialIcon
           href={profile?.facebook || ""}
           icon={<Facebook size={18} />}
+        />
+        <SocialIcon
+          href={`https://wa.me/${profile?.phone || ""}`}
+          icon={<FaWhatsapp size={18} />}
         />
       </motion.nav>
       {/* ---Subtle rotating gear (depth element)--- */}

@@ -49,7 +49,7 @@ export default function BuyMeCoffeeApple() {
           border-animate
         "
       >
-        {/* Floating sticker */}
+        {/* Floating sticker. */}
         <motion.div
           animate={{ y: [-3, 3, -3] }}
           transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
@@ -78,7 +78,7 @@ export default function BuyMeCoffeeApple() {
 
         {/* Button */}
         <motion.a
-          href="https://buymeacoffee.com/yourname"
+          href="https://buymeacoffee.com/donaldstephen"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.06 }}
