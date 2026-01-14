@@ -49,7 +49,7 @@ export default function BuyMeCoffeeApple() {
           border-animate
         "
       >
-        {/* Floating sticker. */}
+        {/* Floating sticker.. */}
         <motion.div
           animate={{ y: [-3, 3, -3] }}
           transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
