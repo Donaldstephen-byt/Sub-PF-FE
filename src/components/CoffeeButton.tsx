@@ -86,7 +86,7 @@ export default function BuyMeCoffeeApple() {
           className="
             relative inline-flex items-center gap-1 px-3 py-1.5
             rounded-xl font-semibold text-slate-900
-            bg-gradient-to-br from-indigo-400 via-sky-400 to-cyan-300  
+            bg-linear-to-br from-indigo-400 via-sky-400 to-cyan-300  
             shadow-[0_6px_18px_-4px_rgba(0,0,0,0.25)]
             text-[0.65rem]
           "
