@@ -75,8 +75,8 @@ export default function SpiderClockContactCard() {
     label: string;
     href: string;
   }[] = [
-    { Icon: Mail, label: "Email", href: "mailto:donald@example.com" },
-    { Icon: Phone, label: "Phone", href: "tel:+2341234567890" },
+    { Icon: Mail, label: "Email", href: "mailto:Donalduko69@gmail.com" },
+    { Icon: Phone, label: "Phone", href: "tel:08143867205" },
     { Icon: MapPin, label: "Location", href: "#" },
     { Icon: Linkedin, label: "LinkedIn", href: "#" },
     { Icon: Github, label: "GitHub", href: "#" },
