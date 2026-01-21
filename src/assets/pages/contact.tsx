@@ -9,7 +9,7 @@ import {
   Send,
   User,
 } from "lucide-react";
-
+import { BASE_URL_LOCAL } from "../../components/config";
 /**
  * SpiderClockContactCard
  * - Real-time spider clock (hour/minute/second represented by spider legs)
@@ -80,8 +80,37 @@ export default function SpiderClockContactCard() {
     { Icon: MapPin, label: "Location", href: "#" },
     { Icon: Linkedin, label: "LinkedIn", href: "#" },
     { Icon: Github, label: "GitHub", href: "#" },
-    { Icon: Twitter, label: "Twitter", href: "#" },
-  ];
+      { Icon: Twitter, label: "Twitter", href: "#" },
+    ];
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
+    try {
+      const res = await fetch(`${BASE_URL_LOCAL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error();
+
+      // silent success UX
+      alert("Message sent successfully ✅");
+      form.reset();
+    } catch {
+      alert("Something went wrong. Please try again.");
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center p-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100">
       <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-stretch">
@@ -364,19 +393,7 @@ export default function SpiderClockContactCard() {
           <form
             id="contactForm"
             className="flex flex-col gap-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // stub: integrate EmailJS or your backend here
-              const form = e.currentTarget;
-              const formData = new FormData(e.currentTarget);
-              const name = (formData.get("name") as string) || "";
-              // const email = (formData.get("email") as string) || "";
-              // const message = (formData.get("message") as string) || "";
-
-              // temporary feedback
-              alert(`Thanks ${name || "friend"} — message received! (stub)`);
-              form.reset();
-            }}
+            onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
