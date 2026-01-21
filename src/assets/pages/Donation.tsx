@@ -1,12 +1,26 @@
 import { Coffee, ArrowRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
-export default function BuyMeCoffee() {
+export default function BuyMeCoffee({
+  children,
+  className,
+}: {
+  children?: ReactNode;
+  className?: string;
+}) {
   return (
-    <section className="relative w-full py-20 px-4 overflow-hidden">
+    <section
+      className={`relative w-full py-20 px-4 overflow-hidden ${className}`}
+    >
+      {children}
       {/* Soft background glow */}
-      <div className="pointer-events-none absolute inset-0 flex justify-center">
-        <div className="h-[380px] w-[380px] rounded-full bg-amber-400/20 blur-[120px]" />
+      <div
+        className={`pointer-events-none absolute inset-0 flex justify-center ${className}`}
+      >
+        <div
+        className={`h-[380px] w-[380px] rounded-full bg-amber-400/20 blur-[120px] ${className}`}
+        />
       </div>
 
       <div className="relative mx-auto max-w-3xl">

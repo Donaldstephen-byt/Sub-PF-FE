@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, type ReactNode } from "react";
 import {
   Mail,
   Phone,
@@ -22,7 +22,13 @@ import { BASE_URL_LOCAL } from "../../components/config";
  * Tailwind requirements: backdrop-blur, transform utilities, and custom utilities available by default.
  */
 
-export default function SpiderClockContactCard() {
+export default function SpiderClockContactCard({
+  children,
+  className,
+}: {
+  children?: ReactNode;
+  className?: string;
+}) {
   const secondRef = useRef<HTMLDivElement | null>(null);
   const minuteRef = useRef<HTMLDivElement | null>(null);
   const hourRef = useRef<HTMLDivElement | null>(null);
@@ -80,9 +86,9 @@ export default function SpiderClockContactCard() {
     { Icon: MapPin, label: "Location", href: "#" },
     { Icon: Linkedin, label: "LinkedIn", href: "#" },
     { Icon: Github, label: "GitHub", href: "#" },
-      { Icon: Twitter, label: "Twitter", href: "#" },
-    ];
-  
+    { Icon: Twitter, label: "Twitter", href: "#" },
+  ];
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -94,7 +100,9 @@ export default function SpiderClockContactCard() {
       email: String(formData.get("email") ?? ""),
       message: String(formData.get("message") ?? ""),
     };
-
+    // message not responding
+    // Error 500
+    // backend used smtp eith passord and cant be updaten
     try {
       const res = await fetch(`${BASE_URL_LOCAL}/api/contact`, {
         method: "POST",
@@ -112,7 +120,10 @@ export default function SpiderClockContactCard() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100">
+    <div
+      className={`min-h-screen flex items-center justify-center p-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 ${className}`}
+    >
+      {children}
       <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-stretch">
         {/* Left: Spider Clock Card */}
         <div className="relative bg-slate-900/60 border border-slate-700 rounded-3xl p-6 shadow-2xl backdrop-blur-md overflow-hidden group">
