@@ -471,7 +471,7 @@ export default function Navbar() {
               </div>
 
               {/* RESULTS */}
-              <div className="max-h-[320px] overflow-y-auto px-3 py-4 space-y-2">
+              <div className="max-h-80 overflow-y-auto px-3 py-4 space-y-2">
                 {results.length > 0 ? (
                   results.map((r, i) => (
                     <motion.div
