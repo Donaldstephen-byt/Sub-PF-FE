@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function BuyMeCoffeeApple() {
   const [visible, setVisible] = useState(true);
 
-  // Show 10s → Hide 10s → Loop... So on and so forth. "Show and Hide for 10 seconds each."
+  // Show 10s → Hide 10s → Loop... So on and so forth. "Show and Hide for 10 seconds each... And repeat."
   useEffect(() => {
     let showing = true;
 
@@ -15,7 +15,7 @@ export default function BuyMeCoffeeApple() {
       setVisible(showing);
     };
 
-    
+
     const interval = setInterval(cycle, 10000);
 
     return () => clearInterval(interval);
