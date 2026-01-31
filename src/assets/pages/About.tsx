@@ -6,7 +6,7 @@ import {
 import {
   MainprojectCard,
   IlustrationAbout,
-} from "../../components/ProjectCard";
+} from "../../components/ProjectCard.tsx";
 
 // import Dividers from "../../components/dividers";
 
