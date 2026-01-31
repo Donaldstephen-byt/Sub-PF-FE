@@ -7,7 +7,7 @@ import Contact from "./assets/pages/contact.tsx";
 import PageTransition from "./components/PageTransition.tsx";
 import BuyMeCoffeeApple from "./components/CoffeeButton.tsx";
 import { useEffect } from "react";
-import Navbar from "./components/Navbar.tsx";
+import { Navbar } from "./components/Navbar.tsx";
 function App() {
   const location = useLocation();
 

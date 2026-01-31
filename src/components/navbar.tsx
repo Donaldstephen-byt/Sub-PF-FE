@@ -18,7 +18,7 @@ const NAV_ITEMS = [
   // { name: "Profile", href: "/profile" },
 ];
 
-export default function Navbar() {
+export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [tiltStyle, setTiltStyle] = useState({});
