@@ -36,7 +36,7 @@ export function Sidebar() {
       style={{ padding: "20px" }}
       aria-label="Sidebar with profile summary"
     >
-      {/* Top Section */}
+      {/* Top Section .*/}
       <div data-testid="sidebar-top" className="flex items-center gap-4 ">
         <img
           src={profile.avatar}
@@ -60,7 +60,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      {/* Contact Section */}
+      {/* Contact Section .*/}
       <div
         data-testid="test-user-sidebar-contact"
         className="flex flex-col gap-6"
