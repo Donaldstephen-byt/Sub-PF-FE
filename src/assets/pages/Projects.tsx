@@ -35,10 +35,10 @@ export default function Projects() {
   }, [highlightId]);
 
   return (
-    <section className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 py-16 px-6">
+    <section className="min-h-screen text-slate-100 py-4 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-6">
+        <div className="flex flex-row justify-between items-center mb-12 gap-6">
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 border border-indigo-400/20 shadow-inner">
               <Code2 className="w-7 h-7 text-indigo-400" />

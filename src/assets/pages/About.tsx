@@ -15,7 +15,7 @@ function About() {
     <>
       {" "}
       <div className="">
-        <div className="sm:grid sm:grid-cols-2 gap-4 sm:px-6  mt-8 mb-6">
+        <div className="sm:grid sm:grid-cols-2 gap-4 sm:px-6  md:mt-4  mb-6">
           <AboutCard />
           <SkillsCard />
         </div>

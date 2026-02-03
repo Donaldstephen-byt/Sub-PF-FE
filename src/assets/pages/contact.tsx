@@ -121,7 +121,7 @@ export default function SpiderClockContactCard({
   };
   return (
     <div
-      className={`min-h-screen flex items-center justify-center p-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 ${className}`}
+      className={`min-h-screen flex items-center justify-center overflow-hidden p-8 text-slate-100 ${className}`}
     >
       {children}
       <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-stretch">

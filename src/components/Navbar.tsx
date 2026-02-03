@@ -149,7 +149,7 @@ export function Navbar() {
           className="group flex items-center justify-between gap-4 rounded-[36px]
                      bg-white/35 backdrop-blur-md border border-white/20
                      shadow-lg px-4 py-2 transition-transform duration-150
-                     hover:shadow-2xl dark:bg-slate-800/40 dark:border-slate-700/40"
+                     hover:shadow-2xl dark:bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 dark:border-slate-700/40"
           role="navigation"
           aria-label="Top navigation"
         >
