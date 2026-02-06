@@ -77,9 +77,7 @@ gap-4 md:gap-2 md:p-6
                 👋 Hey, I'm Donald
               </h2>
               <p className="text-slate-300 leading-relaxed">
-                A Frontend Developer passionate about crafting elegant UI/UX
-                experiences with clean code and scalable architecture. I love
-                blending creativity with technology.
+                I transform complex requirements into intuitive digital experiences. With expertise in frontend architecture and backend systems like FastAPI, I build fast, responsive applications that bridge creative design with engineering precision.
               </p>
               <div className="mt-6">
                 <p className="text-sm text-slate-400">
