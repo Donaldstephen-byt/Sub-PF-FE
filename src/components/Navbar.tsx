@@ -138,7 +138,6 @@ export function Navbar() {
       {/* Top fixed navbar centered */}
       <header
         ref={navRef}
-        data-testid={Headers}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="fixed top-4 left-1/2 z-50 w-[92%] max-w-5xl -translate-x-1/2"
@@ -346,9 +345,8 @@ export function Navbar() {
                       >
                         Quick access
                         <span
-                          className={`transition ${
-                            quickOpen ? "rotate-90" : ""
-                          }`}
+                          className={`transition ${quickOpen ? "rotate-90" : ""
+                            }`}
                         >
                           ›
                         </span>
