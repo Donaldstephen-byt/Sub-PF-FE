@@ -30,20 +30,18 @@ function App() {
 
     return () => {
       window.removeEventListener("beforeunload", sendAnalytics);
-      sendAnalytics(); // send when React unmounts
+      sendAnalytics(); 
     };
   }, []);
 
   return (
     <>
-      {/* Navbar always stays here */}
       <Navbar />
       <div className=" md:top-99 bottom-10 right-4 fixed z-60">
         {" "}
         <BuyMeCoffeeApple />
-        {/* <HeartCoffeeCard /> */}
       </div>
-      ;{/* Page content with smooth transitions */}
+      ;
       <PageTransition key={location.pathname}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -58,17 +56,4 @@ function App() {
 
 export default App;
 
-// function App() {
-//   return (
-//     <>
-//       <div>
-//         <Navbar />
-//       </div>
-//       <div className="flex flex-wrap w-full justify-center gap-4 items-center mt-4">
-//         <Sidebar /> <LefIndexCard /> <SkillsCard />
-//       </div>
-//     </>
-//   );
-// }
 
-// export default App;
