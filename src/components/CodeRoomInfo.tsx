@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { User, MapPin, Mail, Phone, Terminal, CheckCircle2 } from "lucide-react";
 

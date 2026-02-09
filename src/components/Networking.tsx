@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Lock, Globe, Activity } from "lucide-react";
 
