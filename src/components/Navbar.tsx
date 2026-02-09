@@ -190,7 +190,7 @@ export function Navbar() {
               <input
                 id="nav-search"
                 type="search"
-                placeholder="Search projects, posts..."
+                placeholder="Search projects..."
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);

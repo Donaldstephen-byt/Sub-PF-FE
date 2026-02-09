@@ -13,6 +13,7 @@ import { SiTailwindcss, SiTypescript } from "react-icons/si";
 import Footer from "../../components/Footer";
 import FastApiLogo from "../fastapi.seeklogo.svg";
 import BoostrapLogo from "../Bootstrap_logo.svg";
+import JavascriptLogo from '../Unofficial_JavaScript_logo_2.svg'
 
 const techStacks = [
   { icon: <FaHtml5 className="text-orange-500 text-4xl" />, name: "HTML5" },
@@ -22,8 +23,12 @@ const techStacks = [
     name: "Tailwind",
   },
   {
-    icon: <img src={BoostrapLogo} alt="FastAPI" className="w-10 h-10" />,
+    icon: <img src={BoostrapLogo} alt="Boostrap" className="w-10 h-10" />,
     name: "Bootstrap",
+  },
+  {
+    icon: <img src={JavascriptLogo} alt="JS" className="w-10 h-10" />,
+    name: "JS ES6",
   },
   { icon: <FaReact className="text-sky-400 text-4xl" />, name: "React" },
   { icon: <FaVuejs className="text-green-500 text-4xl" />, name: "Vuejs" },
@@ -153,7 +158,7 @@ gap-4 md:gap-2 md:p-6
               ⚡ Tech Stack
             </h3>
 
-            <div className="grid grid-cols-5 gap-3 mt-2 px-4 z-10">
+            <div className="grid grid-cols-6 gap-3 mt-2 px-4 z-10">
               {techStacks.map((stack, idx) => (
                 <motion.div
                   key={idx}
