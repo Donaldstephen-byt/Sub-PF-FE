@@ -126,7 +126,10 @@ export default function SpiderClockContactCard({
       {children}
       <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-stretch">
         {/* Left: Spider Clock Card */}
-        <div className="relative bg-slate-900/60 border border-slate-700 rounded-3xl p-6 shadow-2xl backdrop-blur-md overflow-hidden group">
+        <div
+          className="relative bg-slate-900/60 border border-slate-700 rounded-[32px] p-6 shadow-2xl backdrop-blur-md overflow-hidden group isolate"
+          style={{ clipPath: "inset(0 round 32px)" }}
+        >
           {/* subtle web background (SVG) */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <svg viewBox="0 0 300 300" className="w-full h-full">

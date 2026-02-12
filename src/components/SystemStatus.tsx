@@ -1,7 +1,7 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Activity, Cpu, Zap, ShieldCheck, Globe, Lock, 
+    Activity, Cpu, Zap, ShieldCheck, Globe, Lock,
 } from "lucide-react";
 
 const SystemToast = () => {
@@ -41,7 +41,6 @@ const SystemToast = () => {
     );
 };
 
-// --- 2. HEADER: Process Monitor ---
 const ProcessMonitor = () => {
     const [task, setTask] = useState(0);
     const tasks = [
@@ -57,7 +56,7 @@ const ProcessMonitor = () => {
             setTask((prev) => (prev + 1) % tasks.length);
         }, 2000);
         return () => clearInterval(timer);
-    }, []);
+    }, [tasks.length]);
 
     return (
         <div className="h-6 overflow-hidden relative w-full">
@@ -78,11 +77,8 @@ const ProcessMonitor = () => {
     );
 };
 
-// --- 3. BACKGROUND: Scrolling Code (Upward Motion) ---
 const LiveCodeBackground = () => {
     const [text, setText] = useState("");
-
-    // Longer code snippet to support scrolling effect
     const fullCode = `
 import { FastAPI } from "fastapi";
 import { Security } from "./netsec";
@@ -120,18 +116,16 @@ const Dashboard = () => {
             setText(fullCode.substring(0, i));
             i++;
             if (i > fullCode.length) i = 0;
-        }, 50); // Typing speed
+        }, 50);
         return () => clearInterval(interval);
-    }, []);
+    }, [fullCode]);
 
     return (
         <div className="absolute inset-0 overflow-hidden bg-[#050816] z-0">
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-500/10 blur-[50px] rounded-full"></div>
-
-            {/* SCROLLING CONTAINER */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-500/10 blur-[30px] rounded-full"></div>
             <motion.div
                 initial={{ y: "10%" }}
-                animate={{ y: "-40%" }} // Moves UP slowly, keeping text centered longer
+                animate={{ y: "-40%" }}
                 transition={{
                     duration: 15,
                     repeat: Infinity,
@@ -145,13 +139,12 @@ const Dashboard = () => {
                 </pre>
             </motion.div>
 
-            {/* GRADIENT FADE (Top & Bottom) - Keeps focus in the middle */}
+            {/* GRADIENT FADE (Top & Bottom) to keep the live code bg on the middle */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#050816] via-transparent to-[#050816] z-10 pointer-events-none"></div>
         </div>
     );
 };
 
-// --- 4. METRIC BARS ---
 const MetricBar = ({ label, color }: { label: string, color: string }) => (
     <div className="space-y-1">
         <div className="flex justify-between text-[10px] text-slate-400 font-mono">
@@ -169,21 +162,16 @@ const MetricBar = ({ label, color }: { label: string, color: string }) => (
     </div>
 );
 
-// --- MAIN EXPORTED COMPONENT ---
 export const SystemStatusCard = () => {
     return (
-        <div className="md:col-span-2 relative h-full min-h-[240px] rounded-2xl overflow-hidden border border-indigo-500/20 shadow-[0_0_30px_rgba(99,102,241,0.15)] group bg-[#050816]">
+        <div className="md:col-span-2 relative h-full min-h-[240px] rounded-2xl overflow-hidden border border-indigo-500/20 shadow-[0_0_30px_rgba(99,102,241,0.15)] group bg-[#050816]/70">
 
             <LiveCodeBackground />
-            <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-[1px] z-10"></div>
-
-            {/* Content Layer */}
+            <div className="absolute inset-0 bg-slate-700/30 backdrop-blur-[0.5px] z-10"></div>
             <div className="relative z-20 p-6 h-full flex flex-col justify-between">
 
-                {/* HEADER ROW */}
                 <div>
                     <div className="flex items-center justify-between mb-6">
-                        {/* Left: Stack Badge */}
                         <div className="flex items-center gap-2 px-2 py-1 rounded bg-white/5 border border-white/10 backdrop-blur-md">
                             <Activity size={12} className="text-green-400 animate-pulse" />
                             <span className="text-[10px] font-bold text-white tracking-widest uppercase">
@@ -191,32 +179,28 @@ export const SystemStatusCard = () => {
                             </span>
                         </div>
 
-                        {/* Right: Fixed System Toast */}
                         <SystemToast />
                     </div>
 
                     <div className="flex items-start gap-4">
-                        {/* Icon: Pulsing CPU */}
                         <div className="p-3 rounded-xl bg-gradient-to-br from-slate-800 to-black border border-indigo-500/30 shadow-lg shadow-indigo-500/10">
                             <Cpu size={24} className="text-indigo-400 animate-[pulse_3s_ease-in-out_infinite]" />
                         </div>
 
-                        {/* Text: Process Monitor */}
                         <div className="flex-1 min-w-0">
                             <h3 className="text-lg font-bold text-white tracking-wide mb-1">
                                 Execution Core
                             </h3>
+
                             <ProcessMonitor />
                         </div>
                     </div>
                 </div>
 
-                {/* BOTTOM METRICS ROW */}
-                <div className="grid grid-cols-2 gap-4 mt-4 bg-black/60 p-4 rounded-xl border border-white/5 backdrop-blur-md">
-                    {/* Specific Stack Metrics */}
-                    <MetricBar label="VIRTUAL_DOM" color="bg-gradient-to-r from-blue-500 to-cyan-400" />
-                    <MetricBar label="API_LATENCY" color="bg-gradient-to-r from-yellow-500 to-orange-400" />
-                    <MetricBar label="NET_SEC" color="bg-gradient-to-r from-emerald-500 to-green-400" />
+                <div className="grid grid-cols-2 gap-4 mt-4 bg-black/10 p-4 rounded-xl border border-white/5 backdrop-blur-md">
+                    <MetricBar label="VIRTUAL_DOM" color="bg-gradient-to-r from-blue-500/70 to-cyan-400/70" />
+                    <MetricBar label="API_LATENCY" color="bg-gradient-to-r from-yellow-500/60 to-orange-400/60" />
+                    <MetricBar label="NET_SEC" color="bg-gradient-to-r from-emerald-500/60 to-green-400/60" />
 
                     {/* Animated Activity Graph */}
                     <div className="flex items-center justify-between gap-1 px-2 border-l border-white/10 pl-3">

@@ -319,6 +319,8 @@ export function Navbar() {
 
                     {/* NOW */}
                     <Section title="Now">
+                      <p className="text-sm">💻 Intern <b>@KodeHouz</b></p>
+
                       <p className="text-sm">
                         🛠 Building <b>Portfolio v2</b>
                       </p>

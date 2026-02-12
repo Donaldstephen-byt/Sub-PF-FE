@@ -18,17 +18,24 @@ import {
   Globe,
   Server,
   Box,
-  ShieldCheck, Layers, Database, Zap,
+  ShieldCheck,
+  Layers,
+  Database,
+  Zap,
   Activity,
 } from "lucide-react";
 import { BASE_URL } from "./config";
 import { motion } from "framer-motion";
 import { XIcon } from "./TweeterSvg";
 import { FaWhatsapp } from "react-icons/fa";
-import { SecurityCard } from './Networking'
-import { CreativityBarSD, } from './CreativityBar'
-import { SystemStatusCard } from './SystemStatus'
-
+import { SecurityCard } from "./Networking";
+import { CreativityBarSD } from "./CreativityBar";
+import { SystemStatusCard } from "./SystemStatus";
+import { ResumeCard } from "./ResumeCard";
+import SmartAvatar from "./Avater";
+import mainImage from "../assets/Avater-profile.png";
+import hoverImage from "../assets/DeveAvater1.png";
+import timedImage from "../assets/hover-background.png";
 type Profile = {
   fullName: string;
   email: string;
@@ -47,14 +54,14 @@ interface Stats {
   experience: string;
   projects: string;
   status: string;
-  optimization: string
+  optimization: string;
   current_focus: string;
 }
 
 interface Stack {
   frontend: string[];
   backend: string[];
-  security: string[]
+  security: string[];
 }
 
 type SkillProfile = {
@@ -69,10 +76,8 @@ type SkillProfile = {
   dislikes: string[];
   tagline: string;
   stats: Stats;
-  stack: Stack
+  stack: Stack;
 };
-
-
 
 /*--------reusable section cards---------- */
 /*---------------------------------------- */
@@ -111,9 +116,6 @@ function InfoTag({ icon, label }: { icon: React.ReactNode; label: string }) {
   );
 }
 
-/* ------------------------ Subcomponents for profile card----------------------------- */
-/* -------------------------------- --------------------------------------------------- */
-/* -------------------------------- --------------------------------------------------- */
 function SidebarInfo({
   icon,
   label,
@@ -163,14 +165,22 @@ const CyberBackground = () => (
     <motion.div
       animate={{ top: ["-10%", "110%"] }}
       transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-      className="absolute w-full h-[20%] bg-gradient-to-b from-transparent via-indigo-500/10 to-transparent blur-sm"
+      className="absolute w-full h-[20%] bg-gradient-to-b from-transparent/30 via-indigo-500/5 to-transparent blur-sm"
     />
   </div>
 );
 
-
-
-const TechRow = ({ title, icon, items, color }: { title: string, icon: React.ReactNode, items: string[], color: React.ReactNode }) => (
+const TechRow = ({
+  title,
+  icon,
+  items,
+  color,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  items: string[];
+  color: React.ReactNode;
+}) => (
   <div>
     <div className={`flex items-center gap-2 mb-3 ${color}`}>
       {icon}
@@ -178,12 +188,16 @@ const TechRow = ({ title, icon, items, color }: { title: string, icon: React.Rea
     </div>
     <div className="flex flex-wrap gap-2">
       {items?.map((item: string) => (
-        <span key={item} className="px-3 py-1 text-xs font-medium text-slate-300 bg-slate-700/30 rounded-lg border border-white/5 hover:bg-slate-700/60 hover:border-white/20 transition-all cursor-default">
+        <span
+          key={item}
+          className="px-3 py-1 text-xs font-medium text-slate-300 bg-slate-700/30 rounded-lg border border-white/5 hover:bg-slate-700/60 hover:border-white/20 transition-all cursor-default"
+        >
           {item}
         </span>
       ))}
     </div>
-  </div>);
+  </div>
+);
 
 const StatItem = ({
   label,
@@ -196,21 +210,28 @@ const StatItem = ({
   icon: React.ReactElement<{ size?: number }>;
   highlight?: boolean;
 }) => (
-  <div className={`p-3 rounded-xl border transition-colors ${highlight ? 'bg-indigo-500/10 border-indigo-500/30' : 'bg-slate-800/30 border-white/5 hover:border-white/10'}`}>
+  <div
+    className={`p-3 rounded-xl border transition-colors ${
+      highlight
+        ? "bg-indigo-500/10 border-indigo-500/30"
+        : "bg-slate-800/30 border-white/5 hover:border-white/10"
+    }`}
+  >
     <div className="flex items-center gap-2 mb-1 text-slate-400">
       {React.cloneElement(icon, { size: 14 })}
       <span className="text-[10px] uppercase tracking-wider">{label}</span>
     </div>
-    <div className={`text-base sm:text-lg font-semibold ${highlight ? 'text-indigo-300' : 'text-slate-200'}`}>
+    <div
+      className={`text-base sm:text-lg font-semibold ${
+        highlight ? "text-indigo-300" : "text-slate-200"
+      }`}
+    >
       {value || "--"}
     </div>
   </div>
 );
 
 /* ---------------profile card----------------- */
-/* -------------------------------------------- */
-/* -------------------------------------------- */
-/* -------------------------------------------- */
 
 export function Sidebar({
   className,
@@ -284,10 +305,11 @@ export function Sidebar({
         className="relative flex flex-col items-center text-center"
       >
         <div className="relative">
-          <img
-            src={profile?.avatar}
+          <SmartAvatar
+            mainImage={mainImage}
+            hoverImage={timedImage}
+            timedImage={hoverImage}
             alt={profile?.fullName}
-            className="w-28 h-28 rounded-2xl object-cover border border-indigo-400/40 shadow-[0_0_20px_-5px_rgba(99,102,241,0.6)]"
           />
           <motion.span
             className="absolute bottom-2 right-2 w-3.5 h-3.5 bg-green-500 border-2 border-slate-900 rounded-full shadow-md"
@@ -360,8 +382,6 @@ export function Sidebar({
   );
 }
 
-
-
 /* --------------- second home card --------------- */
 /* ------------------------------------------------ */
 /* ------------------------------------------------ */
@@ -372,12 +392,39 @@ export function LefIndexCard() {
   const [error, setError] = useState<string | null>(null);
 
   const devTools = [
-    { name: "Linux (Kali)", icon: <Terminal size={14} />, color: "text-green-400" },
-    { name: "Git/GitHub", icon: <GitBranch size={14} />, color: "text-orange-400" },
-    { name: "Docker", icon: <Box size={14} />, color: "text-blue-400" },
-    { name: "Postman", icon: <Globe size={14} />, color: "text-orange-500" },
-    { name: "VS Code", icon: <Code size={14} />, color: "text-blue-300" },
-    { name: "Vercel", icon: <Server size={14} />, color: "text-white" },
+    {
+      name: "Linux (Kali)",
+      icon: <Terminal size={14} />,
+      color: "text-green-400",
+    },
+    {
+      name: "Git/GitHub",
+      icon: <GitBranch size={14} />,
+      color: "text-orange-400",
+    },
+    {
+      name: "Docker & K8s",
+      label: "Min.Knowledge",
+      icon: <Box size={14} />,
+      color: "text-blue-400 text-[10px]",
+      labelColor:
+        "text-gray-400 bg-gray-800 px-2 py-0.5 rounded-md text-[6px] font-medium border border-red-500/30 item-end",
+    },
+    {
+      name: "Postman & Insomnia",
+      icon: <Globe size={14} />,
+      color: "text-orange-500",
+    },
+    {
+      name: "VS Code & Intellij IDEA ",
+      icon: <Code size={14} />,
+      color: "text-blue-300",
+    },
+    {
+      name: "Vercel & Render",
+      icon: <Server size={14} />,
+      color: "text-white",
+    },
   ];
 
   const architecture = [
@@ -386,7 +433,6 @@ export function LefIndexCard() {
     { name: "Microservices", icon: <Layers size={14} /> },
     { name: "PostgreSQL", icon: <Database size={14} /> },
   ];
-
 
   useEffect(() => {
     const controller = new AbortController();
@@ -473,7 +519,11 @@ export function LefIndexCard() {
                   "linear-gradient(90deg, transparent, rgba(99,102,241,0.9), transparent)",
               }}
               animate={{ top: [6, 36, 6] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
             <motion.div
               className="absolute inset-0 rounded-xl border border-indigo-400/30"
@@ -491,13 +541,29 @@ export function LefIndexCard() {
             <Activity size={14} /> Performance Metrics
           </div>
 
-
-
           <div className="grid grid-cols-2 gap-4">
-            <StatItem label="Experience" value={skills?.stats?.experience} icon={<Layers />} highlight />
-            <StatItem label="Projects" value={skills?.stats?.projects} icon={<Code />} />
-            <StatItem label="Code Quality" value={skills?.stats?.optimization} icon={<Zap />} highlight />
-            <StatItem label="Core Focus" value={skills?.stats?.current_focus} icon={<Cpu />} />
+            <StatItem
+              label="Experience"
+              value={skills?.stats?.experience}
+              icon={<Layers />}
+              highlight
+            />
+            <StatItem
+              label="Projects"
+              value={skills?.stats?.projects}
+              icon={<Code />}
+            />
+            <StatItem
+              label="Code Quality"
+              value={skills?.stats?.optimization}
+              icon={<Zap />}
+              highlight
+            />
+            <StatItem
+              label="Core Focus"
+              value={skills?.stats?.current_focus}
+              icon={<Cpu />}
+            />
           </div>
 
           <div className="mt-6">
@@ -510,10 +576,20 @@ export function LefIndexCard() {
         <SecurityCard />
 
         <div className="md:col-span-3 p-5 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-md">
-          <TechRow title="Frontend Core" icon={<Cpu size={18} />} items={skills?.stack?.frontend ?? []} color="text-blue-400" />
+          <TechRow
+            title="Frontend Core"
+            icon={<Cpu size={18} />}
+            items={skills?.stack?.frontend ?? []}
+            color="text-blue-400"
+          />
         </div>
         <div className="md:col-span-3 p-5 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-md">
-          <TechRow title="Backend Systems" icon={<Server size={18} />} items={skills?.stack?.backend ?? []} color="text-emerald-400" />
+          <TechRow
+            title="Backend Systems"
+            icon={<Server size={18} />}
+            items={skills?.stack?.backend ?? []}
+            color="text-emerald-400"
+          />
         </div>
       </div>
 
@@ -527,23 +603,31 @@ export function LefIndexCard() {
         </div>
       </SectionCard>
 
-
-
-
       {/* ---------- Dev Arsenal & Architecture ---------- */}
 
       <div className="grid md:grid-cols-2 gap-4">
-        <SectionCard title="🛠️ Dev Arsenal">
+        <SectionCard
+          title="🛠️ Strongly Familiar Tool
+"
+        >
           <div className="grid grid-cols-2 gap-2">
             {devTools.map((tool, i) => (
               <div
                 key={i}
                 className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:bg-slate-700/50 transition-colors group cursor-default"
               >
-                <span className={`${tool.color} group-hover:scale-110 transition-transform`}>
+                <span
+                  className={`${tool.color} group-hover:scale-110 transition-transform`}
+                >
                   {tool.icon}
                 </span>
                 <span className="text-sm text-slate-300">{tool.name}</span>
+
+                {tool.label && (
+                  <span className={`ml-auto ${tool.labelColor}`}>
+                    {tool.label}
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -568,8 +652,8 @@ export function LefIndexCard() {
       <SystemStatusCard />
 
       {/* ---------- Live Clock Card ---------- */}
-      <SectionCard title="⏱ Live Time">
-        <motion.div
+      <SectionCard>
+        {/* <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="flex justify-center items-center py-3"
@@ -577,10 +661,9 @@ export function LefIndexCard() {
           <p data-testid="test-user-time" className="text-xl font-mono text-indigo-300">
             {new Date().toLocaleTimeString()}
           </p>
-        </motion.div>
+        </motion.div> */}
+        <ResumeCard />
       </SectionCard>
     </motion.main>
   );
 }
-
-

@@ -14,6 +14,7 @@ import Footer from "../../components/Footer";
 import FastApiLogo from "../fastapi.seeklogo.svg";
 import BoostrapLogo from "../Bootstrap_logo.svg";
 import JavascriptLogo from '../Unofficial_JavaScript_logo_2.svg'
+import NextLogo from '../icons8-next.js.svg'
 
 const techStacks = [
   { icon: <FaHtml5 className="text-orange-500 text-4xl" />, name: "HTML5" },
@@ -32,6 +33,10 @@ const techStacks = [
   },
   { icon: <FaReact className="text-sky-400 text-4xl" />, name: "React" },
   { icon: <FaVuejs className="text-green-500 text-4xl" />, name: "Vuejs" },
+   {
+    icon: <img src={NextLogo} alt="Next.js" className="w-10 h-10" />,
+    name: "Next.js",
+  },
   {
     icon: <SiTypescript className="text-blue-400 text-4xl" />,
     name: "TypeScript",
@@ -42,8 +47,6 @@ const techStacks = [
     icon: <img src={FastApiLogo} alt="FastAPI" className="w-10 h-10" />,
     name: "FastAPI",
   },
-
-  // { icon: <FaGitAlt className="text-red-500 text-4xl" />, name: "Git" },
 ];
 
 function Home() {
@@ -58,13 +61,10 @@ gap-4 md:gap-2 md:p-6
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
   transition-all w-full max-w-302"
       >
-        {/* Sidebar */}
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
         <Sidebar className={` md:ml-0`} />
 
-        {/* Personal Info Section */}
         <div className="personal-info flex-1 grid grid-cols gap-6 p-0 md:p-4 sm:pl-4 sm:pr-0">
-          {/* Profile / About Card...*/}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,9 +76,8 @@ gap-4 md:gap-2 md:p-6
             }}
             className="relative rounded-3xl sm:rounded-none sm:rounded-e-3xl h-full w-full  mt-1 border border-slate-500/70 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]"
           >
-            {/* Content 1 */}
             <div className="relative z-10 text-center px-8 py-10 font-semibold text-lg">
-              <h2 className="text-2xl font-bold mb-3 text-indigo-400">
+              <h2 className="text-2xl font-bold mb-2 text-indigo-400">
                 👋 Hey, I'm Donald
               </h2>
               <p className="text-slate-300 leading-relaxed">
@@ -86,12 +85,11 @@ gap-4 md:gap-2 md:p-6
               </p>
               <div className="mt-6">
                 <p className="text-sm text-slate-400">
-                  Specialized in React, Vuejs, TypeScript, and modern web design
+                  Specialized in JS ES6, React, Vue.js, Next.js, TypeScript, and modern web design
                 </p>
               </div>
             </div>
 
-            {/* Background Gears */}
             <motion.div
               className="absolute left-10 bottom-8 opacity-40"
               animate={{ rotate: 360 }}
@@ -124,7 +122,6 @@ gap-4 md:gap-2 md:p-6
               </svg>
             </motion.div>
 
-            {/* Extra subtle rotating gear (depth layer) */}
             <motion.div
               className="absolute -right-10 bottom-10 opacity-20"
               animate={{ rotate: 360 }}
@@ -142,7 +139,6 @@ gap-4 md:gap-2 md:p-6
             </motion.div>
           </motion.div>
 
-          {/* Tech Stack Card */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
@@ -152,7 +148,7 @@ gap-4 md:gap-2 md:p-6
               borderColor: "rgba(99,102,241,0.6)",
               boxShadow: "0 0 30px -5px rgba(99,102,241,0.5)",
             }}
-            className="relative rounded-3xl sm:rounded-none sm:rounded-e-3xl h-full w-full mr-3 mt-1 border border-slate-500/70 bg-slate-800/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] flex flex-col overflow-hidden"
+            className="relative py-2 rounded-3xl sm:rounded-none sm:rounded-e-3xl h-full w-full mr-3 mt-1 border border-slate-500/70 bg-slate-800/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] flex flex-col overflow-hidden"
           >
             <h3 className="text-xl font-bold text-indigo-400 mb-3 z-10 pl-4 pt-4">
               ⚡ Tech Stack
@@ -210,8 +206,8 @@ gap-4 md:gap-2 md:p-6
           </motion.div>
         </div>
       </div>
-      <LefIndexCard />
-      <Footer className="md:hidden" />
+      <div className="md:px-4"> <LefIndexCard /></div>
+      <Footer className="hidden" />
     </div>
   );
 }
