@@ -109,7 +109,7 @@ export function AboutCard() {
   }, []);
 
   return (
-    <div className="relative bg-slate-800/60  flex flex-col gap-7 p-7 rounded-3xl shadow-xl border border-slate-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]">
+    <div className="relative bg-slate-800/60 flex flex-col gap-7 p-7 rounded-3xl shadow-xl border border-slate-700 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/40 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transform-gpu will-change-transform">
       {/* ───────────────── Loading Spinner Overlay ───────────────── */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center rounded-3xl justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -376,7 +376,7 @@ export function SkillsCard() {
   }, []);
 
   return (
-    <div className="relative  text-white   p-5 rounded-3xl shadow  overflow-hidden border-slate-700 bg-slate-800/60 border   transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)]">
+    <div className="relative text-white p-5 rounded-3xl shadow overflow-hidden border-slate-700 bg-slate-800/60 border transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_-5px_rgba(99,102,241,0.4)] transform-gpu will-change-transform backdrop-blur-md">
       {/* Overlay spinner */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
@@ -647,7 +647,7 @@ export function ExperienceCard() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative h-full bg-linear-to-br from-[#0b0e20]/70 via-[#0a0f1f]/60 to-[#0f172a]/60
         border border-slate-800/60 rounded-2xl shadow-[0_0_20px_-6px_rgba(99,102,241,0.35)]
-        p-7 overflow-hidden backdrop-blur-xl hover:border-indigo-500/50 transition-all duration-300"
+        p-7 overflow-hidden backdrop-blur-md hover:border-indigo-500/50 transition-all duration-300 transform-gpu will-change-transform"
       >
         {/* Loader */}
         {(loading || error) && (

@@ -8,6 +8,7 @@ import PageTransition from "./components/PageTransition.tsx";
 import BuyMeCoffeeApple from "./components/CoffeeButton.tsx";
 import { useEffect } from "react";
 import { Navbar } from "./components/Navbar.tsx";
+import { BASE_URL } from "./components/config";
 function App() {
   const location = useLocation();
 
@@ -17,7 +18,7 @@ function App() {
 
     const sendAnalytics = () => {
       navigator.sendBeacon(
-        "http://127.0.0.1:8000/track",
+        `${BASE_URL}/track`,
         JSON.stringify({
           page: window.location.pathname,
           referrer: document.referrer,

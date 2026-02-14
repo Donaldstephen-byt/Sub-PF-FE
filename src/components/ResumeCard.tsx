@@ -3,7 +3,7 @@ import { FileText, Eye, ChevronRight, ShieldCheck, Lock } from "lucide-react";
 
 const HolographicCube = () => {
   return (
-    <div className="relative w-24 h-24 flex items-center justify-center perspective-[800px]">
+    <div className="relative w-24 h-24 flex items-center justify-center perspective-midrange">
       <motion.div
         className="relative w-12 h-12 preserve-3d"
         animate={{
@@ -67,7 +67,7 @@ export const ResumeCard = () => {
       <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-indigo-600/10 blur-[70px] rounded-full group-hover:bg-indigo-600/20 transition-all"></div>
       <div className="absolute -left-10 -top-10 w-44 h-44 bg-cyan-500/10 blur-[70px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
 
-      <div className="relative z-10 p-6 flex items-center justify-between h-full gap-6">
+      <div className="relative z-10 p-6 flex flex-col md:flex-row md:items-center md:justify-between h-full gap-6">
         {/* LEFT */}
         <div className="flex flex-col items-start gap-4 flex-1">
           {/* top label */}
@@ -208,7 +208,7 @@ export const ResumeCard = () => {
         </div>
 
         {/* RIGHT */}
-        <div className="relative w-32 h-32 flex items-center justify-center shrink-0">
+        <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center shrink-0 mx-auto md:mx-0">
           {/* scan line */}
           <motion.div
             className="absolute w-full h-[2px] bg-cyan-400/50 blur-sm z-20"

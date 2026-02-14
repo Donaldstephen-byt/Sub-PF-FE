@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, type ReactNode } from "react";
+import React, { useEffect, useRef, type ReactNode, useState } from "react";
 import {
   Mail,
   Phone,
@@ -9,7 +9,8 @@ import {
   Send,
   User,
 } from "lucide-react";
-import { BASE_URL_LOCAL } from "../../components/config";
+import { BASE_URL } from "../../components/config";
+import { HoloToast } from "../../components/ContactToast";
 /**
  * SpiderClockContactCard
  * - Real-time spider clock (hour/minute/second represented by spider legs)
@@ -20,7 +21,59 @@ import { BASE_URL_LOCAL } from "../../components/config";
  * Usage: <SpiderClockContactCard />
  *
  * Tailwind requirements: backdrop-blur, transform utilities, and custom utilities available by default.
+ *
+ *
  */
+
+import { motion } from "framer-motion";
+import { PenTool } from "lucide-react";
+const shake = {
+  x: [0, -7, 7, -5, 5, -3, 3, 0],
+  scale: [1, 1.01, 1],
+};
+
+const shakeTransition = { duration: 0.35, ease: "easeOut" } as const;
+
+function FieldErrorBadge() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.85, y: -4 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      className="relative w-8 h-8 rounded-2xl overflow-hidden"
+      style={{
+        transformStyle: "preserve-3d",
+        transform: "perspective(900px) rotateX(18deg) rotateY(-18deg)",
+      }}
+    >
+      {/* holo plate */}
+      <div className="absolute inset-0 bg-[#050816]/70 border border-rose-500/30 backdrop-blur-xl" />
+      <div className="absolute inset-0 opacity-70 bg-linear-to-r from-rose-500/10 via-white/5 to-cyan-400/10" />
+
+      {/* scanline */}
+      <motion.div
+        className="absolute left-0 right-0 h-[2px] bg-linear-to-r from-transparent via-rose-300 to-transparent blur-sm opacity-70"
+        animate={{ top: ["-20%", "120%"] }}
+        transition={{ duration: 1.3, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* icon */}
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center"
+        animate={{ y: [0, -3, 0] }}
+        transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transform: "translateZ(20px)" }}
+      >
+        <PenTool size={18} className="text-rose-300 drop-shadow" />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+type FormErrors = {
+  name?: string;
+  email?: string;
+  message?: string;
+};
 
 export default function SpiderClockContactCard({
   children,
@@ -35,7 +88,6 @@ export default function SpiderClockContactCard({
   const otherLegsRef = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number | null>(null);
 
-  // Set up requestAnimationFrame loop to update hand rotations smoothly
   useEffect(() => {
     const update = () => {
       const now = new Date();
@@ -44,8 +96,7 @@ export default function SpiderClockContactCard({
       const m = now.getMinutes() + s / 60;
       const h = (now.getHours() % 12) + m / 60;
 
-      // Degrees:
-      const secondDeg = (s / 60) * 360; // 0-360
+      const secondDeg = (s / 60) * 360;
       const minuteDeg = (m / 60) * 360;
       const hourDeg = (h / 12) * 360;
 
@@ -59,10 +110,9 @@ export default function SpiderClockContactCard({
         hourRef.current.style.transform = `rotate(${hourDeg}deg)`;
       }
 
-      // gentle breathing motion for decorative legs
       otherLegsRef.current.forEach((el, idx) => {
         if (!el) return;
-        const shift = Math.sin(Date.now() / 1200 + idx) * 4; // +-4deg subtle
+        const shift = Math.sin(Date.now() / 1200 + idx) * 4;
         el.style.transform = `rotate(${shift}deg)`;
       });
 
@@ -75,7 +125,78 @@ export default function SpiderClockContactCard({
     };
   }, []);
 
-  // icon circle positions (angle in degrees)
+  const [errors, setErrors] = useState<FormErrors>({});
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement & {
+      name: HTMLInputElement;
+      email: HTMLInputElement;
+      message: HTMLTextAreaElement;
+    };
+
+    const values = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+    };
+
+    const nextErrors: FormErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!values.name) {
+      nextErrors.name = "Your name is required";
+    } else if (!values.email) {
+      nextErrors.email = "Email is required";
+    } else if (!emailRegex.test(values.email)) {
+      nextErrors.email = "Enter a valid email address";
+    } else if (!values.message) {
+      nextErrors.message = "Message is required";
+    }
+
+    setErrors(nextErrors);
+
+    if (nextErrors.name) return nameRef.current?.focus();
+    if (nextErrors.email) return emailRef.current?.focus();
+    if (nextErrors.message) return messageRef.current?.focus();
+
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
+    try {
+      const res = await fetch(`${BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || "Network handshake failed.");
+      }
+
+      showSuccess();
+      form.reset();
+    } catch (err: unknown) {
+      let message = "Something went wrong. Please try again.";
+      if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === "object" && err !== null && "message" in err) {
+        message = String((err as { message: unknown }).message);
+      }
+      showError(message);
+    }
+  }
+
   const iconSet: {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     label: string;
@@ -84,44 +205,38 @@ export default function SpiderClockContactCard({
     { Icon: Mail, label: "Email", href: "mailto:Donalduko69@gmail.com" },
     { Icon: Phone, label: "Phone", href: "tel:08143867205" },
     { Icon: MapPin, label: "Location", href: "#" },
-    { Icon: Linkedin, label: "LinkedIn", href: "#" },
-    { Icon: Github, label: "GitHub", href: "#" },
-    { Icon: Twitter, label: "Twitter", href: "#" },
+    { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/donald-stephen-9004b236a/" },
+    { Icon: Github, label: "GitHub", href: "https://github.com/Donaldstephen-byt" },
+    { Icon: Twitter, label: "Twitter", href: "https://x.com/DonaldS4598" },
   ];
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [toast, setToast] = useState({
+    open: false,
+    type: "success",
+    title: "",
+    description: "",
+  });
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+  const showSuccess = () => {
+    setToast({
+      open: true,
+      type: "success",
+      title: "Message sent",
+      description: "Thanks for contacting me — I’ll get back to you shortly.",
+    });
+  };
 
-    const payload = {
-      name: String(formData.get("name") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      message: String(formData.get("message") ?? ""),
-    };
-    // message not responding
-    // Error 500
-    // backend used smtp eith passord and cant be updaten
-    try {
-      const res = await fetch(`${BASE_URL_LOCAL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error();
-
-      // silent success UX
-      alert("Message sent successfully ✅");
-      form.reset();
-    } catch {
-      alert("Something went wrong. Please try again.");
-    }
+  const showError = (msg?: string) => {
+    setToast({
+      open: true,
+      type: "error",
+      title: "Message not sent",
+      description: msg || "Network handshake failed. Please try again.",
+    });
   };
   return (
     <div
-      className={`min-h-screen flex items-center justify-center overflow-hidden p-8 text-slate-100 ${className}`}
+      className={`flex items-center justify-center overflow-hidden p-8 pt-0 text-slate-100 ${className}`}
     >
       {children}
       <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-stretch">
@@ -151,7 +266,6 @@ export default function SpiderClockContactCard({
                 <circle r="90" fill="none" />
                 <circle r="60" fill="none" />
                 <circle r="30" fill="none" />
-                {/* radial lines */}
                 {[...Array(16)].map((_, i) => {
                   const angle = (i * 360) / 16;
                   const rad = (angle * Math.PI) / 180;
@@ -163,10 +277,9 @@ export default function SpiderClockContactCard({
             </svg>
           </div>
 
-          {/* glowing halo */}
+          {/* glowing halo.. */}
           <div className="absolute left-1/2 -translate-x-1/2 -top-24 w-72 h-72 rounded-full blur-3xl opacity-20 bg-linear-to-r from-indigo-500 via-cyan-400 to-blue-500 transform-gpu transition-opacity group-hover:opacity-40"></div>
 
-          {/* Title & subtitle */}
           <div className="relative z-10 flex flex-col items-center gap-3 pb-4">
             <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-linear-to-r from-indigo-300 to-cyan-300">
               Reach Out
@@ -177,16 +290,14 @@ export default function SpiderClockContactCard({
             </p>
           </div>
 
-          {/* clock + icons container */}
+          {/* clock container */}
           <div className="relative z-10 flex items-center justify-center py-6">
-            {/* outer ring */}
             <div className="relative w-[260px] h-[260px] flex items-center justify-center">
               <div className="absolute inset-0 rounded-full border border-slate-700/30" />
 
-              {/* icons around circle */}
               <div className="absolute  inset-0">
                 {iconSet.map((it, idx) => {
-                  const angle = (idx / iconSet.length) * 360 - 90; // start top
+                  const angle = (idx / iconSet.length) * 360 - 90;
                   return (
                     <a
                       key={it.label}
@@ -205,12 +316,10 @@ export default function SpiderClockContactCard({
                 })}
               </div>
 
-              {/* clock face */}
               <div
                 className="relative w-40 h-40 rounded-full bg-linear-to-b from-slate-800/70 to-slate-900/60 border border-slate-700/40 flex items-center justify-center shadow-inner"
                 aria-hidden={false}
               >
-                {/* hour ticks */}
                 <svg
                   viewBox="0 0 160 160"
                   className="absolute inset-0 w-full h-full"
@@ -239,7 +348,6 @@ export default function SpiderClockContactCard({
                   </g>
                 </svg>
 
-                {/* spider center */}
                 <div className="relative w-full h-full flex items-center justify-center">
                   <div
                     className="absolute inset-0 flex items-center justify-center"
@@ -352,7 +460,6 @@ export default function SpiderClockContactCard({
                       </div>
                     </div>
 
-                    {/* small glossy abdomen highlight */}
                     <div className="absolute w-2.5 h-2.5 rounded-full bg-white/30 top-[42%] left-[52%] transform -translate-x-1/2 -translate-y-1/2" />
                   </div>
                 </div>
@@ -368,7 +475,7 @@ export default function SpiderClockContactCard({
                 <span className="text-slate-200 font-semibold">Donald U.</span>
               </div>
               <div className="text-xs text-slate-400">
-                Front-end Developer • Lagos
+                Full-Stack Developer • Abuja
               </div>
             </div>
 
@@ -395,7 +502,7 @@ export default function SpiderClockContactCard({
           </div>
         </div>
 
-        {/* Right: Contact Form Card */}
+        {/* Contact Form Card */}
         <div className="bg-slate-800/50 border border-slate-700 rounded-3xl p-8 shadow-xl backdrop-blur-sm">
           <h4 className="text-2xl font-semibold text-indigo-300 mb-3">
             Send Me a Message
@@ -410,34 +517,97 @@ export default function SpiderClockContactCard({
             onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                id="contactFormName"
-                name="name"
-                placeholder="Your name"
-                className="p-3 rounded-xl bg-slate-900/60 border border-slate-700 outline-none text-slate-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-                required
-              />
-              <input
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                className="p-3 rounded-xl bg-slate-900/60 border border-slate-700 outline-none text-slate-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-                required
-              />
+              {/* NAME */}
+              <div className="relative">
+                <motion.input
+                  ref={nameRef}
+                  id="contactFormName"
+                  name="name"
+                  placeholder="Your name"
+                  className={[
+                    "w-full p-3 rounded-xl bg-slate-900/60 outline-none text-slate-100",
+                    "border transition-all",
+                    errors.name
+                      ? "border-rose-500/70 ring-1 ring-rose-500/30"
+                      : "border-slate-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500",
+                  ].join(" ")}
+                  animate={errors.name ? shake : { x: 0, scale: 1 }}
+                  transition={shakeTransition}
+                  onChange={() => setErrors((p) => ({ ...p, name: undefined }))}
+                />
+
+                {errors.name && (
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    <FieldErrorBadge />
+                  </div>
+                )}
+              </div>
+
+              {/* EMAIL */}
+              <div className="relative">
+                <motion.input
+                  ref={emailRef}
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className={[
+                    "w-full p-3 rounded-xl bg-slate-900/60 outline-none text-slate-100",
+                    "border transition-all",
+                    errors.email
+                      ? "border-rose-500/70 ring-1 ring-rose-500/30"
+                      : "border-slate-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500",
+                  ].join(" ")}
+                  animate={errors.email ? shake : { x: 0, scale: 1 }}
+                  transition={shakeTransition}
+                  onChange={() => setErrors((p) => ({ ...p, email: undefined }))}
+                />
+
+                {errors.email && (
+                  <div>
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                      <FieldErrorBadge />
+                    </div>
+                  </div>
+                )}
+                {errors.email && (
+                  <div className="mt-1 text-[11px] text-rose-300 font-mono">
+                    {errors.email}
+                  </div>
+                )}
+              </div>
             </div>
 
-            <textarea
-              name="message"
-              rows={5}
-              placeholder="Tell me about your project..."
-              className="p-3 rounded-xl bg-slate-900/60 border border-slate-700 outline-none text-slate-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
-              required
-            />
+            {/* MESSAGE */}
+            <div className="relative">
+              <motion.textarea
+                ref={messageRef}
+                name="message"
+                rows={5}
+                placeholder="Tell me about your project..."
+                className={[
+                  "w-full p-3 rounded-xl bg-slate-900/60 outline-none text-slate-100 resize-none",
+                  "border transition-all",
+                  errors.message
+                    ? "border-rose-500/70 ring-1 ring-rose-500/30"
+                    : "border-slate-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500",
+                ].join(" ")}
+                animate={errors.message ? shake : { x: 0, scale: 1 }}
+                transition={shakeTransition}
+                onChange={() => setErrors((p) => ({ ...p, message: undefined }))}
+              />
+
+              {errors.message && (
+                <div className="absolute right-3 top-3">
+                  <FieldErrorBadge />
+                </div>
+              )}
+            </div>
 
             <div className="flex items-center justify-between gap-3">
               <div className="text-sm text-slate-400">
                 Prefer a quick call? +234 123 456 7890
               </div>
+
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-medium py-2 px-4 rounded-xl hover:opacity-95 transition"
@@ -453,6 +623,15 @@ export default function SpiderClockContactCard({
           </form>
         </div>
       </div>
+
+      <HoloToast
+        open={toast.open}
+        type={toast.type}
+        title={toast.title}
+        description={toast.description}
+        duration={4200}
+        onClose={() => setToast((t) => ({ ...t, open: false }))}
+      />
     </div>
   );
 }

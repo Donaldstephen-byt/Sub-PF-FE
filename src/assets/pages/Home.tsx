@@ -57,9 +57,9 @@ function Home() {
 justify-start md:justify-between
 gap-4 md:gap-2 md:p-6 
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
-  p-2 backdrop-blur-xl overflow-hidden group 
+  p-2 backdrop-blur-md overflow-hidden group 
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
-  transition-all w-full max-w-302"
+  transition-all w-full max-w-302 transform-gpu will-change-transform"
       >
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
         <Sidebar className={` md:ml-0`} />
@@ -163,7 +163,7 @@ gap-4 md:gap-2 md:p-6
                     rotate: 1.5,
                     transition: { type: "spring", stiffness: 300 },
                   }}
-                  className="group flex flex-col items-center justify-center p-2.5 bg-linear-to-br from-slate-900/60 to-slate-800/40 rounded-xl border border-slate-700/80 hover:border-indigo-400/60 cursor-pointer transition-all hover:shadow-[0_0_15px_-3px_rgba(99,102,241,0.5)] hover:scale-105 backdrop-blur-md relative overflow-hidden"
+                  className="group flex flex-col items-center justify-center p-2.5 bg-linear-to-br from-slate-900/60 to-slate-800/40 rounded-xl border border-slate-700/80 hover:border-indigo-400/60 cursor-pointer transition-all hover:shadow-[0_0_15px_-3px_rgba(99,102,241,0.5)] hover:scale-105 backdrop-blur-md relative overflow-hidden transform-gpu will-change-transform"
                 >
                   {/* Soft gradient glow behind icon */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-linear-to-br from-indigo-500/20 via-purple-500/10 to-transparent blur-2xl" />

@@ -84,11 +84,13 @@ type SkillProfile = {
 /*---------------------------------------- */
 
 function SectionCard({
+  className,
   title,
   children,
 }: {
   title?: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <motion.div
@@ -97,7 +99,7 @@ function SectionCard({
         borderColor: "rgba(99,102,241,0.4)",
         boxShadow: "0 0 25px -8px rgba(99,102,241,0.4)",
       }}
-      className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/70 shadow-sm backdrop-blur-md transition-all overflow-hidden"
+      className={`p-4 rounded-2xl bg-slate-800/50 border border-slate-700/70 shadow-sm backdrop-blur-md transition-all overflow-hidden transform-gpu ${className}`}
     >
       <h4 className="font-semibold text-indigo-300 mb-2">{title}</h4>
       {children}
@@ -272,7 +274,7 @@ export function Sidebar({
       initial={{ x: -40, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full md:max-w-[280px] backdrop-blur-xl shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden ${className}`}
+      className={`relative flex flex-col items-center gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl p-6 w-full md:max-w-[280px] backdrop-blur-md shadow-lg hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all overflow-hidden transform-gpu will-change-transform ${className}`}
     >
       {children}
       {/* Loader */}
@@ -457,7 +459,7 @@ export function LefIndexCard() {
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative sm:min-w-302 flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-xl overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all"
+      className="relative sm:min-w-302 flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-md overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all transform-gpu will-change-transform"
     >
       <CyberBackground />
       {(loading || error) && (
@@ -652,7 +654,7 @@ export function LefIndexCard() {
       <SystemStatusCard />
 
       {/* ---------- Live Clock Card ---------- */}
-      <SectionCard>
+      <SectionCard className="overflow-hidden">
         {/* <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}

@@ -8,4 +8,16 @@ export default defineConfig({
     host: true,
   },
   base: "./",
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          framer: ["framer-motion"],
+          ui: ["lucide-react"],
+        },
+      },
+    },
+  },
 });
