@@ -17,7 +17,7 @@ type ToastType = "success" | "warning" | "error" | "info";
 
 interface ToastStyle {
   label: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
   accent: string;
   border: string;
   iconPlate: string;
