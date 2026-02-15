@@ -25,7 +25,6 @@ export function Navbar() {
   const navRef = useRef<HTMLElement | null>(null);
   const profileRef = useRef<HTMLDivElement | null>(null);
 
-  // Close dropdowns when clicking outside
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
       if (
@@ -44,14 +43,14 @@ export function Navbar() {
     const el = navRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left; // x position within element
-    const y = e.clientY - rect.top; // y position within element
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top; 
     const cx = rect.width / 2;
     const cy = rect.height / 2;
-    const px = (x - cx) / cx; // -1 .. 1
-    const py = (y - cy) / cy; // -1 .. 1
-    const rotateY = px * 2; // degrees
-    const rotateX = -py * 3; // degrees
+    const px = (x - cx) / cx;
+    const py = (y - cy) / cy;
+    const rotateY = px * 2; 
+    const rotateX = -py * 3;
     const enableRotateY = true;
     const rotateToY = enableRotateY ? `rotateY(${rotateY}deg)` : "";
     const enableRotateX = false;
@@ -102,7 +101,7 @@ export function Navbar() {
 
   function handleSelect(projectId: string) {
     navigate(`/projects?highlight=${projectId}`);
-    setOpen(false); // close search modal if needed
+    setOpen(false);
   }
   // const navigate = useNavigate();
 
@@ -135,7 +134,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* Top fixed navbar centered */}
       <header
         ref={navRef}
         onMouseMove={handleMouseMove}
@@ -357,19 +355,19 @@ export function Navbar() {
                       {quickOpen && (
                         <div className="mt-2 ml-2 space-y-1">
                           <QuickLink
-                            href="/case-studies"
+                            href="/construction"
                             label="🧩 Case studies"
                           />
                           <QuickLink
-                            href="/ui-experiments"
+                            href="/construction"
                             label="🎨 UI experiments"
                           />
                           <QuickLink
-                            href="/performance"
+                            href="/construction"
                             label="⚡ Performance lab"
                           />
                           <QuickLink
-                            href="/design-system"
+                            href="/construction"
                             label="📐 Design system"
                           />
                         </div>

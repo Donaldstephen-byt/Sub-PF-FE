@@ -12,12 +12,14 @@ import {
   // Clock,
   Cpu,
   Code,
-  Heart,
+  Fingerprint,
+  Expand,
   Terminal,
   GitBranch,
   Globe,
   Server,
   Box,
+  Compass,
   ShieldCheck,
   Layers,
   Database,
@@ -405,7 +407,7 @@ export function LefIndexCard() {
       color: "text-orange-400",
     },
     {
-      name: "Docker & K8s",
+      name: "Docker & K8s & K3s",
       label: "Min.Knowledge",
       icon: <Box size={14} />,
       color: "text-blue-400 text-[10px]",
@@ -561,11 +563,13 @@ export function LefIndexCard() {
               icon={<Zap />}
               highlight
             />
-            <StatItem
-              label="Core Focus"
-              value={skills?.stats?.current_focus}
-              icon={<Cpu />}
-            />
+            
+           <StatItem
+             label="Current Exploration"
+             value={skills?.stats?.current_focus}
+             icon={<Compass />}
+             />
+
           </div>
 
           <div className="mt-6">
@@ -599,9 +603,10 @@ export function LefIndexCard() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <InfoTag icon={<Cpu />} label="Frontend Architecture" />
           <InfoTag icon={<Code />} label="Clean Code" />
-          <InfoTag icon={<Heart />} label="UI/UX Aesthetics" />
+          <InfoTag icon={<Expand />} label="Scalable Platform Contribution" />
           <InfoTag icon={<Cpu />} label="Performance Optimization" />
           <InfoTag icon={<Code />} label="Reusable Components" />
+          <InfoTag icon={<Fingerprint />} label="Secure Platform Engineering" />
         </div>
       </SectionCard>
 

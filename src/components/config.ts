@@ -1,3 +1,3 @@
-export const BASE_URL = "https://view-portfolio-be.onrender.com";
-export const BASE_URL_LOCAL = "http://127.0.0.1:8000";
-export const remember_url = `https://view-portfolio-be.onrender.com`;
+export const BASE_URL = import.meta.env.VITE_API_URL;
+export const BASE_URL_LOCAL = import.meta.env.VITE_API_URL_LOCAL;
+export const remember_url = import.meta.env.VITE_API_URL;

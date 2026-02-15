@@ -9,6 +9,8 @@ import BuyMeCoffeeApple from "./components/CoffeeButton.tsx";
 import { useEffect } from "react";
 import { Navbar } from "./components/Navbar.tsx";
 import { BASE_URL } from "./components/config";
+// import ConstructionPage from "./assets/pages/ConstructionPage.tsx";
+import ConstructionScene from "./assets/pages/ConstructionPage.tsx";
 function App() {
   const location = useLocation();
 
@@ -45,6 +47,8 @@ function App() {
       ;
       <PageTransition key={location.pathname}>
         <Routes>
+          {/* <Route path="/construction" element={<ConstructionPage />} /> */}
+          <Route path="/construction" element={<ConstructionScene />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />

@@ -1,0 +1,13 @@
+
+> react-3d-website@0.0.0 lint C:\Users\user\main-3d-pd-fe\react-3d-website
+> eslint .
+
+
+C:\Users\user\main-3d-pd-fe\react-3d-website\src\assets\pages\ConstructionPage.tsx
+   21:7   error    'AutomatedAssembly' is assigned a value but never used                                                           @typescript-eslint/no-unused-vars
+  103:6   warning  React Hook useEffect has a missing dependency: 'fullSequence'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  250:13  error    'state' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+
+✖ 3 problems (2 errors, 1 warning)
+
+ ELIFECYCLE  Command failed with exit code 1.
