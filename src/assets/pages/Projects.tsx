@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  ExternalLink,
+  // ExternalLink,
   Code2,
   Rocket,
   Sparkles,
@@ -107,14 +107,14 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <a
+                {/* <a
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute top-4 right-4 text-slate-400 hover:text-indigo-400 transition-colors"
                 >
                   <ExternalLink className="w-5 h-5" />
-                </a>
+                </a> */}
               </div>
             );
           })}

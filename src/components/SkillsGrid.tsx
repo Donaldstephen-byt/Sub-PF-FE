@@ -550,7 +550,7 @@ export function TechIcons() {
     { icon: <SiJavascript color="#F7DF1E" />, name: "JavaScript" },
     { icon: <SiTypescript color="#3178C6" />, name: "TypeScript" },
     { icon: <FaReact color="#61DAFB" />, name: "React" },
-    { icon: <SiTailwindcss color="#38BDF8" />, name: "Tailwind" },
+    { icon: <SiTailwindcss color="#38BDF8" />, name: "Tailwind CSS" },
     { icon: <FaBootstrap color="#563D7C" />, name: "Bootstrap" },
     // { icon: <BsUmbrella color="#563D7C" />, name: "Bulma" },
     { icon: <FaGem color="#7F52FF" />, name: "Bulma" },

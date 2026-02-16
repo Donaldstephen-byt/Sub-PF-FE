@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Terminal, ArrowLeft } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { 
   OrbitControls, 
@@ -225,8 +226,10 @@ const ConstructionTerminal = () => {
 };
 
 export default function UnderConstructionPage() {
+  const navigate = useNavigate();
+
   return (
-    <div className="h-screen w-full sm:pt-10 md:pt-0"><div className="fixed inset-0 z-[10] w-full h-screen overflow-hidden">
+    <div className="h-screen w-full sm:pt-10 md:pt-0"><div className="fixed inset-0 z-[100] w-full h-screen overflow-hidden">
       <div className="absolute inset-0 z-0">
         <ConstructionScene />
       </div>
@@ -268,13 +271,12 @@ export default function UnderConstructionPage() {
 
                 </p>
             </motion.div>
-
             <motion.button 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              onClick={() => window.history.back()}
-              className="group flex items-center gap-4 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/50 text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 rounded-sm backdrop-blur-sm"
+              onClick={() => navigate('/')}
+              className="group flex items-center gap-4 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/50 text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 rounded-sm backdrop-blur-sm z-50 cursor-pointer pointer-events-auto"
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform text-cyan-400" />
               <span>Return to Home</span>

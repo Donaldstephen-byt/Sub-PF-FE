@@ -102,7 +102,7 @@ export default function BuyMeCoffeeApple() {
         </div>
 
         <motion.a
-          href="https://buymeacoffee.com/donaldstephen"
+          href="/construction"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.04 }}

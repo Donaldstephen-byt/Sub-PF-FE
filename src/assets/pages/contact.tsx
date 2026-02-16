@@ -150,19 +150,26 @@ export default function SpiderClockContactCard({
 
     if (!values.name) {
       nextErrors.name = "Your name is required";
-    } else if (!values.email) {
+    }
+    
+    if (!values.email) {
       nextErrors.email = "Email is required";
     } else if (!emailRegex.test(values.email)) {
       nextErrors.email = "Enter a valid email address";
-    } else if (!values.message) {
+    }
+    
+    if (!values.message) {
       nextErrors.message = "Message is required";
     }
 
     setErrors(nextErrors);
 
-    if (nextErrors.name) return nameRef.current?.focus();
-    if (nextErrors.email) return emailRef.current?.focus();
-    if (nextErrors.message) return messageRef.current?.focus();
+    if (Object.keys(nextErrors).length > 0) {
+      if (nextErrors.name) nameRef.current?.focus();
+      else if (nextErrors.email) emailRef.current?.focus();
+      else if (nextErrors.message) messageRef.current?.focus();
+      return;
+    }
 
     const formData = new FormData(form);
 
@@ -605,7 +612,7 @@ export default function SpiderClockContactCard({
 
             <div className="flex items-center justify-between gap-3">
               <div className="text-sm text-slate-400">
-                Prefer a quick call? +234 123 456 7890
+                Prefer a quick call? +234 814 386 7205
               </div>
 
               <button

@@ -3,7 +3,7 @@ export const projects = [
     id: "ai-assistant-ui",
     title: "AI Assistant UI",
     desc: "A sleek conversational interface powered by OpenAI API, designed for real-time responses and intuitive interaction.",
-    tech: ["React", "Tailwind", "Node.js"],
+    tech: ["React", "Tailwind CSS", "Node.js"],
     link: "#",
   },
   {
@@ -17,21 +17,21 @@ export const projects = [
     id: "data-dashboard",
     title: "Data Dashboard",
     desc: "Interactive analytics dashboard presenting live charts and actionable insights from API data.",
-    tech: ["React", "Recharts", "Express"],
+    tech: ["React", "Recharts", "Express.js"],
     link: "#",
   },
   {
     id: "task-manager",
     title: "Task Manager",
     desc: "Minimalist full-stack productivity app to track tasks efficiently with intuitive UX.",
-    tech: ["MongoDB", "React", "Tailwind"],
+    tech: ["MongoDB", "React", "Tailwind CSS"],
     link: "#",
   },
   {
     id: "trackademic",
     title: "Trackademic",
     desc: "Comprehensive platform to manage student records, attendance, grades, and staff operations seamlessly.",
-    tech: ["Tailwind", "JavaScript", "Node.js"],
+    tech: ["Tailwind CSS", "JavaScript", "Node.js"],
     link: "#",
   },
   {
