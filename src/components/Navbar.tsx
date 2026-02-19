@@ -404,6 +404,15 @@ export function Navbar() {
                 role="menu"
                 aria-label="Mobile Menu"
               >
+                <div className="flex justify-end mb-2">
+                   <button
+                    onClick={() => setMobileOpen(false)}
+                    className="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    aria-label="Close menu"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
                 <div className="flex flex-col gap-2">
                   {NAV_ITEMS.map((item) => (
                     <a
