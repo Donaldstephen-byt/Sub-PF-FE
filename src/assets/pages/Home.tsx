@@ -154,7 +154,7 @@ gap-4 md:gap-2 md:p-6
               ⚡ Tech Stack
             </h3>
 
-            <div className="grid grid-cols-6 gap-3 mt-2 px-4 z-10">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-2 px-4 z-10">
               {techStacks.map((stack, idx) => (
                 <motion.div
                   key={idx}
