@@ -23,17 +23,32 @@ A modern, high-performance 3D portfolio website built with **React 19**, **Vite*
 - **Routing**: React Router Dom 7
 - **Deployment**: Vercel
 
-## 📁 Project Structure
+## 📁 Project Structure & Modules
 
-```text
-src/
-├── assets/
-│   ├── pages/       # Application views (Home, About, Projects, etc.)
-│   └── ...          # Images, 3D models, and static assets
-├── components/      # Reusable UI and 3D components
-├── App.tsx          # Main application routing and analytics
-└── main.tsx         # Entry point
-```
+### 🗺️ Pages (`src/assets/pages/`)
+
+The main views of the application, managed via `react-router-dom`:
+
+- **Home**: Landing page with immersive 3D elements.
+- **About**: Developer bio, skills, and engineering philosophy.
+- **Projects**: Portfolio showcase with detailed project descriptions.
+- **Contact**: Interactive contact form and social reach links.
+- **Construction**: Dedicated scene for sections under development.
+
+### 🏗️ Components (`src/components/`)
+
+Reusable UI and 3D modules:
+
+- **Navigation**: `Navbar`, `Footer`, `NavDropdown`.
+- **3D/Interactive**: `Avater` (R3F), `SkillsGrid`, `CreativityBar`.
+- **UI & Feedback**: `ProjectCard`, `ContactToast`, `SystemStatus`, `CoffeeButton`.
+- **Common**: `PageTransition`, `SectionDivider`, `Statchip`.
+
+### ⚙️ Core Logic
+
+- **`App.tsx`**: Central routing and analytics tracking.
+- **`config.ts`**: API and environment-specific configuration.
+- **`main.tsx`**: Application entry point.
 
 ## ⚙️ Getting Started
 
