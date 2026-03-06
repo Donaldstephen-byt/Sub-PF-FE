@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# 3D Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Built with ❤️ by [Donald Stephen](https://github.com/Donaldstephen-byt)**
 
-Currently, two official plugins are available:
+A modern, high-performance 3D portfolio website built with **React 19**, **Vite**, and **React Three Fiber**. This project features immersive 3D elements, smooth page transitions, and a fully responsive design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- **Immersive 3D Graphics**: Leveraging [React Three Fiber](https://r3f.docs.pmnd.rs/getting-started/introduction) and [Drei](https://github.com/pmndrs/drei) for high-quality 3D renderings and interactions.
+- **Dynamic Page Transitions**: Smooth navigation using [Framer Motion](https://www.framer.com/motion/) and [React Router](https://reactrouter.com/).
+- **Responsive Design**: Mobile-first approach using [Tailwind CSS 4](https://tailwindcss.com/).
+- **Performance Optimized**: Built with Vite for lightning-fast development and optimized production builds.
+- **Interactive UI Components**: Custom-built components like `SkillsGrid`, `ProjectCard`, and interactive 3D avatars.
+- **System Analytics**: Integrated tracking for page views and user engagement.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend**: React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **3D Rendering**: Three.js, React Three Fiber, React Three Drei
+- **Animations**: Framer Motion
+- **Icons**: Lucide React, Phosphor Icons, Heroicons
+- **Routing**: React Router Dom 7
+- **Deployment**: Vercel
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📁 Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── assets/
+│   ├── pages/       # Application views (Home, About, Projects, etc.)
+│   └── ...          # Images, 3D models, and static assets
+├── components/      # Reusable UI and 3D components
+├── App.tsx          # Main application routing and analytics
+└── main.tsx         # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (Latest LTS recommended)
+- pnpm (Recommended) or npm/yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add relevant variables (e.g., `VITE_BASE_URL`).
+
+### Running Locally
+
+```bash
+pnpm dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+### Building for Production
+
+```bash
+pnpm build
+```
+
+The production-ready files will be in the `dist/` directory.
+
+## 📄 License
+
+This project is private. All rights reserved.
+
+```
+
 ```
