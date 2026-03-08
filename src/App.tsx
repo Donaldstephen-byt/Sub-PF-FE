@@ -5,7 +5,7 @@ import About from "./assets/pages/About.tsx";
 import Projects from "./assets/pages/Projects.tsx";
 import Contact from "./assets/pages/contact.tsx";
 import PageTransition from "./components/PageTransition.tsx";
-import BuyMeCoffeeApple from "./components/CoffeeButton.tsx";
+// import BuyMeCoffeeApple from "./components/CoffeeButton.tsx";
 import { useEffect } from "react";
 import { Navbar } from "./components/Navbar.tsx";
 import { BASE_URL } from "./components/config";
@@ -40,10 +40,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className=" md:top-99 bottom-10 right-4 fixed z-60">
+      {/* <div className=" md:top-99 bottom-10 right-4 fixed z-60">
         {" "}
         <BuyMeCoffeeApple />
-      </div>
+      </div> */}
       ;
       <PageTransition key={location.pathname}>
         <Routes>
