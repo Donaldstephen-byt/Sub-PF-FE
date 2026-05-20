@@ -144,7 +144,7 @@ export const ResumeCard = () => {
           </div>
 
           <a
-            href="/resume.pdf"
+            href="/public/Donald-Stephen-CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="relative inline-flex items-center gap-3 px-6 py-2 rounded-full
