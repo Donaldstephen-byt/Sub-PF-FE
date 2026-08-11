@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 export default function BuyMeCoffeeApple() {
   const [visible, setVisible] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  // Use ReturnType<typeof setTimeout> for compatibility with both Node and Browser environments
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 1. Activation Logic: Wait 40s before helping widget becomes active

@@ -1,4 +1,4 @@
-import { Sidebar, LefIndexCard } from "../../components/HomeSections";
+import { Sidebar, SystemStatus } from "../../components/HomeSections";
 import { motion } from "framer-motion";
 import {
   FaHtml5,
@@ -13,8 +13,8 @@ import { SiTailwindcss, SiTypescript } from "react-icons/si";
 import Footer from "../../components/Footer";
 import FastApiLogo from "../fastapi.seeklogo.svg";
 import BoostrapLogo from "../Bootstrap_logo.svg";
-import JavascriptLogo from '../Unofficial_JavaScript_logo_2.svg'
-import NextLogo from '../icons8-next.js.svg'
+import JavascriptLogo from "../Unofficial_JavaScript_logo_2.svg";
+import NextLogo from "../icons8-next.js.svg";
 
 const techStacks = [
   { icon: <FaHtml5 className="text-orange-500 text-4xl" />, name: "HTML5" },
@@ -33,7 +33,7 @@ const techStacks = [
   },
   { icon: <FaReact className="text-sky-400 text-4xl" />, name: "React" },
   { icon: <FaVuejs className="text-green-500 text-4xl" />, name: "Vuejs" },
-   {
+  {
     icon: <img src={NextLogo} alt="Next.js" className="w-10 h-10" />,
     name: "Next.js",
   },
@@ -51,7 +51,7 @@ const techStacks = [
 
 function Home() {
   return (
-    <div className="flex mb-4 flex-wrap w-full justify-center gap-4 items-center mt-2 ">
+    <div className="flex mb-4 flex-wrap w-full justify-center md:px-6 gap-4 items-center mt-2 ">
       <div
         className="py-4 relative flex flex-col md:flex-row
 justify-start md:justify-between
@@ -59,7 +59,7 @@ gap-4 md:gap-2 md:p-6
   bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg 
   p-2 backdrop-blur-md overflow-hidden group 
   hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)]
-  transition-all w-full max-w-302 transform-gpu will-change-transform"
+  transition-all w-full transform-gpu will-change-transform"
       >
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-slate-800/40 to-transparent opacity-60 blur-3xl -z-10"></div>
         <Sidebar className={` md:ml-0`} />
@@ -81,11 +81,15 @@ gap-4 md:gap-2 md:p-6
                 👋 Hey, I'm Donald
               </h2>
               <p className="text-slate-300 leading-relaxed">
-                I transform complex requirements into intuitive digital experiences. With expertise in frontend architecture and backend systems like FastAPI, I build fast, responsive applications that bridge creative design with engineering precision.
+                I transform complex requirements into intuitive digital
+                experiences. With expertise in frontend architecture and backend
+                systems like FastAPI, I build fast, responsive applications that
+                bridge creative design with engineering precision.
               </p>
               <div className="mt-6">
                 <p className="text-sm text-slate-400">
-                  Specialized in JS ES6, React, Vue.js, Next.js, TypeScript, and modern web design
+                  Specialized in JS ES6, React, Vue.js, Next.js, TypeScript, and
+                  modern web design
                 </p>
               </div>
             </div>
@@ -165,10 +169,7 @@ gap-4 md:gap-2 md:p-6
                   }}
                   className="group flex flex-col items-center justify-center p-2.5 bg-linear-to-br from-slate-900/60 to-slate-800/40 rounded-xl border border-slate-700/80 hover:border-indigo-400/60 cursor-pointer transition-all hover:shadow-[0_0_15px_-3px_rgba(99,102,241,0.5)] hover:scale-105 backdrop-blur-md relative overflow-hidden transform-gpu will-change-transform"
                 >
-                  {/* Soft gradient glow behind icon */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-linear-to-br from-indigo-500/20 via-purple-500/10 to-transparent blur-2xl" />
-
-                  {/* Icon */}
                   <motion.div
                     whileHover={{
                       rotateY: 360,
@@ -178,8 +179,6 @@ gap-4 md:gap-2 md:p-6
                   >
                     {stack.icon}
                   </motion.div>
-
-                  {/* Label */}
                   <p className="text-xs mt-2 text-slate-300 font-medium tracking-wide group-hover:text-indigo-300 transition-all duration-300 text-center">
                     {stack.name}
                   </p>
@@ -187,7 +186,6 @@ gap-4 md:gap-2 md:p-6
               ))}
             </div>
 
-            {/* Subtle rotating gear behind icons */}
             <motion.div
               className="absolute left-5 bottom-6 opacity-15"
               animate={{ rotate: 360 }}
@@ -206,7 +204,8 @@ gap-4 md:gap-2 md:p-6
           </motion.div>
         </div>
       </div>
-      <div className="md:px-4"> <LefIndexCard /></div>
+
+        <SystemStatus />
       <Footer className="hidden" />
     </div>
   );

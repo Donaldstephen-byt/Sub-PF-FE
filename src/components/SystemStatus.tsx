@@ -139,7 +139,6 @@ const Dashboard = () => {
                 </pre>
             </motion.div>
 
-            {/* GRADIENT FADE (Top & Bottom) to keep the live code bg on the middle */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#050816] via-transparent to-[#050816] z-10 pointer-events-none"></div>
         </div>
     );

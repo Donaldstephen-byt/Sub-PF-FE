@@ -56,7 +56,6 @@ export const profileOpenCard2 = () => {
                border border-slate-200/60 dark:border-slate-700/60
                shadow-lg py-3 ring-1 ring-black/5"
          >
-           {/* STATUS */}
            <div className="px-4 pb-2">
              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                Status
@@ -77,7 +76,6 @@ export const profileOpenCard2 = () => {
 
            <div className="border-t border-slate-200/60 dark:border-slate-700/60 my-2" />
 
-           {/* NOW */}
            <div className="px-4 pb-2">
              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                Now
@@ -90,7 +88,6 @@ export const profileOpenCard2 = () => {
 
            <div className="border-t border-slate-200/60 dark:border-slate-700/60 my-2" />
 
-           {/* LOCATION */}
            <div className="px-4">
              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                Location

@@ -8,7 +8,6 @@ const map = {
 type ColorKey = keyof typeof map;
 
 export const StatChip = ({
-//   icon: Icon,
   label,
   value,
   color = "indigo",

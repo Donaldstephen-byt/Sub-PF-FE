@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
@@ -38,18 +37,17 @@ export function Navbar() {
     return () => document.removeEventListener("click", onDocClick);
   }, []);
 
-  // Subtle 3D tilt based on mouse position
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = navRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top; 
+    const y = e.clientY - rect.top;
     const cx = rect.width / 2;
     const cy = rect.height / 2;
     const px = (x - cx) / cx;
     const py = (y - cy) / cy;
-    const rotateY = px * 2; 
+    const rotateY = px * 2;
     const rotateX = -py * 3;
     const enableRotateY = true;
     const rotateToY = enableRotateY ? `rotateY(${rotateY}deg)` : "";
@@ -79,7 +77,6 @@ export function Navbar() {
   const [results, setResults] = useState<projectType[]>([]);
   const [open, setOpen] = useState(false);
 
-  // Debounce
   useEffect(() => {
     const delay = setTimeout(() => {
       if (query.trim() === "") {
@@ -88,7 +85,7 @@ export function Navbar() {
       }
 
       const filtered = projects.filter((p) =>
-        p.title.toLowerCase().includes(query.toLowerCase())
+        p.title.toLowerCase().includes(query.toLowerCase()),
       );
 
       setResults(filtered);
@@ -150,15 +147,13 @@ export function Navbar() {
           role="navigation"
           aria-label="Top navigation"
         >
-          {/* Left: Logo */}
           <div className="flex items-center gap-3">
-            <a href="#" className="flex items-center gap-3 no-underline">
+            <a href="/" className="flex items-center gap-3 no-underline">
               <span className="tracking-tight text-transparent bg-clip-text bg-linear-to-br from-indigo-400 via-purple-500 to-blue-500 text-2xl font-semibold">
                 Donald U.
               </span>
             </a>
 
-            {/* Desktop nav links */}
             <nav
               className="hidden md:flex items-center gap-2"
               aria-label="Primary"
@@ -176,9 +171,6 @@ export function Navbar() {
             </nav>
           </div>
 
-          {/* Center: search (desktop) */}
-
-          {/* SEARCH INPUT */}
           <div className="hidden md:flex flex-1 justify-center px-3">
             <label htmlFor="nav-search" className="sr-only">
               Search
@@ -216,9 +208,7 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Right: actions */}
           <div className="flex items-center gap-3">
-            {/* Mobile Hamburger */}
             <button
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
@@ -226,7 +216,6 @@ export function Navbar() {
               className="md:hidden p-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-white/20 transition"
             >
               <span className="sr-only">Toggle menu</span>
-              {/* hamburger icon */}
               <svg
                 width="22"
                 height="22"
@@ -243,7 +232,6 @@ export function Navbar() {
               </svg>
             </button>
 
-            {/* Profile area */}
             <div className="relative" ref={profileRef}>
               <button
                 onClick={() => setProfileOpen((s) => !s)}
@@ -259,18 +247,14 @@ export function Navbar() {
     transition-all
   "
               >
-                {/* ICON */}
                 <Icon
                   size={16}
                   className={`text-${current.color}-600 dark:text-${current.color}-400`}
                 />
 
-                {/* LABEL */}
                 <span className="hidden sm:inline text-sm font-medium text-slate-700 dark:text-slate-200">
                   Availability
                 </span>
-
-                {/* STATUS INDICATOR */}
                 <span className="relative flex h-2.5 w-2.5">
                   <span
                     className="absolute inline-flex h-full w-full
@@ -282,18 +266,15 @@ export function Navbar() {
                   />
                 </span>
               </button>
-              {/* Profile dropdown */}
-              {/* to oltip menu  */}
+
               {profileOpen && (
                 <div className="relative">
-                  {/* Tooltip arrow */}
                   <div
                     className="absolute top-0 right-4 w-3 h-3 bg-white/80 dark:bg-slate-900/90
                  transform -translate-y-1/2 rotate-45
                  border-t border-l border-slate-200/60 dark:border-slate-700/60"
                   />
 
-                  {/* Menu */}
                   <div
                     role="menu"
                     className="absolute right-0 mt-1 w-72 rounded-xl
@@ -301,7 +282,6 @@ export function Navbar() {
                  border border-slate-200/60 dark:border-slate-700/60
                  shadow-lg py-3 ring-1 z-100 ring-black/5"
                   >
-                    {/* STATUS */}
                     <Section title="Status">
                       <Dot
                         color="bg-emerald-500"
@@ -315,7 +295,6 @@ export function Navbar() {
 
                     <Divider />
 
-                    {/* NOW */}
                     <Section title="Now">
                       <p className="text-sm leading-snug text-slate-600 dark:text-slate-300">
                         Current Frontend Engineering Intern at <b>KodeHouz</b>.
@@ -328,7 +307,6 @@ export function Navbar() {
 
                     <Divider />
 
-                    {/* LOCATION */}
                     <Section title="Location">
                       <p className="text-sm">
                         📍 Remote / Hybrid (EU-friendly)
@@ -382,11 +360,9 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu — slides down */}
         <AnimatePresence>
           {mobileOpen && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -394,7 +370,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
               />
-              
+
               <motion.div
                 id="mobile-menu"
                 initial={{ opacity: 0, y: -20 }}
@@ -405,7 +381,7 @@ export function Navbar() {
                 aria-label="Mobile Menu"
               >
                 <div className="flex justify-end mb-2">
-                   <button
+                  <button
                     onClick={() => setMobileOpen(false)}
                     className="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                     aria-label="Close menu"
@@ -425,7 +401,7 @@ export function Navbar() {
                       {item.name}
                     </a>
                   ))}
-    
+
                   {/* <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
                     <label htmlFor="mobile-search" className="sr-only">
                       Search
@@ -446,15 +422,11 @@ export function Navbar() {
           )}
         </AnimatePresence>
       </header>
-
-      {/* spacer so page content doesn't tuck behind fixed header */}
       <div className="h-20" aria-hidden />
 
-      {/* MODAL */}
       <AnimatePresence>
         {open && (
           <>
-            {/* BACKDROP */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.7 }}
@@ -462,8 +434,6 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="fixed inset-0 bg-black/70 backdrop-blur-lg z-[100]"
             />
-
-            {/* MODAL */}
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -476,7 +446,6 @@ export function Navbar() {
           backdrop-blur-2xl rounded-2xl shadow-2xl overflow-hidden
         "
             >
-              {/* SEARCH INPUT */}
               <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
                 <Search className="w-4 h-4 text-cyan-300" />
 
@@ -496,7 +465,6 @@ export function Navbar() {
                 </button>
               </div>
 
-              {/* RESULTS */}
               <div className="max-h-80 overflow-y-auto px-3 py-4 space-y-2">
                 {results.length > 0 ? (
                   results.map((r, i) => (
@@ -532,7 +500,6 @@ export function Navbar() {
                 )}
               </div>
 
-              {/* FOOTER */}
               <div className="px-5 py-3 border-t border-slate-700/40 text-[11px] text-gray-500 flex justify-end">
                 Press <span className="text-cyan-300 mx-1">⌘ + K</span> to open
                 search

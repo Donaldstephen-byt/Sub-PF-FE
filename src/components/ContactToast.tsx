@@ -101,28 +101,23 @@ function use3DTilt() {
 function HudBackground() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* soft fog glow */}
       <div className="absolute inset-0 bg-cyan-400/5" />
       <div className="absolute -left-10 top-6 w-72 h-72 rounded-full bg-cyan-400/10 blur-3xl" />
       <div className="absolute right-0 bottom-0 w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl" />
 
-      {/* scanline */}
       <motion.div
         className="absolute left-0 right-0 h-[2px] bg-linear-to-r from-transparent via-cyan-200 to-transparent opacity-40 blur-sm"
         animate={{ top: ["-20%", "120%"] }}
         transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
       />
 
-      {/* HUD SVG */}
       <svg
         className="absolute inset-0 w-full h-full opacity-55"
         viewBox="0 0 800 420"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* main cyan stroke */}
         <g stroke="rgba(34,211,238,0.65)" strokeWidth="2">
-          {/* big ring */}
           <circle cx="360" cy="210" r="86" />
           <circle cx="360" cy="210" r="64" strokeDasharray="6 6" />
           <circle
@@ -133,27 +128,21 @@ function HudBackground() {
             opacity="0.6"
           />
 
-          {/* cross lines */}
           <line x1="360" y1="96" x2="360" y2="20" opacity="0.5" />
           <line x1="360" y1="400" x2="360" y2="296" opacity="0.5" />
           <line x1="244" y1="210" x2="140" y2="210" opacity="0.4" />
           <line x1="476" y1="210" x2="660" y2="210" opacity="0.35" />
 
-          {/* square target */}
           <rect x="330" y="180" width="60" height="60" rx="8" opacity="0.7" />
           <circle cx="398" cy="240" r="8" opacity="0.6" />
 
-          {/* wireframe panels */}
           <path d="M140 70 H320 V150 H200 L140 70 Z" opacity="0.45" />
           <path d="M500 60 H720 V140 H560 L500 60 Z" opacity="0.4" />
           <path d="M80 290 H300 V380 H140 L80 290 Z" opacity="0.25" />
 
-          {/* right partial circle */}
           <circle cx="740" cy="210" r="60" opacity="0.25" />
           <path d="M700 210 A40 40 0 0 1 780 210" opacity="0.4" />
         </g>
-
-        {/* tiny ticks around ring */}
         <g stroke="rgba(34,211,238,0.55)" strokeWidth="1">
           {Array.from({ length: 36 }).map((_, i) => {
             const a = (i * Math.PI * 2) / 36;
@@ -167,7 +156,6 @@ function HudBackground() {
           })}
         </g>
 
-        {/* micro text blocks */}
         <g fill="rgba(255,255,255,0.35)" fontFamily="monospace" fontSize="10">
           <text x="150" y="60">
             MODEL MEDIUM
@@ -213,7 +201,6 @@ function HudBackground() {
         </g>
       </svg>
 
-      {/* bottom HUD bar */}
       <div className="absolute bottom-0 left-0 right-0 h-10 opacity-30">
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-cyan-400/30 to-transparent" />
         <div className="absolute top-3 left-10 right-10 h-px bg-cyan-300/40" />
@@ -300,9 +287,7 @@ export function HoloToast({
             <HudBackground />
             <HudRing />
 
-            {/* content */}
             <div className="relative z-10 p-4 flex items-start gap-3">
-              {/* icon plate */}
               <div
                 className={[
                   "relative w-11 h-11 rounded-xl border flex items-center justify-center shrink-0",

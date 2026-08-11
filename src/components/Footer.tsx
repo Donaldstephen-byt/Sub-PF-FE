@@ -3,7 +3,6 @@ import clsx from "clsx";
 export default function Footer({ className = "" }: { className?: string }) {
   return (
     <footer className={clsx("mt-8 px-6", className)}>
-      {/* DECORATIVE DIVIDER PICKED FROM DEVIDERS COMPONENT MADE FROM LAST (PR).*/}
       <div className="mx-auto max-w-5xl">
         <div className="w-full h-px bg-linear-to-r from-transparent via-indigo-500/40 to-transparent" />
         <div className="mt-1 flex justify-center gap-1">
@@ -13,7 +12,6 @@ export default function Footer({ className = "" }: { className?: string }) {
         </div>
       </div>
 
-      {/* ICON ROW */}
       <div className="mt-8 flex justify-center gap-6">
         {[
           { Icon: Briefcase, label: "Work", href: "/case-studies" },
@@ -45,7 +43,6 @@ export default function Footer({ className = "" }: { className?: string }) {
               "
             />
 
-            {/* subtle glow */}
             <span
               className="
               pointer-events-none absolute inset-0 rounded-xl
@@ -57,7 +54,6 @@ export default function Footer({ className = "" }: { className?: string }) {
         ))}
       </div>
 
-      {/* FOOTNOTE */}
       <p className="mt-6 text-center text-xs text-slate-500">
         © {new Date().getFullYear()} Donald Uko · Built with care
       </p>

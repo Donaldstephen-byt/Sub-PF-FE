@@ -81,9 +81,6 @@ type SkillProfile = {
   stack: Stack;
 };
 
-/*--------reusable section cards---------- */
-/*---------------------------------------- */
-/*---------------------------------------- */
 
 function SectionCard({
   className,
@@ -165,7 +162,6 @@ const CyberBackground = () => (
     {/* Static Grid
     <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(99,102,241,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.2)_1px,transparent_1px)] bg-[size:30px_30px]"></div> */}
 
-    {/* Moving Scanner Beam */}
     <motion.div
       animate={{ top: ["-10%", "110%"] }}
       transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -235,8 +231,6 @@ const StatItem = ({
   </div>
 );
 
-/* ---------------profile card----------------- */
-
 export function Sidebar({
   className,
   children,
@@ -280,20 +274,15 @@ export function Sidebar({
     >
       {children}
       {/* Loader */}
-      {/* 🌀 Unique Spinner Overlay */}
       {(loading || error) && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-20">
           <div className="relative flex items-center justify-center">
-            {/* Outer rotating ring */}
             <div className="w-14 h-14 rounded-full border-4 border-transparent border-t-[#38bdf8] border-l-[#38bdf8] animate-about-spin"></div>
 
-            {/* Inner ring */}
             <div className="absolute w-10 h-10 rounded-full border-4 border-transparent border-b-[#7c3aed] border-r-[#7c3aed] animate-about-spin-slow"></div>
 
-            {/* Center glowing dot */}
             <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full shadow-[0_0_15px_#38bdf8,0_0_30px_#7c3aed]"></div>
 
-            {/* Text pulse */}
             <div className="absolute top-14 text-[10px] tracking-widest text-[#38bdf8] animate-about-pulse font-semibold">
               LOADING
             </div>
@@ -301,9 +290,7 @@ export function Sidebar({
         </div>
       )}
 
-      {/* Background glow layer */}
       <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-purple-500/10 to-transparent blur-3xl opacity-70 -z-10"></div>
-      {/* Avatar Section */}
       <motion.div
         whileHover={{ scale: 1.05 }}
         className="relative flex flex-col items-center text-center"
@@ -326,7 +313,6 @@ export function Sidebar({
         </h2>
         <p className="text-sm text-slate-400">{profile?.role}</p>
       </motion.div>
-      {/* Contact Info */}
       <div className="flex flex-col gap-3 w-full">
         <SidebarInfo icon={<Mail size={16} />} label={profile?.email || ""} />
         <SidebarInfo icon={<Phone size={16} />} label={profile?.phone || ""} />
@@ -335,11 +321,9 @@ export function Sidebar({
           label={profile?.location || ""}
         />
       </div>
-      {/* ---------Divider Line ---------*/}
-      {/* ------------------------------ */}
+
       <div className="h-px w-full bg-linear-to-r from-transparent via-indigo-500/40 to-transparent my-4"></div>
-      {/* ------Social Links -----------*/}
-      {/* ----------------------------- */}
+
       <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -365,8 +349,6 @@ export function Sidebar({
           icon={<FaWhatsapp size={18} />}
         />
       </motion.nav>
-      {/* ---Subtle rotating gear (depth element)--- */}
-      {/* ------------------------------------------ */}
       <motion.div
         className="absolute -left-8 bottom-10 -z-50 opacity-[0.08]"
         animate={{ rotate: 360 }}
@@ -386,11 +368,7 @@ export function Sidebar({
   );
 }
 
-/* --------------- second home card --------------- */
-/* ------------------------------------------------ */
-/* ------------------------------------------------ */
-
-export function LefIndexCard() {
+export function SystemStatus() {
   const [skills, setSkills] = useState<SkillProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -461,7 +439,7 @@ export function LefIndexCard() {
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative sm:min-w-302 flex flex-col gap-6 bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-md overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all transform-gpu will-change-transform"
+      className="relative min-w-0 flex flex-col gap-6 w-full max-w-full bg-slate-900/70 border border-slate-700/80 rounded-3xl shadow-lg p-6 backdrop-blur-md overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.4)] transition-all transform-gpu will-change-transform"
     >
       <CyberBackground />
       {(loading || error) && (
@@ -492,14 +470,14 @@ export function LefIndexCard() {
       </p> */}
 
       {/* --- HEADER --- */}
-      <div className="flex justify-between">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 relative z-10">
+      <div className="flex flex-col gap-6 md:flex-row md:items-end justify-between mb-8 relative z-10">
+        <div className="flex flex-col justify-between w-full">
           <div>
             <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
               <Terminal className="text-indigo-400" size={28} />
               {skills?.title || "System Architecture"}
             </h3>
-            <p className="text-slate-400 mt-2 text-sm max-w-lg leading-relaxed">
+            <p className="text-slate-400 mt-2 text-sm max-w-full md:max-w-xl leading-relaxed">
               {skills?.tagline}
             </p>
           </div>
@@ -563,13 +541,12 @@ export function LefIndexCard() {
               icon={<Zap />}
               highlight
             />
-            
-           <StatItem
-             label="Current Exploration"
-             value={skills?.stats?.current_focus}
-             icon={<Compass />}
-             />
 
+            <StatItem
+              label="Current Exploration"
+              value={skills?.stats?.current_focus}
+              icon={<Compass />}
+            />
           </div>
 
           <div className="mt-6">
@@ -577,8 +554,6 @@ export function LefIndexCard() {
             {/* <NeuralBar label="CREATIVE_SYNAPSE" /> */}
           </div>
         </div>
-
-        {/* 2. SECURITY MODULE*/}
         <SecurityCard />
 
         <div className="md:col-span-3 p-5 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-md">
@@ -609,8 +584,6 @@ export function LefIndexCard() {
           <InfoTag icon={<Fingerprint />} label="Secure Platform Engineering" />
         </div>
       </SectionCard>
-
-      {/* ---------- Dev Arsenal & Architecture ---------- */}
 
       <div className="grid md:grid-cols-2 gap-4">
         <SectionCard
@@ -658,7 +631,6 @@ export function LefIndexCard() {
 
       <SystemStatusCard />
 
-      {/* ---------- Live Clock Card ---------- */}
       <SectionCard className="overflow-hidden">
         {/* <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
